@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_TimeDisplay : MonoBehaviour
 {
-    
+    public UIManager uiManager;
+    public Text textDisplay;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,7 @@ public class UI_TimeDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Do time readout update here. 
+        textDisplay.text = uiManager.GetTimeSTR;
     }
 }

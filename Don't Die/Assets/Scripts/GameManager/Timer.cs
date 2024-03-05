@@ -31,4 +31,9 @@ public class Timer
     {
         _current += dt; 
     }
+
+    public string TimeToString()
+    {
+        return _current.ToString();
+    }
 }
