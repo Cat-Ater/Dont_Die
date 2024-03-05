@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Timer
 {
     float _current;
-    Dictionary<string, float> _targetTimes; 
-
+    Dictionary<string, float> _targetTimes;
+    public float Time => _current; 
+    
     public Timer()
     {
         _current = 0F;
-        _targetTimes = new Dictionary<string, float>(); 
+        _targetTimes = new Dictionary<string, float>();
     }
 
     public void InsertTime(string label, float timeInSec)
@@ -29,11 +31,19 @@ public class Timer
 
     public void UpdateTimer(float dt)
     {
-        _current += dt; 
+        _current += dt;
     }
 
     public string TimeToString()
     {
-        return _current.ToString();
+        string val = _current.ToString();
+        string[] parts = val.Split('.');
+        if (parts[1].Length > 2)
+        {
+            parts[1] = parts[1][0].ToString() + parts[1][1].ToString();
+        }
+        return parts[0] + "." + parts[1];
     }
+
+    public void ResetTimer() => _current = 0; 
 }
