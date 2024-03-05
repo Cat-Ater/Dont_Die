@@ -1,14 +1,16 @@
 using UnityEngine;
 
+/// <summary>
+/// Class responsible for updating UI components. 
+/// </summary>
 public class UIManager : MonoBehaviour
 {
-    private GameManager _gameManager;
 
     public string GetTimeSTR => GameManager.GameTimer.TimeToString();
 
     void Start()
     {
-        _gameManager = GameManager.Instance; 
+        
     }
 
     void Update()
