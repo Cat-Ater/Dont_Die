@@ -12,9 +12,9 @@ public class Timer
         _targetTimes = new Dictionary<string, float>(); 
     }
 
-    public void InsertTime(string label, float time)
+    public void InsertTime(string label, float timeInSec)
     {
-        _targetTimes.Add(label, time);
+        _targetTimes.Add(label, timeInSec);
     }
 
     public bool GetTimeElapsed(string name)
