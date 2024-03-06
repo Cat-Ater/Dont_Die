@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/DevS_4_Buzzsaws.unity
+    guid: f3682e4b062997842acc386421d9fd26
+  - enabled: 1
     path: Assets/Scenes/_UI.unity
     guid: d7a5f658ef6f18a4cb680212a6aef74e
-  - enabled: 1
-    path: Assets/Scenes/DevS_2_TimerDisplay.unity
-    guid: 5cc54fa50cf010c4ba46c23a0a795730
   m_configObjects: {}

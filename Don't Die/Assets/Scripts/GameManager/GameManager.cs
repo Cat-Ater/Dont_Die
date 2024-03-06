@@ -71,4 +71,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="obj"></param>
     public void ScheduleObject(ITimerScheduler obj) => _objectScheduler.AddScheduledObject(obj);
+
+    public void CollisionHandling()
+    {
+        Debug.Log("Player collided, RESET.");
+    }
 }

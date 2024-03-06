@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac27ca4c8657f9b41b31d8454dba65b8
+guid: 567e81e037f79664b87d95e9e33e037c
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638453506779645041
+  platformSettingsDirtyTick: 638453513200636921
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -142,8 +142,8 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: Walls_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.011695921, y: 0.5116959}
+    alignment: 9
     border: {x: 1, y: 1, z: 1, w: 1}
     rect:
       serializedVersion: 2
@@ -182,20 +182,20 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: -2043758242
-    name: Temp_Tiles
+    guid: 1624993942
+    name: LazerTest
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Temp_Tiles
+    - name: LazerTest
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 32
         height: 16
-      spriteId: 3100e5861bc8fc740b3376ae886150b5
+      spriteId: fa7e5a9961bc57b4183e50ce8c27ee6f
     linkedCells: []
     parentIndex: -1
   platformSettings:
