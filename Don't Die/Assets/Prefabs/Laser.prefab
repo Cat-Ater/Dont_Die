@@ -49,8 +49,8 @@ MonoBehaviour:
   pivotOffset: {x: 0, y: 0, z: 0}
   centerPos: {x: 0, y: 0}
   endPos: {x: 0, y: 0}
-  scaleF: 0.88
-  rotation: 0.1
+  scaleF: 0
+  rotation: 0
 --- !u!1 &6040010224351330689
 GameObject:
   m_ObjectHideFlags: 0
