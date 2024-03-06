@@ -7,9 +7,9 @@ public class Buzzsaw : MonoBehaviour
 {
     private Rigidbody2D body2D;
     private Vector2 normDir;
-    public float dist;
-    public float traveledDist;
-    public bool arrived = false;
+    private float _currentDelay;
+    private float traveledDist;
+    private bool arrived = false;
     public Vector2 initalPosition;
     public Vector2 endPosition;
     public float delay;
@@ -18,11 +18,13 @@ public class Buzzsaw : MonoBehaviour
 
     void Start()
     {
+        //Get the component reference. 
         body2D = gameObject.GetComponent<Rigidbody2D>();
+        //Place object at the inital transform. 
         gameObject.transform.position = initalPosition;
         normDir = endPosition - initalPosition;
         normDir.Normalize();
-        dist = (endPosition - initalPosition).magnitude;
+        _currentDelay = 0;
     }
 
     void Update()
@@ -35,10 +37,14 @@ public class Buzzsaw : MonoBehaviour
 
     void UpdateMovement()
     {
+        if (_currentDelay < delay)
+        {
+            _currentDelay += Time.deltaTime;
+            return;
+        }
         traveledDist = (endPosition - (Vector2)gameObject.transform.position).magnitude;
         if (traveledDist <= arrivalThreshold)
         {
-            Debug.Log("Hit Zero Dist");
             arrived = true;
             gameObject.transform.position = endPosition;
             body2D.velocity = Vector2.zero;
