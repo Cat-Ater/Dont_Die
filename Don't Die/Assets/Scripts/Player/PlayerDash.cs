@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class responsible for implementing the dash behaviour. 
+/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerDash : MonoBehaviour
 {
@@ -14,6 +17,10 @@ public class PlayerDash : MonoBehaviour
     /// </summary>
     private bool canDash = true;
     /// <summary>
+    /// Is the player currently dashing. 
+    /// </summary>
+    private bool dashing = false;
+    /// <summary>
     /// The players dash distance. 
     /// </summary>
     public float dashDistance = 10F;
@@ -21,10 +28,6 @@ public class PlayerDash : MonoBehaviour
     /// Time between the players dashes. 
     /// </summary>
     public float dashCooldown = 0.5F;
-    /// <summary>
-    /// Is the player currently dashing. 
-    /// </summary>
-    public bool dashing = false;
 
     void Start()
     {
@@ -40,7 +43,7 @@ public class PlayerDash : MonoBehaviour
     void Update()
     {
         //Check for dash input. 
-        dashing = (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift));
+        dashing = (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && canDash;
     }
 
     private void LateUpdate()

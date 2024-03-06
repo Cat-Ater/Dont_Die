@@ -21,7 +21,9 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Reference to the ObjectScheduler. 
     /// </summary>
-    private ObjectScheduler _objectScheduler; 
+    private ObjectScheduler _objectScheduler;
+
+    private List<Vector2> bodyPositions;
 
     /// <summary>
     /// Returns the current GameManager. 
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static Timer GameTimer => _instance._gameTimer;
 
+    public static List<Vector2> BodyPositions; 
 
     void Awake()
     {
@@ -56,7 +59,10 @@ public class GameManager : MonoBehaviour
         _objectScheduler = new ObjectScheduler(_gameTimer); 
 
         //Load the UI into the scene if not present.
-        SceneManager.LoadSceneAsync("_UI", LoadSceneMode.Additive); 
+        SceneManager.LoadSceneAsync("_UI", LoadSceneMode.Additive);
+
+        if (bodyPositions == null)
+            bodyPositions = new List<Vector2>(); 
     }
 
     void Update()
@@ -75,5 +81,15 @@ public class GameManager : MonoBehaviour
     public void CollisionHandling()
     {
         Debug.Log("Player collided, RESET.");
+    }
+
+    public void KillSelf(Vector2 position)
+    {
+        bodyPositions.Add(position);
+    }
+
+    public void ResetGame()
+    {
+        _gameTimer.ResetTimer(); 
     }
 }
