@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     /// The current static instance of the GameManager. 
     /// </summary>
     private static GameManager _instance;
+    private DataHandler dHandler; 
 
     /// <summary>
     /// The current instance of the game timer. 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private ObjectScheduler _objectScheduler;
 
+    [SerializeField]
     private List<Vector2> bodyPositions;
 
     /// <summary>
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static Timer GameTimer => _instance._gameTimer;
 
-    public static List<Vector2> BodyPositions; 
+    public static List<Vector2> BodyPositions;
 
     void Awake()
     {
@@ -61,6 +63,10 @@ public class GameManager : MonoBehaviour
         //Load the UI into the scene if not present.
         SceneManager.LoadSceneAsync("_UI", LoadSceneMode.Additive);
 
+        //Set up player data. 
+        dHandler = DataHandler.CreateDataHandler();
+        
+        //Do body position handling. 
         if (bodyPositions == null)
             bodyPositions = new List<Vector2>(); 
     }
@@ -83,9 +89,22 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player collided, RESET.");
     }
 
+    /// <summary>
+    /// Add a position at which the player died. 
+    /// </summary>
+    /// <param name="position"> The position to add. </param>
     public void SetDeathPosition(Vector2 position)
     {
+        dHandler.data.totalNumberOfDeaths += 1;
+        dHandler.data.lastAttemptLength = _gameTimer.Time;
+        if (_gameTimer.Time > dHandler.data.longestTimeSurvived)
+            dHandler.data.longestTimeSurvived = _gameTimer.Time;
         bodyPositions.Add(position);
+    }
+
+    public void UpdateLongestTime()
+    {
+        
     }
 
     public void ResetGame()
