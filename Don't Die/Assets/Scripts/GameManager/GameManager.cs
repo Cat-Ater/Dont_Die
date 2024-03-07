@@ -1,3 +1,4 @@
+using Core.Systems;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,11 +42,17 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static Timer GameTimer => _instance._gameTimer;
 
+    /// <summary>
+    /// Add a IConsumableDestruction interface to the system. 
+    /// </summary>
     public static IConsumableDestruction AddConsumableDestruction 
     {
         set => ConsumableHandler.AddConsumableDestruction = value; 
     }
 
+    /// <summary>
+    /// Remove an IConsumableDestruction interface from the system. 
+    /// </summary>
     public static IConsumableDestruction RemoveConsumableDestruction
     {
         set => ConsumableHandler.RemoveConsumableDestruction = value;
@@ -120,5 +127,8 @@ public class GameManager : MonoBehaviour
         _gameTimer.ResetTimer(); 
     }
 
+    /// <summary>
+    /// Call to Destroy all IConsumableDestructions interfaces held in the system. 
+    /// </summary>
     public void ConsumableDestruction() => ConsumableHandler.ConsumableDestruction();
 }
