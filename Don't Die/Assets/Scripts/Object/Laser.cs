@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class Laser : MonoBehaviour, IConsumableDestruction
 {
     private Quaternion initalRotation;
     private Vector3 initalScale;
@@ -20,6 +20,7 @@ public class Laser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.AddConsumableDestruction = this; 
         initalScale = gameObject.transform.localScale;
         initalRotation = gameObject.transform.rotation;
         scaleStep = maxScale / extendTime;
@@ -42,9 +43,21 @@ public class Laser : MonoBehaviour
         gameObject.transform.localScale = new Vector3(initalScale.x + currentScale, initalScale.y, initalScale.z);
     }
 
+    private void OnDisable()
+    {
+        GameManager.RemoveConsumableDestruction = this; 
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(centerPos, endPos);
         Gizmos.color = Color.red;
+    }
+
+    void IConsumableDestruction.OnDestruct()
+    {
+        Debug.Log("Destruction called in lazer.");
+        GameManager.RemoveConsumableDestruction = this; 
+        Destroy(gameObject);
     }
 }

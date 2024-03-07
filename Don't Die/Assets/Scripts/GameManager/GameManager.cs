@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     /// The current static instance of the GameManager. 
     /// </summary>
     private static GameManager _instance;
+
     private DataHandler dHandler; 
 
     /// <summary>
@@ -26,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private List<Vector2> bodyPositions;
+    public static List<Vector2> BodyPositions;
+    public static List<IConsumableDestruction> destructables = new List<IConsumableDestruction>(); 
 
     /// <summary>
     /// Returns the current GameManager. 
@@ -37,7 +41,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static Timer GameTimer => _instance._gameTimer;
 
-    public static List<Vector2> BodyPositions;
+    public static IConsumableDestruction AddConsumableDestruction
+    {
+        set { destructables.Add(value); }
+    }
+
+    public static IConsumableDestruction RemoveConsumableDestruction
+    {
+        set { destructables.Remove(value); }
+    }
 
     void Awake()
     {
@@ -95,6 +107,7 @@ public class GameManager : MonoBehaviour
     /// <param name="position"> The position to add. </param>
     public void SetDeathPosition(Vector2 position)
     {
+        //Update data. 
         dHandler.data.totalNumberOfDeaths += 1;
         dHandler.data.lastAttemptLength = _gameTimer.Time;
         if (_gameTimer.Time > dHandler.data.longestTimeSurvived)
@@ -102,13 +115,22 @@ public class GameManager : MonoBehaviour
         bodyPositions.Add(position);
     }
 
-    public void UpdateLongestTime()
-    {
-        
-    }
-
     public void ResetGame()
     {
         _gameTimer.ResetTimer(); 
+    }
+
+    public void ConsumableDestruction()
+    {
+        IConsumableDestruction[] destructArr = destructables.ToArray();
+        destructables = new List<IConsumableDestruction>(); 
+
+        Debug.Log("Destruction called.");
+
+        for (int i = destructArr.Length - 1; i > -1; i--)
+        {
+            Debug.Log(i.ToString());
+            destructArr[i].OnDestruct();
+        }
     }
 }
