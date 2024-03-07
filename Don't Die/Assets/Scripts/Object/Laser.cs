@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour, IConsumableDestruction
+public class Laser : DestructableObject
 {
     private Quaternion initalRotation;
     private Vector3 initalScale;
@@ -17,17 +17,14 @@ public class Laser : MonoBehaviour, IConsumableDestruction
     public float rotation = 0.1f;
     public float extendTime = 1f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        GameManager.AddConsumableDestruction = this; 
         initalScale = gameObject.transform.localScale;
         initalRotation = gameObject.transform.rotation;
         scaleStep = maxScale / extendTime;
         gameObject.transform.rotation = initalRotation * Quaternion.Euler(new Vector3(0, 0, rotation));
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (currentTime < extendTime)
@@ -43,21 +40,15 @@ public class Laser : MonoBehaviour, IConsumableDestruction
         gameObject.transform.localScale = new Vector3(initalScale.x + currentScale, initalScale.y, initalScale.z);
     }
 
-    private void OnDisable()
-    {
-        GameManager.RemoveConsumableDestruction = this; 
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(centerPos, endPos);
         Gizmos.color = Color.red;
     }
 
-    void IConsumableDestruction.OnDestruct()
+    internal override void OnDestruction()
     {
-        Debug.Log("Destruction called in lazer.");
-        GameManager.RemoveConsumableDestruction = this; 
-        Destroy(gameObject);
+        //Add animation logic, destruction logic here.
+        GameObject.Destroy(this);
     }
 }

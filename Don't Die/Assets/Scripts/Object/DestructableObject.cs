@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructableObject : MonoBehaviour
+public abstract class DestructableObject : MonoBehaviour, IConsumableDestruction
 {
-    // Start is called before the first frame update
-    void Start()
+
+    internal void Awake()
     {
-        
+        GameManager.AddConsumableDestruction = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    internal void OnDisable()
     {
-        
+        GameManager.RemoveConsumableDestruction = this;   
     }
+
+    internal void OnDestroy()
+    {
+        GameManager.RemoveConsumableDestruction = this;
+    }
+
+    void IConsumableDestruction.OnDestruct() => OnDestruction();
+
+    internal abstract void OnDestruction();
 }

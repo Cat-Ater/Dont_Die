@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Buzzsaw : MonoBehaviour, IConsumableDestruction
+public class Buzzsaw : DestructableObject
 {
     private Rigidbody2D body2D;
     private Vector2 normDir;
@@ -35,11 +35,6 @@ public class Buzzsaw : MonoBehaviour, IConsumableDestruction
             return;
         else
             UpdateMovement();
-    }
-
-    void OnDisable()
-    {
-        GameManager.RemoveConsumableDestruction = this; 
     }
 
     void UpdateMovement()
@@ -75,8 +70,9 @@ public class Buzzsaw : MonoBehaviour, IConsumableDestruction
         Gizmos.DrawLine(initalPosition, endPosition);
     }
 
-    void IConsumableDestruction.OnDestruct()
+    internal override void OnDestruction()
     {
-        Destroy(gameObject);
+        //Add animation logic, destruction logic here.
+        GameObject.Destroy(this);
     }
 }
