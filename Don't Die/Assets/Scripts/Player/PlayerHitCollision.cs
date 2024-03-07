@@ -19,6 +19,8 @@ public class PlayerHitCollision : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "Button")
+            return;
         PlayerController.Alive = false;
     }
 
