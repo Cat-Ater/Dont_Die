@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Buzzsaw : MonoBehaviour
+public class Buzzsaw : MonoBehaviour, IConsumableDestruction
 {
     private Rigidbody2D body2D;
     private Vector2 normDir;
@@ -18,6 +18,8 @@ public class Buzzsaw : MonoBehaviour
 
     void Start()
     {
+        GameManager.AddConsumableDestruction = this;
+
         //Get the component reference. 
         body2D = gameObject.GetComponent<Rigidbody2D>();
         //Place object at the inital transform. 
@@ -33,6 +35,11 @@ public class Buzzsaw : MonoBehaviour
             return;
         else
             UpdateMovement();
+    }
+
+    void OnDisable()
+    {
+        GameManager.RemoveConsumableDestruction = this; 
     }
 
     void UpdateMovement()
@@ -66,5 +73,10 @@ public class Buzzsaw : MonoBehaviour
         Gizmos.DrawSphere(endPosition, 0.25F);
 
         Gizmos.DrawLine(initalPosition, endPosition);
+    }
+
+    void IConsumableDestruction.OnDestruct()
+    {
+        Destroy(gameObject);
     }
 }
