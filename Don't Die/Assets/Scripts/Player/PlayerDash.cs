@@ -66,8 +66,8 @@ public class PlayerDash : MonoBehaviour
     /// </summary>
     private IEnumerator DashCooldown()
     {
+        PlayerHitCollision.SetColliderState(true);
         yield return new WaitForSeconds(dashCooldown);
-        PlayerHitCollision.SetColliderState(false);
         canDash = true;
     }
 }
