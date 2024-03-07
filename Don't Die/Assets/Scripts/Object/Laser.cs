@@ -49,6 +49,6 @@ public class Laser : DestructableObject
     internal override void OnDestruction()
     {
         //Add animation logic, destruction logic here.
-        GameObject.Destroy(this);
+        Destroy(gameObject);
     }
 }
