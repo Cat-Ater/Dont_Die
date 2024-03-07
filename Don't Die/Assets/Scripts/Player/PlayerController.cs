@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public static bool Alive { get; set; } = true;
 
+    public static bool PlayerEnabled { get; set; } = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,10 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.SetDeathPosition(gameObject.transform.position);
             gameObject.SetActive(false);
         }
+    }
+
+    public static void CancelMovement()
+    {
+
     }
 }

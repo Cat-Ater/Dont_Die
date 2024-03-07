@@ -16,6 +16,7 @@ public class Laser : DestructableObject
     public float maxScale = 0.1f;
     public float rotation = 0.1f;
     public float extendTime = 1f;
+    public bool startFullScale = false; 
 
     void Start()
     {
@@ -23,19 +24,23 @@ public class Laser : DestructableObject
         initalRotation = gameObject.transform.rotation;
         scaleStep = maxScale / extendTime;
         gameObject.transform.rotation = initalRotation * Quaternion.Euler(new Vector3(0, 0, rotation));
+        currentScale = maxScale; 
     }
 
     void Update()
     {
-        if (currentTime < extendTime)
+        if (!startFullScale)
         {
-            currentTime += Time.deltaTime;
-            if (currentTime >= extendTime)
-                currentTime = extendTime;
-            currentScale = currentTime * scaleStep;
+            if (currentTime < extendTime)
+            {
+                currentTime += Time.deltaTime;
+                if (currentTime >= extendTime)
+                    currentTime = extendTime;
+                currentScale = currentTime * scaleStep;
+            }
+            if (currentScale > maxScale)
+                currentScale = maxScale;
         }
-        if (currentScale > maxScale)
-            currentScale = maxScale;
 
         gameObject.transform.localScale = new Vector3(initalScale.x + currentScale, initalScale.y, initalScale.z);
     }
