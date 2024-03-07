@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private static GameManager _instance;
 
-    private DataHandler dHandler; 
+    private DataHandler dHandler;
+    private ConsumableHandler cHandler; 
 
     /// <summary>
     /// The current instance of the game timer. 
@@ -28,8 +29,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private List<Vector2> bodyPositions;
-    public static List<Vector2> BodyPositions;
-    public static List<IConsumableDestruction> destructables = new List<IConsumableDestruction>(); 
+    public static List<Vector2> BodyPositions; 
 
     /// <summary>
     /// Returns the current GameManager. 
@@ -41,14 +41,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static Timer GameTimer => _instance._gameTimer;
 
-    public static IConsumableDestruction AddConsumableDestruction
+    public static IConsumableDestruction AddConsumableDestruction 
     {
-        set { destructables.Add(value); }
+        set => ConsumableHandler.AddConsumableDestruction = value; 
     }
 
     public static IConsumableDestruction RemoveConsumableDestruction
     {
-        set { destructables.Remove(value); }
+        set => ConsumableHandler.RemoveConsumableDestruction = value;
     }
 
     void Awake()
@@ -120,17 +120,5 @@ public class GameManager : MonoBehaviour
         _gameTimer.ResetTimer(); 
     }
 
-    public void ConsumableDestruction()
-    {
-        IConsumableDestruction[] destructArr = destructables.ToArray();
-        destructables = new List<IConsumableDestruction>(); 
-
-        Debug.Log("Destruction called.");
-
-        for (int i = destructArr.Length - 1; i > -1; i--)
-        {
-            Debug.Log(i.ToString());
-            destructArr[i].OnDestruct();
-        }
-    }
+    public void ConsumableDestruction() => ConsumableHandler.ConsumableDestruction();
 }
