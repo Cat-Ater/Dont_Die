@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player collided, RESET.");
     }
 
-    public void KillSelf(Vector2 position)
+    public void SetDeathPosition(Vector2 position)
     {
         bodyPositions.Add(position);
     }

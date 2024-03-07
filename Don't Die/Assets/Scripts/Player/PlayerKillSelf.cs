@@ -8,7 +8,7 @@ public class PlayerKillSelf : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            GameManager.Instance.KillSelf(gameObject.transform.position);
+            GameManager.Instance.SetDeathPosition(gameObject.transform.position);
         }       
     }
 }
