@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
+        if (!PlayerController.PlayerEnabled)
+            return;
+
         //Set the current direction to nothing. 
         CurrentDirection = new Vector2(0, 0);
 
@@ -84,5 +87,10 @@ public class PlayerMovement : MonoBehaviour
 
         //Update the movement. 
         body2D.velocity = (runningVec);
+    }
+
+    public void CancelMovement()
+    {
+
     }
 }

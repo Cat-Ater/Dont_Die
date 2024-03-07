@@ -33,4 +33,13 @@ public class DataHandler : MonoBehaviour
             return instance; 
         }
     }
+
+    public static void UpdateData(Timer gameTimer)
+    {
+        instance.data.totalNumberOfDeaths++;
+        instance.data.lastAttemptLength = gameTimer.Time;
+        instance.data.longestTimeSurvived = 
+            (gameTimer.Time > instance.data.longestTimeSurvived) ? 
+            gameTimer.Time : instance.data.longestTimeSurvived; 
+    }
 }

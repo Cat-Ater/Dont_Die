@@ -4,24 +4,45 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static bool Alive { get; set; } = true;
+    private static GameObject player; 
+    [SerializeField]
+    static bool _playerAlive = true;
+
+    public static bool Alive
+    {
+        get => _playerAlive;
+        set
+        {
+            _playerAlive = value;
+            if (_playerAlive == false)
+            {
+                GameManager.Instance.SetDeathPosition(player.transform.position);
+                if (!GameManager.PlayerRespawnable)
+                {
+                    player.SetActive(false);
+                    //TODO: load the entrance hall alternative. 
+                }
+
+                if (GameManager.PlayerRespawnable)
+                {
+                    player.SetActive(false);
+                    player.transform.position = GameManager.Instance.respawner.respawnPoint;
+                    Alive = true;
+                    player.SetActive(true);
+                }
+            }
+        }
+    }
 
     public static bool PlayerEnabled { get; set; } = true;
+
+    public PlayerMovement playerMovement;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!Alive)
-        {
-            GameManager.Instance.SetDeathPosition(gameObject.transform.position);
-            gameObject.SetActive(false);
-        }
+        Alive = true;
+        player = gameObject; 
     }
 
     public static void CancelMovement()

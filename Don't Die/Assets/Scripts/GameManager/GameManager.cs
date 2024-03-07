@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     private DataHandler dHandler;
-    private ConsumableHandler cHandler; 
+    private ConsumableHandler cHandler;
+    public PlayerRespawner respawner; 
 
     /// <summary>
     /// The current instance of the game timer. 
@@ -57,6 +58,8 @@ public class GameManager : MonoBehaviour
     {
         set => ConsumableHandler.RemoveConsumableDestruction = value;
     }
+
+    public static bool PlayerRespawnable => _instance.respawner != null; 
 
     void Awake()
     {
@@ -103,11 +106,6 @@ public class GameManager : MonoBehaviour
     /// <param name="obj"></param>
     public void ScheduleObject(ITimerScheduler obj) => _objectScheduler.AddScheduledObject(obj);
 
-    public void CollisionHandling()
-    {
-        Debug.Log("Player collided, RESET.");
-    }
-
     /// <summary>
     /// Add a position at which the player died. 
     /// </summary>
@@ -115,10 +113,7 @@ public class GameManager : MonoBehaviour
     public void SetDeathPosition(Vector2 position)
     {
         //Update data. 
-        dHandler.data.totalNumberOfDeaths += 1;
-        dHandler.data.lastAttemptLength = _gameTimer.Time;
-        if (_gameTimer.Time > dHandler.data.longestTimeSurvived)
-            dHandler.data.longestTimeSurvived = _gameTimer.Time;
+        DataHandler.UpdateData(GameManager.GameTimer); 
         bodyPositions.Add(position);
     }
 

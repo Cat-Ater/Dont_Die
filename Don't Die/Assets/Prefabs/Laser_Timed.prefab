@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6258015627731807699}
   - component: {fileID: 1543223713455581710}
+  - component: {fileID: 8195807199273966750}
   m_Layer: 0
-  m_Name: Laser
+  m_Name: Laser_Timed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,9 +50,23 @@ MonoBehaviour:
   startPrefab: {fileID: 6713385021939532271, guid: 0cbdd5c3207ff904c9b432612929354e, type: 3}
   middlePrefab: {fileID: 3621264794019407168, guid: c9efeaeb52ef3da448a4eaab8ef818f4, type: 3}
   currentScale: 0
-  maxScale: 100
+  maxScale: 20
   scaleIncrement: 0
   scaleHalfIncrement: 0
   currentTime: 0
-  extentsionTime: 1.88
+  extentsionTime: 2
   currentRotation: 30
+--- !u!114 &8195807199273966750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023970255968289380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d29330004e55e94f80b35a88a7c278c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  timeLimit: 2.5
