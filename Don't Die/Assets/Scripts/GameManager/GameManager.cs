@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private List<Vector2> bodyPositions;
-    public static List<Vector2> BodyPositions; 
+    public static List<Vector2> BodyPositions;
+    public GameObject splatterPrefab; 
 
     /// <summary>
     /// Returns the current GameManager. 
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
         //Update data. 
         DataHandler.UpdateData(GameManager.GameTimer); 
         bodyPositions.Add(position);
+        GameObject splatter = GameObject.Instantiate(splatterPrefab, position, Quaternion.identity);
     }
 
     public void ResetGame()

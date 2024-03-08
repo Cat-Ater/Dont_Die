@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24dbeafa599bc3146b39053493452d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawner: {fileID: 0}
   bodyPositions: []
+  splatterPrefab: {fileID: 53352166438650655, guid: 234d9e65c49675e4c95ca98e2c89df77, type: 3}

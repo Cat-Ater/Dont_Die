@@ -2,18 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class responsible for locking the camera to a given point. 
+/// </summary>
 public class LockCameraToPosition : MonoBehaviour
 {
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

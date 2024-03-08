@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private static GameObject player; 
+    private static GameObject _player; 
+
     [SerializeField]
     static bool _playerAlive = true;
+
+    public static GameObject PlayerObject => _player;
 
     public static bool Alive
     {
@@ -16,19 +19,19 @@ public class PlayerController : MonoBehaviour
             _playerAlive = value;
             if (_playerAlive == false)
             {
-                GameManager.Instance.SetDeathPosition(player.transform.position);
+                GameManager.Instance.SetDeathPosition(_player.transform.position);
                 if (!GameManager.PlayerRespawnable)
                 {
-                    player.SetActive(false);
+                    _player.SetActive(false);
                     //TODO: load the entrance hall alternative. 
                 }
 
                 if (GameManager.PlayerRespawnable)
                 {
-                    player.SetActive(false);
-                    player.transform.position = GameManager.Instance.respawner.respawnPoint;
+                    _player.SetActive(false);
+                    _player.transform.position = GameManager.Instance.respawner.respawnPoint;
                     Alive = true;
-                    player.SetActive(true);
+                    _player.SetActive(true);
                 }
             }
         }
@@ -36,14 +39,14 @@ public class PlayerController : MonoBehaviour
 
     public static bool PlayerEnabled { get; set; } = true;
 
-    public PlayerMovement playerMovement;
+    public PlayerMovement playerMovement; 
 
     // Start is called before the first frame update
     void Start()
     {
         Alive = true;
-        player = gameObject;
-        CameraController.SetNewTarget(player);
+        _player = gameObject;
+        CameraController.SetNewTarget(_player);
     }
 
     public static void CancelMovement()

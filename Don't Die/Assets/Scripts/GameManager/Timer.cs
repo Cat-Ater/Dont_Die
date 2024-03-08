@@ -6,8 +6,10 @@ public class Timer
 {
     float _current;
     Dictionary<string, float> _targetTimes;
-    public float Time => _current; 
-    
+    public float Time => _current;
+
+    public bool Enabled { get; set; } = false;
+
     public Timer()
     {
         _current = 0F;
@@ -31,19 +33,28 @@ public class Timer
 
     public void UpdateTimer(float dt)
     {
-        _current += dt;
+        if (Enabled)
+        {
+            _current += dt;
+        }
     }
 
     public string TimeToString()
     {
         string val = _current.ToString();
-        string[] parts = val.Split('.');
-        if (parts[1].Length > 2)
+
+        if (_current >= 10)
         {
-            parts[1] = parts[1][0].ToString() + parts[1][1].ToString();
+            if (val.Length > 5)
+                return val.Substring(0, 5);
+            else return val;
         }
-        return parts[0] + "." + parts[1];
+
+        if (val.Length > 4 && _current <= 10)
+            return val.Substring(0, 4);
+
+        return val;
     }
 
-    public void ResetTimer() => _current = 0; 
+    public void ResetTimer() => _current = 0;
 }
