@@ -70,4 +70,11 @@ public class PlayerDash : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines(); 
+        canDash = true;
+        dashing = false; 
+    }
 }
