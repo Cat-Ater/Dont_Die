@@ -7,6 +7,7 @@ TagManager:
   - Lasers
   - DeadBody
   - Button
+  - SystemTriggers
   layers:
   - Default
   - TransparentFX
@@ -44,9 +45,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3421759341
+    locked: 0
   - name: EnemyMidground
     uniqueID: 2182040013
     locked: 0
   - name: EnemyForground
     uniqueID: 3340011487
+    locked: 0
+  - name: Player
+    uniqueID: 514535025
     locked: 0

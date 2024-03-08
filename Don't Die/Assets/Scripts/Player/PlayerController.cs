@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Alive = true;
-        player = gameObject; 
+        player = gameObject;
+        CameraController.SetNewTarget(player);
     }
 
     public static void CancelMovement()

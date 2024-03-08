@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Levels/IntroLevel/IntroLevel.unity
+    path: Assets/Scenes/Levels/IntroLevel.unity
     guid: aca9e775a580e0b4cabba917c92a9ce3
+  - enabled: 1
+    path: Assets/Scenes/Levels/HoldingCell.unity
+    guid: 2a62fa4cc4b564f47ba293d7a0a3e440
+  - enabled: 1
+    path: Assets/Scenes/Levels/MainScene.unity
+    guid: 0a41c0e5e15f92a48b92035481fc204b
+  - enabled: 1
+    path: Assets/Scenes/Levels/ExtraStage.unity
+    guid: d0f0eb16529def44fa0f228928175d9d
   - enabled: 1
     path: Assets/Scenes/UI/_UI.unity
     guid: d7a5f658ef6f18a4cb680212a6aef74e
