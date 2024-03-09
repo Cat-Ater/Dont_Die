@@ -6,11 +6,11 @@ using UnityEngine;
 public class Buzzsaw : DestructableObject
 {
     private Rigidbody2D body2D;
+    private Vector2 initalPosition;
     private Vector2 normDir;
     private float _currentDelay;
     private float traveledDist;
     private bool arrived = false;
-    public Vector2 initalPosition;
     public Vector2 endPosition;
     public float delay;
     public float speed;
@@ -23,7 +23,7 @@ public class Buzzsaw : DestructableObject
         //Get the component reference. 
         body2D = gameObject.GetComponent<Rigidbody2D>();
         //Place object at the inital transform. 
-        gameObject.transform.position = initalPosition;
+        initalPosition = gameObject.transform.position; 
         normDir = endPosition - initalPosition;
         normDir.Normalize();
         _currentDelay = 0;
@@ -59,20 +59,15 @@ public class Buzzsaw : DestructableObject
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawSphere(initalPosition, 0.25F);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(endPosition, 0.25F);
-
-        Gizmos.DrawLine(initalPosition, endPosition);
-    }
-
     internal override void OnDestruction()
     {
         //Add animation logic, destruction logic here.
         Destroy(gameObject);
+    }
+
+    public void Set(Vector2 a)
+    {
+        initalPosition = gameObject.transform.position;
+        endPosition = a;
     }
 }
