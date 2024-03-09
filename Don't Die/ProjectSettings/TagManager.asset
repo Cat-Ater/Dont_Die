@@ -8,6 +8,7 @@ TagManager:
   - DeadBody
   - Button
   - SystemTriggers
+  - DeathPlane
   layers:
   - Default
   - TransparentFX
