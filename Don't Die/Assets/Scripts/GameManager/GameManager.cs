@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private DataHandler dHandler;
     private ConsumableHandler cHandler;
-    public PlayerRespawner respawner; 
+    public PlayerRespawner respawner;
 
     /// <summary>
     /// The current instance of the game timer. 
@@ -32,8 +32,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<Vector2> bodyPositions;
     public static List<Vector2> BodyPositions;
-    public GameObject splatterPrefab; 
-    public GameObject deadBodyPrefab; 
+    public GameObject splatterPrefab;
+    public GameObject[] deadBodyPrefabs;
+
+    public Vector2 rangeOffset = new Vector2(-1.5F, 1.5F);
 
     /// <summary>
     /// Returns the current GameManager. 
@@ -48,9 +50,9 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Add a IConsumableDestruction interface to the system. 
     /// </summary>
-    public static IConsumableDestruction AddConsumableDestruction 
+    public static IConsumableDestruction AddConsumableDestruction
     {
-        set => ConsumableHandler.AddConsumableDestruction = value; 
+        set => ConsumableHandler.AddConsumableDestruction = value;
     }
 
     /// <summary>
@@ -61,13 +63,13 @@ public class GameManager : MonoBehaviour
         set => ConsumableHandler.RemoveConsumableDestruction = value;
     }
 
-    public static bool PlayerRespawnable => _instance.respawner != null; 
+    public static bool PlayerRespawnable => _instance.respawner != null;
 
     void Awake()
     {
 
         //Create the singleton. 
-        if(_instance == null)
+        if (_instance == null)
         {
             _instance = this;
             DontDestroyOnLoad(this);
@@ -82,17 +84,17 @@ public class GameManager : MonoBehaviour
         _gameTimer.InsertTime("Game Completed", 60);
 
         //Set up object scheduling. 
-        _objectScheduler = new ObjectScheduler(_gameTimer); 
+        _objectScheduler = new ObjectScheduler(_gameTimer);
 
         //Load the UI into the scene if not present.
         SceneManager.LoadSceneAsync("_UI", LoadSceneMode.Additive);
 
         //Set up player data. 
         dHandler = DataHandler.CreateDataHandler();
-        
+
         //Do body position handling. 
         if (bodyPositions == null)
-            bodyPositions = new List<Vector2>(); 
+            bodyPositions = new List<Vector2>();
     }
 
     void Update()
@@ -102,11 +104,13 @@ public class GameManager : MonoBehaviour
         _objectScheduler.UpdateObjects();
     }
 
+    #region Object Scheduling. 
     /// <summary>
     /// Call to add an object to scheduling. 
     /// </summary>
     /// <param name="obj"></param>
     public void ScheduleObject(ITimerScheduler obj) => _objectScheduler.AddScheduledObject(obj);
+    #endregion
 
     /// <summary>
     /// Add a position at which the player died. 
@@ -115,19 +119,48 @@ public class GameManager : MonoBehaviour
     public void SetDeathPosition(Vector2 position)
     {
         //Update data. 
-        DataHandler.UpdateData(GameManager.GameTimer); 
+        DataHandler.UpdateData(GameManager.GameTimer);
         bodyPositions.Add(position);
-        GameObject.Instantiate(splatterPrefab, position, Quaternion.identity);
-        GameObject.Instantiate(deadBodyPrefab, position, Quaternion.identity);
+        GameObject.Instantiate(splatterPrefab, PositionOffset(position), Quaternion.identity);
+        GameObject.Instantiate(SelectRandomPrefab(deadBodyPrefabs), position, Quaternion.identity);
     }
 
     public void ResetGame()
     {
-        _gameTimer.ResetTimer(); 
+        _gameTimer.ResetTimer();
     }
 
     /// <summary>
     /// Call to Destroy all IConsumableDestructions interfaces held in the system. 
     /// </summary>
     public void ConsumableDestruction() => ConsumableHandler.ConsumableDestruction();
+
+    #region Helper Funcs.
+    public GameObject SelectRandomPrefab(GameObject[] objects)
+    {
+        int _a;
+        int _b;
+        GameObject temp;
+
+        GameObject[] arr = objects;
+
+        for (int i = 0; i < 20; i++)
+        {
+            _a = UnityEngine.Random.Range(0, objects.Length);
+            _b = UnityEngine.Random.Range(0, objects.Length);
+            temp = arr[_a];
+            arr[_a] = arr[_b];
+            arr[_b] = temp;
+        }
+
+        return arr[UnityEngine.Random.Range(0, objects.Length)];
+    }
+
+    public Vector2 PositionOffset(Vector2 v)
+    {
+        float x = v.x + UnityEngine.Random.Range(rangeOffset.x, rangeOffset.y);
+        float y = v.y + UnityEngine.Random.Range(rangeOffset.x, rangeOffset.y);
+        return new Vector2(x, y);
+    }
+    #endregion
 }
