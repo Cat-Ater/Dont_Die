@@ -8,10 +8,14 @@ public class BulletScaler
     private GameObject _gameObject;
     private Vector2 _scaleStep;
     private float _currentTime;
-    private float _scaleSeconds; 
+    private float _scaleSeconds;
 
+
+    [Header("The inital scale for the bullet.")]
     public Vector2 initalScale;
+    [Header("The amount scale the bullet by.")]
     public Vector2 scaleRange;
+    [Header("The rate the bullet at.")]
     public float scaleSpeed;
 
     public void SetGameObject(GameObject gObj)
@@ -38,32 +42,133 @@ public class BulletRotar
 {
     private GameObject _gameObject;
     [SerializeField] private float currentTime;
-
+    [Header("The maximum allowed rotation for the bullet.")]
     public float maxRotation;
+    [Header("The rotation speed for the bullet.")]
     public float rotationSpeed;
+    [Header("The inital rotation for the bullet.")]
     public float initalRotation;
-    public float rotationTime; 
+    [Header("The maximum time the bullet should rotate.")]
+    public float rotationTime;
+    [Header("Should the rotation continue endlessly.")]
     public bool loop;
 
-    private float RotationStep => maxRotation * rotationSpeed / rotationTime;
+    private float RotationStep => maxRotation / rotationTime;
+
+    private float CurrentRotation => ((initalRotation + RotationStep) * Mathf.Deg2Rad);
 
     public void SetGameObject(GameObject obj)
     {
         _gameObject = obj;
-        _gameObject.transform.rotation = Quaternion.Euler(0, 0, initalRotation * Mathf.Rad2Deg);
+        _gameObject.transform.rotation = Quaternion.Euler(0, 0, initalRotation * Mathf.Deg2Rad);
     }
 
     public void Update()
     {
-        if (currentTime > rotationTime && !loop)
+        if ((currentTime > rotationTime || CurrentRotation * rotationSpeed * currentTime > maxRotation) && !loop)
             return;
         else if (currentTime >= rotationSpeed && loop)
             currentTime = 0;
 
-        if (currentTime < rotationTime)
-            currentTime += Time.deltaTime;
+        currentTime += Time.deltaTime;
+        _gameObject.transform.rotation = Quaternion.Euler(0, 0, CurrentRotation * rotationSpeed * currentTime);
+    }
+}
 
-        _gameObject.transform.rotation = Quaternion.Euler(0, 0, (initalRotation + (RotationStep * currentTime)) * Mathf.Rad2Deg);
+[System.Serializable]
+public class BulletMovement
+{
+    public enum MovementType
+    {
+        NONE, 
+        TARGET, 
+        DIRECTION, 
+        TO_POINT
+    }
+
+    private Rigidbody2D _body2D;
+    private float currentUpdateRate;
+    private Vector2 lastUpdateVec;
+    public MovementType movementType;
+
+    public float speed;
+    public float lifeTime;
+    public GameObject target;
+    public Vector2 direction;
+    public Vector2 point;
+    public float targetUpdateRate;
+
+    public void SetRigidbody(Rigidbody2D body2D)
+    {
+        _body2D = body2D;
+        currentUpdateRate = 0;
+    }
+
+    public void Update()
+    {
+        switch (movementType)
+        {
+            case MovementType.NONE:
+                break;
+            case MovementType.TARGET:
+                Movement_Target();
+                break;
+            case MovementType.DIRECTION:
+                Movement_Direction();
+                break;
+            case MovementType.TO_POINT:
+                Movement_ToPoint();
+                break;
+        }
+    }
+
+    private void Movement_Target()
+    {
+        currentUpdateRate += Time.deltaTime;
+        if(currentUpdateRate >= targetUpdateRate)
+        {
+            currentUpdateRate = 0; 
+            Vector2 i = _body2D.gameObject.transform.position;
+            Vector2 b = target.gameObject.transform.position;
+            lastUpdateVec = Vector2.Lerp(b - i, b, speed * Time.deltaTime);
+        }
+
+        _body2D.velocity = lastUpdateVec;
+    }
+
+    private void Movement_Direction()
+    {
+        _body2D.AddForce(direction * speed);
+    }
+
+    private void Movement_ToPoint()
+    {
+        Vector2 i = _body2D.gameObject.transform.position;
+        Vector2 b = point;
+        Vector2 lerpVec = Vector2.Lerp(b - i, b, speed * Time.deltaTime);
+        _body2D.velocity = lerpVec;
+    }
+}
+
+[System.Serializable]
+public class BulletLifespan
+{
+    GameObject gameobject;
+    public float lifeSpan;
+    public bool hasLifespan = false; 
+
+    public void SetObject(GameObject gObj)
+    {
+        gameobject = gObj; 
+    }
+
+    public void Update()
+    {
+        if (!hasLifespan)
+            return;
+        lifeSpan -= Time.deltaTime;
+        if (lifeSpan <= 0)
+            GameObject.Destroy(gameobject);
     }
 }
 
@@ -76,12 +181,11 @@ public class BulletComponent : MonoBehaviour
     [SerializeField]
     private BulletRotar _bulletRotar;
     [SerializeField]
+    private BulletMovement _bulletMovement;
+    [SerializeField]
+    private BulletLifespan _bulletLifeSpan;
+    [SerializeField]
     private Rigidbody2D _rigidbody2D;
-
-    public float speed;
-    public float lifeTime;
-    public Vector2 direction;
-
 
     public void Start()
     {
@@ -92,14 +196,18 @@ public class BulletComponent : MonoBehaviour
                 Debug.Log(gameObject.name + " Is missing rigidbody2D");
         }
 
+        _bulletLifeSpan.SetObject(this.gameObject);
         _bulletScaler.SetGameObject(this.gameObject);
         _bulletRotar.SetGameObject(gameObject);
+        _bulletMovement.SetRigidbody(_rigidbody2D);
     }
 
-    public void Update()
+    public void LateUpdate()
     {
+        _bulletLifeSpan.Update(); 
         _bulletScaler.Update();
         _bulletRotar.Update();
+        _bulletMovement.Update();
     }
 
     public static bool CompareVec2(Vector2 a, Vector2 b)
