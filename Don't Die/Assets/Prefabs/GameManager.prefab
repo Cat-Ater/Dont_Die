@@ -47,3 +47,4 @@ MonoBehaviour:
   respawner: {fileID: 0}
   bodyPositions: []
   splatterPrefab: {fileID: 53352166438650655, guid: 234d9e65c49675e4c95ca98e2c89df77, type: 3}
+  deadBodyPrefab: {fileID: 8312896692989100286, guid: 429f5f0098da99c4c9c70341b0069bc8, type: 3}

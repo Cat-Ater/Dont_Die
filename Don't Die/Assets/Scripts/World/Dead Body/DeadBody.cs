@@ -8,11 +8,9 @@ public class DeadBody : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Lasers")
-            Debug.Log("Laser Collision on Dead body.");
-        else
-        {
-            collision.gameObject.SetActive(false);
-        }
+        if (collision.gameObject.tag == "Lasers" || collision.gameObject.tag == "Player")
+            return;
+
+        collision.gameObject.SetActive(false);
     }
 }

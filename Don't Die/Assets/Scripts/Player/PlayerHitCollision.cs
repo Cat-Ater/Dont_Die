@@ -19,13 +19,17 @@ public class PlayerHitCollision : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Button" || collision.tag == "SystemTriggers")
+        if (collision.tag == "Button" || collision.tag == "SystemTriggers" ||
+            collision.gameObject.tag == "DeadBody")
             return;
         PlayerController.Alive = false;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "DeadBody")
+            return;
+
         if(collision.gameObject.layer == 7)
         {
             PlayerController.Alive = false; 

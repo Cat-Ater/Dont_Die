@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     private List<Vector2> bodyPositions;
     public static List<Vector2> BodyPositions;
     public GameObject splatterPrefab; 
+    public GameObject deadBodyPrefab; 
 
     /// <summary>
     /// Returns the current GameManager. 
@@ -116,7 +117,8 @@ public class GameManager : MonoBehaviour
         //Update data. 
         DataHandler.UpdateData(GameManager.GameTimer); 
         bodyPositions.Add(position);
-        GameObject splatter = GameObject.Instantiate(splatterPrefab, position, Quaternion.identity);
+        GameObject.Instantiate(splatterPrefab, position, Quaternion.identity);
+        GameObject.Instantiate(deadBodyPrefab, position, Quaternion.identity);
     }
 
     public void ResetGame()
