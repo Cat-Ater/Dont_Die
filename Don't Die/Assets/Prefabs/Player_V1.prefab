@@ -173,7 +173,7 @@ Transform:
   m_Children:
   - {fileID: 6506497591831192423}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2441255037093800437
 SpriteRenderer:
@@ -213,10 +213,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 514535025
+  m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 3e8eb85ae83d11c4383d83717e6f5c0e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08242e4948fed7c45843e336674e9e61, type: 3}
   m_Color: {r: 0.75686276, g: 0.69411767, b: 0.88235295, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5b5a28d7377af4f8bc2e25f47c97d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 335503037200432848}
 --- !u!114 &335503037200432848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputKey: 113
-  used: 0
+  consumableCount: 1
+  cooldownPeriod: 0.5
 --- !u!58 &1808805171555054434
 CircleCollider2D:
   m_ObjectHideFlags: 0

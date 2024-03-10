@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    private SpriteRenderer _renderer;
     /// <summary>
     /// The players movement speed. 
     /// </summary>
@@ -43,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
             if (body2D == null)
                 gameObject.SetActive(false);
         }
+
+        _renderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public void Update()
@@ -87,6 +90,14 @@ public class PlayerMovement : MonoBehaviour
 
         //Update the movement. 
         body2D.velocity = (runningVec);
+
+        //Update the sprite direction. 
+
+        if(CurrentDirection != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(CurrentDirection.y, CurrentDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     public void CancelMovement()
