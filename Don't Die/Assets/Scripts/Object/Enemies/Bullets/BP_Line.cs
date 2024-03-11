@@ -18,6 +18,7 @@ public class BP_Line : BulletPattern
         {
             vecs.Add(distanceVec * (step * i));
         }
+
         return vecs.ToArray();
     }
 }

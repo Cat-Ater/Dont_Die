@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     private DataHandler dHandler;
     private ConsumableHandler cHandler;
+    public ObjectManager objectManager;
     public PlayerRespawner respawner;
 
     /// <summary>
@@ -103,6 +104,13 @@ public class GameManager : MonoBehaviour
         _gameTimer.UpdateTimer(Time.deltaTime);
         _objectScheduler.UpdateObjects();
     }
+
+    #region Object Management.
+    public static GameObject GameObjectRequest(GameObject prefab)
+    {
+        return Instance.objectManager.GetGameObjectType(prefab);
+    }
+    #endregion
 
     #region Object Scheduling. 
     /// <summary>
