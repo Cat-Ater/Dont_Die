@@ -242,8 +242,6 @@ public class PolarFunctions2D
     /// </summary>
     /// <param name="a"></param>
     /// <param name="theta"></param>
-    /// <param name="pos"></param>
-    /// <param name="neg"></param>
     public static PolarMultiOutput FoliumofDescartes(float a, float theta)
     {
         float tanTheta = Mathf.Tan(theta);
@@ -384,8 +382,6 @@ public class PolarFunctions2D
     /// </summary>
     /// <param name="theta"></param>
     /// <param name="amplitude"></param>
-    /// <param name="pos"></param>
-    /// <param name="neg"></param>
     public static PolarMultiOutput Lemniscate(float theta, float amplitude)
     {
         //float inner = Mathf.Sqrt(Mathf.Cos(2 * theta));
@@ -539,10 +535,6 @@ public class PolarFunctions2D
     /// <param name="a"></param>
     /// <param name="b"></param>
     /// <param name="c"></param>
-    /// <param name="_a"></param>
-    /// <param name="_b"></param>
-    /// <param name="_c"></param>
-    /// <param name="_d"></param>
     public static PolarMultiOutput WattsCurve(float angle, float a, float b, float c)
     {
         float a2 = a * a;

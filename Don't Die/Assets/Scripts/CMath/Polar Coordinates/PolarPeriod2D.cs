@@ -5,17 +5,18 @@ using UnityEngine;
 /// <summary>
 /// Defines a periodic arc of the unit circle. 
 /// </summary>
+[System.Serializable]
 public struct PolarPeriod2D
 {
     /// <summary>
     /// The minimum point of the arc. 
     /// </summary>
-    private float minR;
+    public float minR;
 
     /// <summary>
     /// The maximum point of the arc. 
     /// </summary>
-    private float maxR;
+    public float maxR;
 
     /// <summary>
     /// The minimum point of the arc in degrees. 

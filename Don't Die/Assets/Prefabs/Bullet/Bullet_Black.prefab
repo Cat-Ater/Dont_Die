@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletScaler:
-    initalScale: {x: 1, y: 1}
-    scaleRange: {x: 3, y: 3}
+    initalScale: {x: 0.2, y: 0.2}
+    scaleRange: {x: 0.5, y: 0.5}
     scaleSpeed: 5
   _bulletRotar:
     currentTime: 0

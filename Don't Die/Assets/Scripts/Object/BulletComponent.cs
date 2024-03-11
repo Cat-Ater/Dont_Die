@@ -180,8 +180,7 @@ public class BulletComponent : MonoBehaviour
     private BulletScaler _bulletScaler;
     [SerializeField]
     private BulletRotar _bulletRotar;
-    [SerializeField]
-    private BulletMovement _bulletMovement;
+    public BulletMovement _bulletMovement;
     [SerializeField]
     private BulletLifespan _bulletLifeSpan;
     [SerializeField]
