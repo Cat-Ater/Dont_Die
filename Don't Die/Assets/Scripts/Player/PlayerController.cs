@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
             _playerAlive = value;
             if (_playerAlive == false)
             {
-                GameManager.Instance.SetDeathPosition(_player.transform.position);
+                GameManager.Instance.SetDeathPosition = _player.transform.position;
                 if (!GameManager.PlayerRespawnable)
                 {
                     _player.SetActive(false);
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
                 if (GameManager.PlayerRespawnable)
                 {
                     _player.SetActive(false);
-                    _player.transform.position = GameManager.Instance.respawner.respawnPoint;
+                    _player.transform.position = GameManager.Instance.RespawnPosition;
                     Alive = true;
                     _player.SetActive(true);
                 }

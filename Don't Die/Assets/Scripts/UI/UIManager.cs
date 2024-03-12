@@ -20,7 +20,10 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(this);
+        }
         else
         {
             DestroyImmediate(this);

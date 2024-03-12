@@ -294,6 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5c06ef7c39e1f4bb14b8c0f5e6c355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownTime: 0.3
+  canUse: 1
 --- !u!114 &7067630322959687117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputKey: 113
   consumableCount: 1
-  cooldownPeriod: 0.5
+  cooldownPeriod: 0.3
 --- !u!58 &1808805171555054434
 CircleCollider2D:
   m_ObjectHideFlags: 0

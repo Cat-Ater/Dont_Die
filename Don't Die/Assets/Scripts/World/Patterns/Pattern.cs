@@ -88,6 +88,7 @@ public class Pattern
     public string name;
     public int order;
     public bool complete = false;
+    float length; 
 
     public List<PatternObject> patternObjects;
     public List<PatternDialogue> patternDialogues;
@@ -130,6 +131,11 @@ public class Pattern
 
     public void OnTime(float time)
     {
+        if(time > length)
+        {
+            OnEnd(); 
+        }
+
         for (int i = 0; i < patternDialogues.Count; i++)
         {
             if(patternDialogues[i].time <= time)

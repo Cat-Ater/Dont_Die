@@ -7,24 +7,38 @@ public class PatternHandler : MonoBehaviour
     public Pattern[] patterns_Current; 
     public List<Pattern> patterns;
     public Pattern currentPattern; 
-    public int currentIndex = 0; 
+    public int currentIndex = -1; 
 
 
     public void Start()
     {
         patterns_Current = patterns.ToArray();
-        currentPattern = GetPattern(currentIndex);
-        GameManager.Instance.patternHandler = this; 
+        GameManager.Instance.patternHandler = this;
+        GameManager.Instance.ActivateTimer();
+    }
+
+    public void ActivatePatterns()
+    {
+        SetNext();
+    }
+
+    public void SetNext()
+    {
+        currentPattern = GetPattern(currentIndex++);
+        currentPattern.OnStart(); 
     }
 
     public void PatternCompleted()
     {
         if(currentIndex < patterns_Current.Length)
-        {
-            currentIndex++;
-            currentPattern = GetPattern(currentIndex);
-            currentPattern.OnStart(); 
-        }
+            SetNext();
+    }
+
+    public void Update()
+    {
+        float time = GameManager.GameTimer.Time;
+
+        currentPattern.OnTime(time);
     }
 
     public void OnButtonPress()
