@@ -207,6 +207,78 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &563908124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 563908126}
+  - component: {fileID: 563908125}
+  m_Layer: 0
+  m_Name: Patterns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &563908125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563908124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 701d151604527b640a1572e0ee22ff08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patterns:
+  - name: Stage 1
+    order: 1
+    complete: 0
+    patternObjects:
+    - time: 0
+      eventType: 0
+      prefab: {fileID: 0}
+      position: {x: 0, y: 0}
+    patternDialogues:
+    - time: 0
+      eventType: 0
+      dialogueStrings: []
+      scrollSpeed: 0
+      endLineDelay: 0
+      eventTime: 0
+  - name: Stage 2
+    order: 2
+    complete: 0
+    patternObjects: []
+    patternDialogues: []
+  currentPattern:
+    name: 
+    order: 0
+    complete: 0
+    patternObjects: []
+    patternDialogues: []
+  currentIndex: 0
+--- !u!4 &563908126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563908124}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1570015, y: 0.72307765, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &810880074
 PrefabInstance:
   m_ObjectHideFlags: 0

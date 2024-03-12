@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     private DataHandler dHandler;
     private ConsumableHandler cHandler;
+    public PatternHandler patternHandler; 
     public ObjectManager objectManager;
     public PlayerRespawner respawner;
     [SerializeField]
@@ -180,6 +181,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(name);
     }
     #endregion
+
+    public void MainCompletion()
+    {
+        Debug.Log("Main Completed");
+    }
 
     public void ResetGame()
     {
