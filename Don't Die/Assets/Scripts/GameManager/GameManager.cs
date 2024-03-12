@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     private ConsumableHandler cHandler;
     public ObjectManager objectManager;
     public PlayerRespawner respawner;
+    [SerializeField]
+    private List<Vector2> bodyPositions;
 
     /// <summary>
     /// The current instance of the game timer. 
@@ -30,10 +32,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private ObjectScheduler _objectScheduler;
 
-    [SerializeField]
-    private List<Vector2> bodyPositions;
     public static List<Vector2> BodyPositions;
-    public GameObject splatterPrefab;
+    public GameObject[] splatterPrefabs;
     public GameObject[] deadBodyPrefabs;
 
     public Vector2 rangeOffset = new Vector2(-1.5F, 1.5F);
@@ -64,6 +64,9 @@ public class GameManager : MonoBehaviour
         set => ConsumableHandler.RemoveConsumableDestruction = value;
     }
 
+    /// <summary>
+    /// Is the player able to respawn here. 
+    /// </summary>
     public static bool PlayerRespawnable => _instance.respawner != null;
 
     void Awake()
@@ -106,9 +109,9 @@ public class GameManager : MonoBehaviour
     }
 
     #region Object Management.
-    public static GameObject GameObjectRequest(GameObject prefab)
+    public static GameObject GameObjectRequest(GameObject prefab, Vector2 position)
     {
-        return Instance.objectManager.GetGameObjectType(prefab);
+        return Instance.objectManager.GetGameObjectType(prefab, position);
     }
     #endregion
 
@@ -120,6 +123,14 @@ public class GameManager : MonoBehaviour
     public void ScheduleObject(ITimerScheduler obj) => _objectScheduler.AddScheduledObject(obj);
     #endregion
 
+    #region Consumable Item.
+    /// <summary>
+    /// Call to Destroy all IConsumableDestructions interfaces held in the system. 
+    /// </summary>
+    public void ConsumableDestruction() => ConsumableHandler.ConsumableDestruction();
+    #endregion
+
+    #region Death Handling.
     /// <summary>
     /// Add a position at which the player died. 
     /// </summary>
@@ -129,19 +140,10 @@ public class GameManager : MonoBehaviour
         //Update data. 
         DataHandler.UpdateData(GameManager.GameTimer);
         bodyPositions.Add(position);
-        GameObject.Instantiate(splatterPrefab, PositionOffset(position), Quaternion.identity);
+        GameObject.Instantiate(SelectRandomPrefab(splatterPrefabs), PositionOffset(position), Quaternion.identity);
         GameObject.Instantiate(SelectRandomPrefab(deadBodyPrefabs), position, Quaternion.identity);
     }
-
-    public void ResetGame()
-    {
-        _gameTimer.ResetTimer();
-    }
-
-    /// <summary>
-    /// Call to Destroy all IConsumableDestructions interfaces held in the system. 
-    /// </summary>
-    public void ConsumableDestruction() => ConsumableHandler.ConsumableDestruction();
+    #endregion
 
     #region Helper Funcs.
     public GameObject SelectRandomPrefab(GameObject[] objects)
@@ -171,4 +173,16 @@ public class GameManager : MonoBehaviour
         return new Vector2(x, y);
     }
     #endregion
+
+    #region Level Loading.
+    public static void LoadLevel(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
+    #endregion
+
+    public void ResetGame()
+    {
+        _gameTimer.ResetTimer();
+    }
 }

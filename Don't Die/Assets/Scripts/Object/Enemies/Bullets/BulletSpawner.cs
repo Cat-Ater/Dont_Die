@@ -12,22 +12,14 @@ public struct Arc
 public class BulletSpawner : MonoBehaviour
 {
     public BulletPattern pattern;
+    public BulletData data; 
     public Vector2[] points;
     public GameObject[] gameObjs;
     public GameObject bulletPrefab;
 
     void Start()
     {
-        Vector3 position = gameObject.transform.position;
-        gameObjs = new GameObject[points.Length];
-        for (int i = 0; i < points.Length; i++)
-        {
-            gameObjs[i] = GameObject.Instantiate(bulletPrefab, position + (Vector3)points[i], Quaternion.identity);
-            BulletComponent bComponent = gameObjs[i].GetComponent<BulletComponent>();
-            bComponent._bulletMovement.movementType = BulletMovement.MovementType.DIRECTION;
-            bComponent._bulletMovement.direction = points[i].normalized;
-            bComponent._bulletMovement.speed = 0.2f;
-        }
+        GenerateBullets();
     }
 
     void Update()
@@ -37,6 +29,16 @@ public class BulletSpawner : MonoBehaviour
 
     public void GenerateBullets()
     {
+        Vector3 position = gameObject.transform.position;
+        gameObjs = new GameObject[points.Length];
+        for (int i = 0; i < points.Length; i++)
+        {
+            gameObjs[i] = GameManager.GameObjectRequest(bulletPrefab, (Vector2)(position + (Vector3)points[i]));
+            BulletComponent bComponent = gameObjs[i].GetComponent<BulletComponent>();
+            bComponent.SetData(data);
+            if (data.usePatternDirection)
+                bComponent._bulletMovement.movementDirection = points[i].normalized;
+        }
 
     }
 

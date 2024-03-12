@@ -741,6 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3aac845e5e13b04f83dec1ba21cf185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueDisplay: {fileID: 1520607836}
 --- !u!114 &1520607836
 MonoBehaviour:
   m_ObjectHideFlags: 0

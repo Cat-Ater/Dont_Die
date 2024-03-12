@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
                 {
                     _player.SetActive(false);
                     //TODO: load the entrance hall alternative. 
+                    GameManager.LoadLevel("HoldingCell");
                 }
 
                 if (GameManager.PlayerRespawnable)
