@@ -175,7 +175,7 @@ public class BulletLifespan
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
-public class BulletComponent : MonoBehaviour
+public class BulletComponent : DestructableObject
 {
     [SerializeField]
     private BulletScaler _bulletScaler;
@@ -235,5 +235,10 @@ public class BulletComponent : MonoBehaviour
         _bulletMovement.targetUpdateRate = data.targetUpdateRate;
         _bulletMovement.movementDirection = data.movementDirection;
         _bulletMovement.movementPoint = data.movementPoint;
+    }
+
+    internal override void OnDestruction()
+    {
+        gameObject.SetActive(false);
     }
 }
