@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerHitCollision : MonoBehaviour
 {
-    private static PlayerHitCollision hurtBox; 
+    private static PlayerHitCollision hurtBox;
 
     [SerializeField]
     private Collider2D hurtboxCollider;

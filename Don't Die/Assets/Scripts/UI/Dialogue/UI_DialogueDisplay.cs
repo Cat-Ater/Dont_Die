@@ -12,7 +12,6 @@ public enum DialogueState
     INACTIVE,
     INIT,
     SCROLLING,
-    SCROLL_INTERUPT,
     LINE_WAIT,
     COMPLETE
 }
@@ -25,10 +24,12 @@ public class UI_DialogueDisplay : MonoBehaviour
     int _charIndex;
     string[] _lines;
     float _scrollSpeed;
-    bool skipEnabled = false;
+    float _endlLineWait;
     public GameObject underlay;
     public Text textOutput;
     public DialogueState _state = DialogueState.INACTIVE;
+    bool lineWaitCalled = false;
+    bool endLineWaitElapsed = false;
     //public AudioClip textboxOpen;
     //public AudioClip textboxClose;
     //public AudioClip textboxType;
@@ -42,13 +43,14 @@ public class UI_DialogueDisplay : MonoBehaviour
 
     private void OnEnable() => ResetState(false);
 
-    public void SetInstanceUp(ITextCaller caller, string[] lines, float scrollSpeed)
+    public void SetInstanceUp(ITextCaller caller, string[] lines, float scrollSpeed, float endLineSpeed)
     {
         //Set data. 
         _state = DialogueState.INIT;
         _lines = lines;
         _caller = caller;
         _scrollSpeed = scrollSpeed;
+        _endlLineWait = endLineSpeed;
 
         //Reset values. 
         ResetState(true);
@@ -70,15 +72,10 @@ public class UI_DialogueDisplay : MonoBehaviour
         if (_state == DialogueState.INACTIVE)
             return;
 
-        if (Input.anyKey && _state == DialogueState.SCROLLING && skipEnabled)
-        {
-            //UI_Manager.PlaySoundOS = textboxSkip;
-            _state = DialogueState.SCROLL_INTERUPT;
-            StartCoroutine(KeypressSpamPrevention());
-        }
-        if (Input.anyKey && _state == DialogueState.LINE_WAIT)
+        if (endLineWaitElapsed && _state == DialogueState.LINE_WAIT)
         {
             _lineIndex++;
+            endLineWaitElapsed = false;
 
             if (_lineIndex < _lines.Length)
                 StartCoroutine(PrintLine(_lines[_lineIndex]));
@@ -91,29 +88,29 @@ public class UI_DialogueDisplay : MonoBehaviour
         }
     }
 
-    private IEnumerator KeypressSpamPrevention()
+
+    private IEnumerator EndLineWait()
     {
-        yield return new WaitForSeconds(0.5f);
-        skipEnabled = true;
+        yield return new WaitForSeconds(_endlLineWait);
+        endLineWaitElapsed = true;
+        lineWaitCalled = false;
     }
 
     private IEnumerator PrintLine(string text)
     {
         _state = DialogueState.SCROLLING;
-        float perCharSpeed = _scrollSpeed / text.Length;
         DisplayStr = string.Empty;
         _charIndex = 0;
 
-        while (DisplayStr.Length < text.Length && _state != DialogueState.SCROLL_INTERUPT)
+        while (DisplayStr.Length < text.Length)
         {
             DisplayStr += text[_charIndex];
-            yield return new WaitForSeconds(perCharSpeed);
+            yield return new WaitForSeconds(_scrollSpeed);
             _charIndex++;
         }
 
-        //Update the state. 
-        if (_state == DialogueState.SCROLL_INTERUPT)
-            DisplayStr = text;
+        if (DisplayStr.Length == text.Length && lineWaitCalled == false)
+            StartCoroutine(EndLineWait());
 
         _state = DialogueState.LINE_WAIT;
     }

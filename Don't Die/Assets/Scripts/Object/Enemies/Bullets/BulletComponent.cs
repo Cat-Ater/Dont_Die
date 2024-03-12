@@ -33,7 +33,7 @@ public class BulletScaler
             return;
         }
         _currentTime += Time.deltaTime;
-        _gameObject.transform.localScale += (Vector3)(_scaleStep * _currentTime);
+        _gameObject.transform.localScale = (Vector2)initalScale + (Vector2)(_scaleStep * _currentTime);
     }
 }
 
@@ -51,7 +51,7 @@ public class BulletRotar
     [Header("The maximum time the bullet should rotate.")]
     public float rotationTime;
     [Header("Should the rotation continue endlessly.")]
-    public bool loop;
+    public bool loopRotation;
 
     private float RotationStep => maxRotation / rotationTime;
 
@@ -65,9 +65,9 @@ public class BulletRotar
 
     public void Update()
     {
-        if ((currentTime > rotationTime || CurrentRotation * rotationSpeed * currentTime > maxRotation) && !loop)
+        if ((currentTime > rotationTime || CurrentRotation * rotationSpeed * currentTime > maxRotation) && !loopRotation)
             return;
-        else if (currentTime >= rotationSpeed && loop)
+        else if (currentTime >= rotationSpeed && loopRotation)
             currentTime = 0;
 
         currentTime += Time.deltaTime;
@@ -75,27 +75,28 @@ public class BulletRotar
     }
 }
 
+public enum MovementType
+{
+    NONE,
+    TARGET,
+    DIRECTION,
+    TO_POINT
+}
+
 [System.Serializable]
 public class BulletMovement
 {
-    public enum MovementType
-    {
-        NONE, 
-        TARGET, 
-        DIRECTION, 
-        TO_POINT
-    }
 
     private Rigidbody2D _body2D;
     private float currentUpdateRate;
     private Vector2 lastUpdateVec;
     public MovementType movementType;
 
-    public float speed;
+    public float movementSpeed;
     public float lifeTime;
-    public GameObject target;
-    public Vector2 direction;
-    public Vector2 point;
+    public GameObject movementTarget;
+    public Vector2 movementDirection;
+    public Vector2 movementPoint;
     public float targetUpdateRate;
 
     public void SetRigidbody(Rigidbody2D body2D)
@@ -125,12 +126,12 @@ public class BulletMovement
     private void Movement_Target()
     {
         currentUpdateRate += Time.deltaTime;
-        if(currentUpdateRate >= targetUpdateRate)
+        if (currentUpdateRate >= targetUpdateRate)
         {
-            currentUpdateRate = 0; 
+            currentUpdateRate = 0;
             Vector2 i = _body2D.gameObject.transform.position;
-            Vector2 b = target.gameObject.transform.position;
-            lastUpdateVec = Vector2.Lerp(b - i, b, speed * Time.deltaTime);
+            Vector2 b = movementTarget.gameObject.transform.position;
+            lastUpdateVec = Vector2.Lerp(b - i, b, movementSpeed * Time.deltaTime);
         }
 
         _body2D.velocity = lastUpdateVec;
@@ -138,14 +139,14 @@ public class BulletMovement
 
     private void Movement_Direction()
     {
-        _body2D.AddForce(direction * speed);
+        _body2D.AddForce(movementDirection * movementSpeed);
     }
 
     private void Movement_ToPoint()
     {
         Vector2 i = _body2D.gameObject.transform.position;
-        Vector2 b = point;
-        Vector2 lerpVec = Vector2.Lerp(b - i, b, speed * Time.deltaTime);
+        Vector2 b = movementPoint;
+        Vector2 lerpVec = Vector2.Lerp(b - i, b, movementSpeed * Time.deltaTime);
         _body2D.velocity = lerpVec;
     }
 }
@@ -155,11 +156,11 @@ public class BulletLifespan
 {
     GameObject gameobject;
     public float lifeSpan;
-    public bool hasLifespan = false; 
+    public bool hasLifespan = false;
 
     public void SetObject(GameObject gObj)
     {
-        gameobject = gObj; 
+        gameobject = gObj;
     }
 
     public void Update()
@@ -203,7 +204,7 @@ public class BulletComponent : MonoBehaviour
 
     public void LateUpdate()
     {
-        _bulletLifeSpan.Update(); 
+        _bulletLifeSpan.Update();
         _bulletScaler.Update();
         _bulletRotar.Update();
         _bulletMovement.Update();
@@ -214,5 +215,25 @@ public class BulletComponent : MonoBehaviour
         if (a.x > b.x && a.y > b.y)
             return true;
         return false;
+    }
+
+    public void SetData(BulletData data)
+    {
+        _bulletScaler.initalScale = data.initalScale;
+        _bulletScaler.scaleRange = data.scaleRange; 
+        _bulletScaler.scaleSpeed = data.scaleSpeed;
+
+        _bulletRotar.maxRotation = data.maxRotation;
+        _bulletRotar.rotationSpeed = data.rotationSpeed;
+        _bulletRotar.initalRotation = data.initalRotation;
+        _bulletRotar.rotationTime = data.rotationTime;
+        _bulletRotar.loopRotation = data.loopRotation;
+
+        _bulletMovement.movementType = data.movementType;
+        _bulletMovement.movementSpeed = data.movementSpeed;
+        _bulletMovement.movementTarget = data.movementTarget;
+        _bulletMovement.targetUpdateRate = data.targetUpdateRate;
+        _bulletMovement.movementDirection = data.movementDirection;
+        _bulletMovement.movementPoint = data.movementPoint;
     }
 }
