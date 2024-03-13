@@ -6,18 +6,5 @@ public class PlayerRespawner : MonoBehaviour
 {
     public Vector2 respawnPoint;
 
-    public void OnValidate()
-    {
-        respawnPoint = gameObject.transform.position;
-    }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    void Start() => GameManager.SetRespawn = this; 
 }

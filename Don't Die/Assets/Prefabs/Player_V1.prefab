@@ -214,7 +214,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 514535025
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 08242e4948fed7c45843e336674e9e61, type: 3}
   m_Color: {r: 0.75686276, g: 0.69411767, b: 0.88235295, a: 1}
@@ -294,6 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5c06ef7c39e1f4bb14b8c0f5e6c355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownTime: 0.3
+  canUse: 1
 --- !u!114 &7067630322959687117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputKey: 113
   consumableCount: 1
-  cooldownPeriod: 0.5
+  cooldownPeriod: 0.05
 --- !u!58 &1808805171555054434
 CircleCollider2D:
   m_ObjectHideFlags: 0

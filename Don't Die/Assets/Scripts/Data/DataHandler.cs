@@ -7,6 +7,8 @@ public class DataHandler : MonoBehaviour
     private static DataHandler instance;
     public PlayerData data;
 
+    public static PlayerData Data => instance.data;
+
     /// <summary>
     /// Returns a new instance of the data handler. 
     /// </summary>

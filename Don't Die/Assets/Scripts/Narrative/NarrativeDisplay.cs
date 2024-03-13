@@ -15,7 +15,7 @@ public class NarrativeDisplay : MonoBehaviour, ITextCaller
         if (collision.tag == "Player" && !isDisplaying && !hasDisplayed)
         {
             isDisplaying = true;
-            UIManager.Instance.DisplayTest(this, lines, dialogueSpeed, endlineWait);
+            UIManager.Instance.DisplayText(this, lines, dialogueSpeed, endlineWait);
         }
     }
 
