@@ -90,8 +90,8 @@ public class GameManager : MonoBehaviour
         {
             DataHandler.UpdateData(GameManager.GameTimer);
             bodyManager.AddPosition(DataHandler.Data.totalNumberOfDeaths, value, SceneManager.GetActiveScene().name);
-            GameObject.Instantiate(effects.RandomSplatter, effects.PositionOffset(value), Quaternion.identity);
-            GameObject.Instantiate(effects.RandomBody, value, Quaternion.identity);
+            Instantiate(effects.RandomSplatter, effects.PositionOffset(value), Quaternion.identity);
+            Instantiate(effects.RandomBody, value, Quaternion.Euler(effects.RotationOffset()));
         }
     }
 
@@ -126,7 +126,8 @@ public class GameManager : MonoBehaviour
         _objectScheduler = new ObjectScheduler(_gameTimer);
 
         //Load the UI into the scene if not present.
-        SceneManager.LoadSceneAsync("_UI", LoadSceneMode.Additive);
+        if(UIManager.Instance == null)
+            SceneManager.LoadSceneAsync("_UI", LoadSceneMode.Additive);
 
         //Set up player data. 
         dHandler = DataHandler.CreateDataHandler();

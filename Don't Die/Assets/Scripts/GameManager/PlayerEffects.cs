@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 /// <summary>
 /// Class responsible for managing player effects. 
 /// </summary>
@@ -25,6 +26,8 @@ public class PlayerEffects
     /// </summary>
     public Vector2 splatterRange = new Vector2(-1.5F, 1.5F);
 
+    public Vector2 rotationRange = new Vector2(20F, 340F);
+
     /// <summary>
     /// Returns random bloodsplatter prefab selection. 
     /// </summary>
@@ -33,7 +36,7 @@ public class PlayerEffects
     /// <summary>
     /// Returns random body prefab selection. 
     /// </summary>
-    public GameObject RandomBody => SelectRandomPrefab(splatterPrefabs);
+    public GameObject RandomBody => SelectRandomPrefab(deadBodyPrefabs);
 
     /// <summary>
     /// Returns offset vector using the postion provided.
@@ -44,6 +47,18 @@ public class PlayerEffects
         return new Vector2(
             position.x + UnityEngine.Random.Range(splatterRange.x, splatterRange.y), 
             position.y + UnityEngine.Random.Range(splatterRange.x, splatterRange.y));
+    }
+
+    /// <summary>
+    /// Returns offset rotation using the postion provided.
+    /// </summary>
+    /// <param name="position"> The orignal position. </param>
+    public Vector2 RotationOffset()
+    {
+        return new Vector3(
+            0,
+            0,
+            UnityEngine.Random.Range(splatterRange.x, splatterRange.y));
     }
 
     /// <summary>

@@ -2,153 +2,96 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITimedEvent
-{
-    public enum TimedEventType
-    {
-        START,
-        END,
-        TIMED,
-        BUTTON_PRESS,
-        DEATH
-    }
-
-    public TimedEventType EventType { get; }
-
-    public float Time { get; }
-
-    public bool Fired { get; }
-
-    public void FireOnStart() => FireEvent();
-
-    public void FireOnDeath() => FireEvent();
-
-    public void FireOnEnd() => FireEvent();
-
-    public void FireEvent();
-}
-
 public abstract class PatternTimedEvent : ITimedEvent
 {
+    public string name;
     internal bool fired = false;
 
     [Range(0, 60)]
     public float time;
 
     public ITimedEvent.TimedEventType eventType;
-    public ITimedEvent.TimedEventType EventType => eventType;
+
+    ITimedEvent.TimedEventType ITimedEvent.EventType => eventType;
     public float Time => time;
     public bool Fired => fired;
 
+    public int EventTypeID => (int)eventType;
+
     public abstract void FireEvent();
-}
 
-[System.Serializable]
-public class PatternObject : PatternTimedEvent
-{
-    public GameObject prefab;
-    public Vector2 position;
-
-    public override void FireEvent()
+    public bool CanFire(ITimedEvent.TimedEventType type, float gameTime)
     {
-        GameObject.Instantiate(prefab, position, Quaternion.identity);
-        fired = true;
-    }
-}
+        bool fire;
+        switch (type)
+        {
+            case ITimedEvent.TimedEventType.START:
+                fire = (fired == false && type == this.eventType);
+                break;
+            case ITimedEvent.TimedEventType.END:
+                fire = (fired == false && type == this.eventType);
+                break;
+            case ITimedEvent.TimedEventType.TIMED:
+                fire = (gameTime >= time && Fired  == false);
+                break;
+            case ITimedEvent.TimedEventType.BUTTON_PRESS:
+                fire = (fired == false && type == this.eventType);
+                break;
+            default:
+                return false;
+        }
 
-[System.Serializable]
-public class PatternDialogue : PatternTimedEvent, ITextCaller
-{
-    public string[] dialogueStrings;
-    public float scrollSpeed;
-    public float endLineDelay;
-    public float eventTime;
-
-    public override void FireEvent() => DisplayText();
-
-    private void DisplayText()
-    {
-        UIManager.Instance.DisplayTest(this, dialogueStrings, scrollSpeed, endLineDelay);
-        fired = true;
-    }
-
-    public void DisplayComplete()
-    {
+        return fire;
     }
 }
 
 [System.Serializable]
 public class Pattern
 {
-    //Responsiblilities: 
-    // -> Contains a list of objects and times which they should be spawwned. 
-    // -> Handles updating this list based on the current game time. 
-    // -> Contains a flag denoting completion. 
-
     public string name;
     public int order;
     public bool complete = false;
-    float length; 
+    public float patternEndTime;
 
     public List<PatternObject> patternObjects;
     public List<PatternDialogue> patternDialogues;
 
-    public void OnStart()
-    {
-        FireType(ITimedEvent.TimedEventType.START);
-    }
+    public void OnStart() => FireType(ITimedEvent.TimedEventType.START);
 
-    public void OnDeath()
+    public bool PatternCompletion(float time)
     {
-        FireType(ITimedEvent.TimedEventType.DEATH);
-    }
-
-    public void OnEnd()
-    {
-        FireType(ITimedEvent.TimedEventType.END);
-    }
-
-    private void FireType(ITimedEvent.TimedEventType type)
-    {
-        if(type == ITimedEvent.TimedEventType.TIMED)
+        if (time >= patternEndTime)
         {
-            Debug.Log("Try Alt Func: <Insert Here>");
-            return;
+            FireType(ITimedEvent.TimedEventType.END);
+            return true;
         }
-            
+        return false;
+    } 
+
+    public void Update(float gameTime)
+    {
+        FireType(ITimedEvent.TimedEventType.TIMED, gameTime);
+    }
+
+    private void FireType(ITimedEvent.TimedEventType type) => FireType(type, 0);
+
+    private void FireType(ITimedEvent.TimedEventType type, float time)
+    {
+
         for (int i = 0; i < patternObjects.Count; i++)
         {
-            if (patternObjects[i].eventType == type)
-                patternObjects[i].FireEvent();
-        }
-
-        for (int i = 0; i < patternDialogues.Count; i++)
-        {
-            if (patternDialogues[i].eventType == type)
-                patternDialogues[i].FireEvent();
-        }
-    }
-
-    public void OnTime(float time)
-    {
-        if(time > length)
-        {
-            OnEnd(); 
-        }
-
-        for (int i = 0; i < patternDialogues.Count; i++)
-        {
-            if(patternDialogues[i].time <= time)
+            if (patternObjects[i].CanFire(type, time))
             {
-                patternDialogues[i].FireEvent();
+                patternObjects[i].FireEvent();
+                Debug.Log("Firing =: " + patternObjects[i].name);
             }
         }
 
-        for (int i = 0; i < patternObjects.Count; i++)
+        for (int i = 0; i < patternDialogues.Count; i++)
         {
-            if (patternObjects[i].time <= time)
+            if (patternDialogues[i].CanFire(type, time))
             {
-                patternObjects[i].FireEvent();
+                patternDialogues[i].FireEvent();
             }
         }
     }

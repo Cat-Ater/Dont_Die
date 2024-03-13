@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Class responsible for updating UI components. 
@@ -17,8 +18,9 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public string GetTimeSTR => GameManager.GameTimer.TimeToString();
 
-    void Start()
+    void Awake()
     {
+        #region Singleton.
         if (instance == null)
         {
             instance = this;
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
         {
             DestroyImmediate(this);
         }
+        #endregion
     }
 
     void Update()
@@ -35,6 +38,6 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void DisplayTest(ITextCaller caller, string[] lines, float scrollSpeed, float endlineWait) =>
+    public void DisplayText(ITextCaller caller, string[] lines, float scrollSpeed, float endlineWait) =>
         dialogueDisplay.SetInstanceUp(caller, lines, scrollSpeed, endlineWait);
 }

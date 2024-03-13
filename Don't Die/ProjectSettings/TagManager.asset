@@ -49,6 +49,9 @@ TagManager:
   - name: Ground
     uniqueID: 3421759341
     locked: 0
+  - name: PlayerDead
+    uniqueID: 805255485
+    locked: 0
   - name: EnemyMidground
     uniqueID: 2182040013
     locked: 0
