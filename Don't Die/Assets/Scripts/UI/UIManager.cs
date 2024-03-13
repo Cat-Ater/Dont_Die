@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     
     [SerializeField]
     private UI_DialogueDisplay dialogueDisplay;
+    [SerializeField]
+    private UI_TransitionHandler transitionHandler;
     
     public static UIManager Instance => instance;
 
@@ -17,6 +19,11 @@ public class UIManager : MonoBehaviour
     /// Returns the current game time as a formated string. 
     /// </summary>
     public string GetTimeSTR => GameManager.GameTimer.TimeToString();
+
+    public void TransitionStateChange(IBroadcastTransitionState caller, TransitionType type, bool state, float speed)
+    {
+        transitionHandler.TransitionsState(caller, type, state, speed);
+    }
 
     void Awake()
     {

@@ -58116,9 +58116,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1314038341218762506, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
+      propertyPath: time
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 4517682018555348407, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
       propertyPath: m_Name
       value: Elevator
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517682018555348407, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
+      propertyPath: m_TagString
+      value: SystemTriggers
       objectReference: {fileID: 0}
     - target: {fileID: 5120639041414159066, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
       propertyPath: m_RootOrder
@@ -58126,11 +58134,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5120639041414159066, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.33
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 5120639041414159066, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.64
+      value: 2.23
       objectReference: {fileID: 0}
     - target: {fileID: 5120639041414159066, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58177,6 +58185,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4575997505923950724, guid: fcc3ae09ad5ada543a6ad148130dbbeb, type: 3}
+      propertyPath: dialogueSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4681291925309708684, guid: fcc3ae09ad5ada543a6ad148130dbbeb, type: 3}
       propertyPath: m_RootOrder
       value: 19
