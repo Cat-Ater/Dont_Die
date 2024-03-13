@@ -44,29 +44,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24dbeafa599bc3146b39053493452d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectManager:
-    objectPools: []
-  respawner: {fileID: 0}
-  bodyPositions: []
-  splatterPrefabs:
-  - {fileID: 1381064132057076727, guid: 24a99efc2116b754698c7f8e3bfc8c7e, type: 3}
-  - {fileID: 7875384047321348971, guid: bfcdea9b187ec1e48abbcb99b1795344, type: 3}
-  - {fileID: 60830913982289951, guid: 3f291fc50c87e6d408ec888c730f87f5, type: 3}
-  - {fileID: 5642675818701006534, guid: a8e19c516a3cad44cbe9bbd3bc12b9e6, type: 3}
-  - {fileID: 5863900931196806816, guid: 0180b95a3ee5a9b439676a49f2c58356, type: 3}
-  - {fileID: 4033255955941112434, guid: 9578aa5a64134684e822578ef362afad, type: 3}
-  - {fileID: 3505051858038298351, guid: 53be6464c4d3e384db63329019418903, type: 3}
-  - {fileID: 4262179500105045900, guid: 775317f35fa6d814ab227106b2f02ad2, type: 3}
-  - {fileID: 1924510367199471815, guid: 177a25cb7bea8a84596affda41baf166, type: 3}
-  - {fileID: 9191474944465069911, guid: 2249847ceb29e224598b87e17720c914, type: 3}
-  - {fileID: 8854232658949458721, guid: f561d32b83db15d4da4a84b2af26a52e, type: 3}
-  - {fileID: 3478750767029673614, guid: e3c9e5a38272fce45bc7a40d94d1d196, type: 3}
-  - {fileID: 8785775916604601985, guid: 7e1d85fb41318c24697ddd47bbf9e7f5, type: 3}
-  - {fileID: 8655528005139558255, guid: 946d77abb7221734b8780bd19b46caef, type: 3}
-  - {fileID: 4925173773751197911, guid: b211c026e79c0f048ba9c32118bccf70, type: 3}
-  - {fileID: 7383211381701599482, guid: 8ef729e51004c5a4f99152cbe347f4c9, type: 3}
-  deadBodyPrefabs:
-  - {fileID: 7338437685278761964, guid: 07020722646a13041826a27c2387a262, type: 3}
-  - {fileID: 7675132746922810920, guid: 8a8fef4eed0c2db4189ae315a6d55833, type: 3}
-  - {fileID: 6357110232462196330, guid: 6b627a6d2865452438175398902f6976, type: 3}
-  rangeOffset: {x: -1.5, y: 1.5}
+  patternHandler: {fileID: 0}
+  effects:
+    splatterPrefabs:
+    - {fileID: 1381064132057076727, guid: 24a99efc2116b754698c7f8e3bfc8c7e, type: 3}
+    - {fileID: 7875384047321348971, guid: bfcdea9b187ec1e48abbcb99b1795344, type: 3}
+    - {fileID: 60830913982289951, guid: 3f291fc50c87e6d408ec888c730f87f5, type: 3}
+    - {fileID: 5642675818701006534, guid: a8e19c516a3cad44cbe9bbd3bc12b9e6, type: 3}
+    - {fileID: 5863900931196806816, guid: 0180b95a3ee5a9b439676a49f2c58356, type: 3}
+    - {fileID: 4033255955941112434, guid: 9578aa5a64134684e822578ef362afad, type: 3}
+    - {fileID: 3505051858038298351, guid: 53be6464c4d3e384db63329019418903, type: 3}
+    - {fileID: 4262179500105045900, guid: 775317f35fa6d814ab227106b2f02ad2, type: 3}
+    - {fileID: 1924510367199471815, guid: 177a25cb7bea8a84596affda41baf166, type: 3}
+    - {fileID: 9191474944465069911, guid: 2249847ceb29e224598b87e17720c914, type: 3}
+    - {fileID: 8854232658949458721, guid: f561d32b83db15d4da4a84b2af26a52e, type: 3}
+    - {fileID: 3478750767029673614, guid: e3c9e5a38272fce45bc7a40d94d1d196, type: 3}
+    - {fileID: 8785775916604601985, guid: 7e1d85fb41318c24697ddd47bbf9e7f5, type: 3}
+    - {fileID: 8655528005139558255, guid: 946d77abb7221734b8780bd19b46caef, type: 3}
+    - {fileID: 4925173773751197911, guid: b211c026e79c0f048ba9c32118bccf70, type: 3}
+    - {fileID: 7383211381701599482, guid: 8ef729e51004c5a4f99152cbe347f4c9, type: 3}
+    deadBodyPrefabs:
+    - {fileID: 7338437685278761964, guid: 07020722646a13041826a27c2387a262, type: 3}
+    - {fileID: 7675132746922810920, guid: 8a8fef4eed0c2db4189ae315a6d55833, type: 3}
+    - {fileID: 6357110232462196330, guid: 6b627a6d2865452438175398902f6976, type: 3}
+    ghostMouseHistoryPrefabs: []
+    splatterRange: {x: -1.5, y: 1.5}
+    rotationRange: {x: 20, y: 340}

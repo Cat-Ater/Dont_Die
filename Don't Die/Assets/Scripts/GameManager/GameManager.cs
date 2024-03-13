@@ -49,7 +49,13 @@ public class GameManager : MonoBehaviour
 
     public static PlayerRespawner SetRespawn
     {
-        set => Instance.respawnHandler.respawner = value; 
+        set
+        {
+            Instance.respawnHandler.respawner = value;
+#if DEBUG
+            Debug.Log("Respawner Set: " + Instance.respawnHandler.respawner.name);
+#endif
+        }
     }
 
     public void ActivateTimer()
