@@ -31,14 +31,25 @@ public class UI_TransitionHandler : MonoBehaviour
     public TransitionColorSet[] transitionColors;
     public IBroadcastTransitionState caller;
 
-    public void TransitionsState(IBroadcastTransitionState caller, TransitionType type, bool state, float speed)
+    public void Clear(float time)
+    {
+        StartCoroutine(ClearTimer(time));
+    }
+
+    private IEnumerator ClearTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        panel.color = panel.color + new Color(0, 0, 0, -panel.color.a);
+    }
+
+    public void TransitionsState(IBroadcastTransitionState caller, TransitionType type, float speed)
     {
         this.caller = caller;
         foreach (TransitionColorSet item in transitionColors)
         {
             if (item.transitionType == type)
             {
-                StartCoroutine(TransitionFader(panel, (state) ? item.max : item.min, speed));
+                StartCoroutine(TransitionFader(panel, item.max, speed));
                 break;
             }
         }
@@ -46,8 +57,8 @@ public class UI_TransitionHandler : MonoBehaviour
 
     private IEnumerator TransitionFader(Image img, Color b, float speed)
     {
-        Color c = (b - img.color) / speed;
         float time = 0;
+        Color c = ((b - img.color) / speed);
 
         while (time < speed)
         {
@@ -56,6 +67,7 @@ public class UI_TransitionHandler : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         panel.color = b;
+        Debug.Log("Exited");
         caller.ChangeInState();
     }
 }

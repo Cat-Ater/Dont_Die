@@ -5,10 +5,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public class LevelLoading : IBroadcastTransitionState
+{
+    internal enum LevelTransitionStage
+    {
+        NONE,
+        INIT_FADE, 
+        LOAD_LEVEL, 
+        RELEASE
+    }
+    private LevelTransitionStage stage = LevelTransitionStage.NONE;
+    private string levelToLoad;
+
+    public void LoadLevel(string levelName, TransitionType type)
+    {
+        stage = LevelTransitionStage.INIT_FADE;
+        levelToLoad = levelName;
+        UIManager.Instance.TransitionStateChange(this, type, 0.15F);
+    }
+
+    public void ChangeInState()
+    {
+        if(stage == LevelTransitionStage.INIT_FADE)
+        {
+            stage = LevelTransitionStage.LOAD_LEVEL;
+            SceneManager.LoadScene(levelToLoad);
+            levelToLoad = "";
+            stage = LevelTransitionStage.RELEASE; 
+            UIManager.Instance.TransitionClear(0.3F);
+        }
+    }
+}
+
+
 /// <summary>
 /// Class responsible for handling updating the game and acting as a system inbetween. 
 /// </summary>
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IBroadcastTransitionState
 {
     /// <summary>
     /// The current static instance of the GameManager. 
@@ -23,9 +56,10 @@ public class GameManager : MonoBehaviour
     private DataHandler dHandler;
     private ConsumableHandler cHandler;
     public BodyManager bodyManager;
-    public PatternHandler patternHandler; 
+    public PatternHandler patternHandler;
     private ObjectManager objectManager;
-    private PlayerRespawnHandler respawnHandler; 
+    private PlayerRespawnHandler respawnHandler;
+    private LevelLoading levelLoader;
 
     /// <summary>
     /// Reference to the ObjectScheduler. 
@@ -37,6 +71,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public PlayerEffects effects;
 
+    #region Properties. 
     /// <summary>
     /// Returns the current GameManager. 
     /// </summary>
@@ -47,6 +82,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static Timer GameTimer => _instance._gameTimer;
 
+    #region Respawning. 
     public static PlayerRespawner SetRespawn
     {
         set
@@ -57,19 +93,9 @@ public class GameManager : MonoBehaviour
 #endif
         }
     }
+    #endregion
 
-    public void ActivateTimer()
-    {
-        StartCoroutine(StartupDelay());
-    }
-
-    public IEnumerator StartupDelay()
-    {
-        yield return new WaitForSeconds(5.5F);
-        GameTimer.Enabled = true;
-        patternHandler.ActivatePatterns();
-    }
-
+    #region Consumable Destruction. 
     /// <summary>
     /// Add a IConsumableDestruction interface to the system. 
     /// </summary>
@@ -85,6 +111,9 @@ public class GameManager : MonoBehaviour
     {
         set => ConsumableHandler.RemoveConsumableDestruction = value;
     }
+    #endregion
+
+    #region Player Death.
 
     /// <summary>
     /// Add a position at which the player died. 
@@ -92,22 +121,18 @@ public class GameManager : MonoBehaviour
     /// <param name="position"> The position to add. </param>
     public Vector3 SetDeathPosition
     {
-        set
-        {
-            DataHandler.UpdateData(GameManager.GameTimer);
-            bodyManager.AddPosition(DataHandler.Data.totalNumberOfDeaths, value, SceneManager.GetActiveScene().name);
-            Instantiate(effects.RandomSplatter, effects.PositionOffset(value), Quaternion.identity);
-            Instantiate(effects.RandomBody, value, Quaternion.Euler(effects.RotationOffset()));
-        }
+        set => PlayerDeath(value);
     }
+    #endregion
 
-    #region Player Spawning Properties.
+    #region Player Spawning.
     /// <summary>
     /// Is the player able to respawn here. 
     /// </summary>
     public static bool PlayerRespawnable => Instance.respawnHandler.PlayerRespawnable;
 
     public Vector3 RespawnPosition => Instance.respawnHandler.Point;
+    #endregion
     #endregion
 
     void Awake()
@@ -132,13 +157,14 @@ public class GameManager : MonoBehaviour
         _objectScheduler = new ObjectScheduler(_gameTimer);
 
         //Load the UI into the scene if not present.
-        if(UIManager.Instance == null)
+        if (UIManager.Instance == null)
             SceneManager.LoadSceneAsync("_UI", LoadSceneMode.Additive);
 
         //Set up player data. 
         dHandler = DataHandler.CreateDataHandler();
 
-        respawnHandler = new PlayerRespawnHandler(); 
+        respawnHandler = new PlayerRespawnHandler();
+        levelLoader = new LevelLoading();
     }
 
     void Update()
@@ -146,6 +172,68 @@ public class GameManager : MonoBehaviour
         //Update system objects here. 
         _gameTimer.UpdateTimer(Time.deltaTime);
         _objectScheduler.UpdateObjects();
+    }
+
+    #region Player Death. 
+    private void PlayerDeath(Vector2 position)
+    {
+        ShowEffects(position);
+        PlayerDeathPostion(position);
+        SetPlayerData();
+
+        //Reset the game timer. 
+        _gameTimer.Enabled = false;
+        _gameTimer.ResetTimer();
+
+        GameObject pObj = PlayerController.PlayerObject;
+
+        if (PlayerRespawnable)
+        {
+            pObj.SetActive(false);
+            pObj.transform.position = RespawnPosition;
+            PlayerController.Alive = true;
+            pObj.SetActive(true);
+        }
+
+        if (!PlayerRespawnable)
+        {
+            pObj.SetActive(false);
+            levelLoader.LoadLevel("HoldingCell", TransitionType.DEATH);
+        }
+
+        //Load required level.
+    }
+
+    private void PlayerDeathPostion(Vector2 position)
+    {
+        bodyManager.AddPosition(DataHandler.Data.totalNumberOfDeaths, position, SceneManager.GetActiveScene().name);
+    }
+
+    private void SetPlayerData()
+    {
+        //Data updating. 
+        DataHandler.UpdateData(GameManager.GameTimer);
+    }
+
+    private void ShowEffects(Vector2 position)
+    {
+        //Instantiate death visuals. 
+        Instantiate(effects.RandomSplatter, effects.PositionOffset(position), Quaternion.identity);
+        Instantiate(effects.RandomBody, position, Quaternion.Euler(effects.RotationOffset()));
+
+    }
+    #endregion
+
+    public void ActivateTimer()
+    {
+        StartCoroutine(StartupDelay());
+    }
+
+    public IEnumerator StartupDelay()
+    {
+        yield return new WaitForSeconds(5.5F);
+        GameTimer.Enabled = true;
+        patternHandler.ActivatePatterns();
     }
 
     #region Object Management.
@@ -171,9 +259,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Level Loading.
-    public static void LoadLevel(string name)
+
+    public static void LoadLevel(string name, TransitionType type)
     {
-        SceneManager.LoadScene(name);
+        GameManager.Instance.levelLoader.LoadLevel(name, type);
     }
     #endregion
 
@@ -182,8 +271,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Main Completed");
     }
 
-    public void ResetGame()
+    public void ChangeInState()
     {
-        _gameTimer.ResetTimer();
+        throw new NotImplementedException();
     }
 }

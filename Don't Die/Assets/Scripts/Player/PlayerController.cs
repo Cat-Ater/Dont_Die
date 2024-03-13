@@ -18,23 +18,7 @@ public class PlayerController : MonoBehaviour
         {
             _playerAlive = value;
             if (_playerAlive == false)
-            {
                 GameManager.Instance.SetDeathPosition = _player.transform.position;
-                if (!GameManager.PlayerRespawnable)
-                {
-                    _player.SetActive(false);
-                    //TODO: load the entrance hall alternative. 
-                    GameManager.LoadLevel("HoldingCell");
-                }
-
-                if (GameManager.PlayerRespawnable)
-                {
-                    _player.SetActive(false);
-                    _player.transform.position = GameManager.Instance.RespawnPosition;
-                    Alive = true;
-                    _player.SetActive(true);
-                }
-            }
         }
     }
 

@@ -20,9 +20,14 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public string GetTimeSTR => GameManager.GameTimer.TimeToString();
 
-    public void TransitionStateChange(IBroadcastTransitionState caller, TransitionType type, bool state, float speed)
+    public void TransitionStateChange(IBroadcastTransitionState caller, TransitionType type, float speed)
     {
-        transitionHandler.TransitionsState(caller, type, state, speed);
+        transitionHandler.TransitionsState(caller, type, speed);
+    }
+
+    public void TransitionClear(float time)
+    {
+        transitionHandler.Clear(time);
     }
 
     void Awake()

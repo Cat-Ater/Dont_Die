@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Class responsible for handling level transitions. 
 /// </summary>
-public class LevelTransition : MonoBehaviour, IBroadcastTransitionState
+public class LevelTransition : MonoBehaviour
 {
     public string levelName;
     public float time;
@@ -16,12 +16,7 @@ public class LevelTransition : MonoBehaviour, IBroadcastTransitionState
     {
         if (collision.gameObject.tag != "Player")
             return;
-        UIManager.Instance.TransitionStateChange(this, TransitionType.MAIN, true, time);
-    }
-
-    void IBroadcastTransitionState.ChangeInState()
-    {
-        GameManager.LoadLevel(levelName);
-        gameObject.SetActive(false);
+        GameManager.LoadLevel(levelName, TransitionType.MAIN);
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 }
