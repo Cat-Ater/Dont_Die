@@ -23,7 +23,8 @@ public class DataHandler : MonoBehaviour
             dHandler.data = new PlayerData();
             dHandler.data.totalNumberOfDeaths = 0; 
             dHandler.data.longestTimeSurvived = 0; 
-            dHandler.data.lastAttemptLength = 0; 
+            dHandler.data.lastAttemptLength = 0;
+            dHandler.data.extraStageUnlocked = false; 
 
 
             instance = dHandler;
@@ -43,5 +44,15 @@ public class DataHandler : MonoBehaviour
         instance.data.longestTimeSurvived = 
             (gameTimer.Time > instance.data.longestTimeSurvived) ? 
             gameTimer.Time : instance.data.longestTimeSurvived; 
+    }
+
+    public static void UpdateData(Timer gameTimer, bool extraStageUnlocked)
+    {
+        instance.data.totalNumberOfDeaths++;
+        instance.data.lastAttemptLength = gameTimer.Time;
+        instance.data.longestTimeSurvived =
+            (gameTimer.Time > instance.data.longestTimeSurvived) ?
+            gameTimer.Time : instance.data.longestTimeSurvived;
+        instance.data.extraStageUnlocked = extraStageUnlocked;
     }
 }

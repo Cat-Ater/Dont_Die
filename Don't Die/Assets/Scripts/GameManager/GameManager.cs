@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public struct RoundData
 {
     public bool usedBomb;
-    public bool usedBody; 
+    public bool usedBody;
 }
 
 /// <summary>
@@ -25,15 +25,15 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     /// The current instance of the game timer. 
     /// </summary>
     private Timer _gameTimer;
-    
+
     private DataHandler dHandler;
-    
+
     private ConsumableHandler cHandler;
-    
+
     private ObjectManager objectManager;
-    
+
     private PlayerRespawnHandler respawnHandler;
-    
+
     private LevelLoading levelLoader;
 
     public BodyManager bodyManager;
@@ -107,6 +107,14 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     public static bool PlayerRespawnable => Instance.respawnHandler.PlayerRespawnable;
 
     public Vector3 RespawnPosition => Instance.respawnHandler.Point;
+    #endregion
+
+    #region Player Completion.
+    public static bool ExtraStageUnlocked => DataHandler.Data.extraStageUnlocked;
+    #endregion
+
+    #region Player Data. 
+
     #endregion
     #endregion
 
@@ -188,6 +196,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     {
         //Data updating. 
         DataHandler.UpdateData(GameManager.GameTimer);
+
     }
 
     private void ShowEffects(Vector2 position)
@@ -253,7 +262,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
 
     public static void LoadLevel(string name, TransitionType type)
     {
-        if(type == TransitionType.MAIN)
+        if (type == TransitionType.MAIN)
         {
             Instance.roundData = new RoundData() { usedBody = false, usedBomb = false };
         }
@@ -266,11 +275,8 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     {
         Debug.Log("Main Completed");
         //Evaluate Results. 
-        
-        if(roundData.usedBody == false && roundData.usedBomb == false)
-        {
-            Debug.Log("Extra stage unlocked!");
-        }
+
+        DataHandler.UpdateData(GameManager.GameTimer, (!roundData.usedBody && !roundData.usedBomb));
 
         levelLoader.LoadLevel("HoldingCell", TransitionType.TRANSITION);
     }
