@@ -8,11 +8,10 @@ public class PlayerKillSelf : MonoBehaviour
     public bool canUse = true;
     public int numberOfSpawns = 2; 
 
-    private static GameObject _self;
-
-    private void Start()
+    
+    private void OnEnable()
     {
-        _self = this.gameObject;
+        numberOfSpawns = 2; 
     }
 
     void Update()
