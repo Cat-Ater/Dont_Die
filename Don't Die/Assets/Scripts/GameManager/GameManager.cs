@@ -26,10 +26,6 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     /// </summary>
     private Timer _gameTimer;
 
-    private DataHandler dHandler;
-
-    private ConsumableHandler cHandler;
-
     private ObjectManager objectManager;
 
     private PlayerRespawnHandler respawnHandler;
@@ -144,7 +140,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
             SceneManager.LoadSceneAsync("_UI", LoadSceneMode.Additive);
 
         //Set up player data. 
-        dHandler = DataHandler.CreateDataHandler();
+        DataHandler.CreateDataHandler();
 
         respawnHandler = new PlayerRespawnHandler();
         levelLoader = new LevelLoading();
@@ -277,6 +273,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
         //Evaluate Results. 
 
         DataHandler.UpdateData(GameManager.GameTimer, (!roundData.usedBody && !roundData.usedBomb));
+        GameTimer.Enabled = false; 
 
         levelLoader.LoadLevel("HoldingCell", TransitionType.TRANSITION);
     }
