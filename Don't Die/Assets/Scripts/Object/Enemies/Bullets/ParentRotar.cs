@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ParentRotar : MonoBehaviour
 {
+    public bool continous = false;
+    public int perFrames = 10;
+    public float rotationSpeed = 0.5f; 
+
     // Start is called before the first frame update
     void Start()
     {

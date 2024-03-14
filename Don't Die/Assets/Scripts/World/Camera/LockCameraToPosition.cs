@@ -13,6 +13,7 @@ public class LockCameraToPosition : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //Lock the camera here. 
+            CameraController.SetCameraPos(gameObject.transform.position);
             CameraController.SetNewTarget(gameObject);
         }
     }
