@@ -16,7 +16,7 @@ public class LevelLoading : IBroadcastTransitionState
     {
         stage = LevelTransitionStage.INIT_FADE;
         levelToLoad = levelName;
-        UIManager.Instance.TransitionStateChange(this, type, 0.15F);
+        UIManager.Instance.TransitionStateChange(this, type, 0.18F);
     }
 
     public void ChangeInState()
@@ -27,7 +27,7 @@ public class LevelLoading : IBroadcastTransitionState
             SceneManager.LoadScene(levelToLoad);
             levelToLoad = "";
             stage = LevelTransitionStage.RELEASE; 
-            UIManager.Instance.TransitionClear(0.3F);
+            UIManager.Instance.TransitionClear(1F);
         }
     }
 }
