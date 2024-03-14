@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 713141843663734199}
   - component: {fileID: 6977769008842542794}
   - component: {fileID: 5747079251645315813}
+  - component: {fileID: 1760120480521155356}
   m_Layer: 0
   m_Name: Player_DeadCharMark
   m_TagString: DeadBody
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 514535025
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3e8eb85ae83d11c4383d83717e6f5c0e, type: 3}
   m_Color: {r: 0.9811321, g: 0.28855535, b: 0, a: 0.7254902}
@@ -158,3 +159,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &1760120480521155356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8312896692989100286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d12f21b36bffed41acd15229ccfbed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitCount: 1

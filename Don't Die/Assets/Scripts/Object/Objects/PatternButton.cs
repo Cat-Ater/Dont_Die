@@ -10,7 +10,7 @@ public class PatternButton : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Button Pressed");
-            GameManager.Instance.ConsumableDestruction();
+            GameManager.Instance.DestroyObjects();
             //TODO: Add calls to the world managment to allow pattern skipping. 
             Destroy(gameObject);
         }

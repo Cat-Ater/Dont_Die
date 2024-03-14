@@ -9,6 +9,7 @@ TagManager:
   - Button
   - SystemTriggers
   - DeathPlane
+  - Enemy
   layers:
   - Default
   - TransparentFX

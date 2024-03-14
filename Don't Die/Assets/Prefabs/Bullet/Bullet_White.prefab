@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6023355788531307597}
   m_Layer: 0
   m_Name: Bullet_White
-  m_TagString: DeathPlane
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -954955809
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 927140032198908940, guid: bb12239dd609d92428d724cb332f2a9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -136,14 +136,14 @@ MonoBehaviour:
     rotationSpeed: 85.3
     initalRotation: 0
     rotationTime: 10
-    loop: 0
+    loopRotation: 0
   _bulletMovement:
     movementType: 2
-    speed: 13.7
+    movementSpeed: 0
     lifeTime: 0
-    target: {fileID: 0}
-    direction: {x: 1, y: 1}
-    point: {x: 0.05, y: 3.24}
+    movementTarget: {fileID: 0}
+    movementDirection: {x: 0, y: 0}
+    movementPoint: {x: 0, y: 0}
     targetUpdateRate: 0.15
   _bulletLifeSpan:
     lifeSpan: 30

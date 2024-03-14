@@ -33,14 +33,14 @@ public class PatternHandler : MonoBehaviour
         if (currentIndex < patterns.Count)
         {
             Debug.Log("Updating pattern ID");
-            GameManager.Instance.ConsumableDestruction();
+            GameManager.Instance.DestroyObjects();
             patterns[currentIndex].OnStart();
         }
         else
         {
             Debug.Log("Pattern Set Updated: Returning to Holding Cell");
             activated = false;
-            GameManager.Instance.ConsumableDestruction();
+            GameManager.Instance.DestroyObjects();
             GameManager.Instance.MainCompletion();
         }
     }

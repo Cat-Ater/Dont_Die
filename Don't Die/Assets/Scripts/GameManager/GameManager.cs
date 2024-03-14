@@ -5,6 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public struct RoundData
+{
+    public bool usedBomb;
+    public bool usedBody; 
+}
 
 /// <summary>
 /// Class responsible for handling updating the game and acting as a system inbetween. 
@@ -20,14 +25,20 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     /// The current instance of the game timer. 
     /// </summary>
     private Timer _gameTimer;
-
+    
     private DataHandler dHandler;
+    
     private ConsumableHandler cHandler;
-    public BodyManager bodyManager;
-    public PatternHandler patternHandler;
+    
     private ObjectManager objectManager;
+    
     private PlayerRespawnHandler respawnHandler;
+    
     private LevelLoading levelLoader;
+
+    public BodyManager bodyManager;
+
+    public PatternHandler patternHandler;
 
     /// <summary>
     /// Reference to the ObjectScheduler. 
@@ -38,6 +49,8 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     /// The effects associated with the game. 
     /// </summary>
     public PlayerEffects effects;
+
+    public RoundData roundData;
 
     #region Properties. 
     /// <summary>
@@ -205,6 +218,19 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     {
         return Instance.objectManager.GetGameObjectType(prefab, position);
     }
+
+    public static void CreateDeadBody(Vector2 position)
+    {
+        GameObject.Instantiate(GameManager.Instance.effects.ghostMouseHistoryPrefabs[0], position, Quaternion.identity);
+        Instance.roundData.usedBody = true;
+    }
+
+    public static void UsedConsumable()
+    {
+        Instance.roundData.usedBomb = true;
+        Instance.DestroyObjects();
+    }
+
     #endregion
 
     #region Object Scheduling. 
@@ -216,16 +242,22 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     #endregion
 
     #region Consumable Item.
+
     /// <summary>
     /// Call to Destroy all IConsumableDestructions interfaces held in the system. 
     /// </summary>
-    public void ConsumableDestruction() => ConsumableHandler.ConsumableDestruction();
+    public void DestroyObjects() => ConsumableHandler.ConsumableDestruction();
     #endregion
 
     #region Level Loading.
 
     public static void LoadLevel(string name, TransitionType type)
     {
+        if(type == TransitionType.MAIN)
+        {
+            Instance.roundData = new RoundData() { usedBody = false, usedBomb = false };
+        }
+
         GameManager.Instance.levelLoader.LoadLevel(name, type);
     }
     #endregion
@@ -233,6 +265,13 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     public void MainCompletion()
     {
         Debug.Log("Main Completed");
+        //Evaluate Results. 
+        
+        if(roundData.usedBody == false && roundData.usedBomb == false)
+        {
+            Debug.Log("Extra stage unlocked!");
+        }
+
         levelLoader.LoadLevel("HoldingCell", TransitionType.TRANSITION);
     }
 

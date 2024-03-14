@@ -6,6 +6,7 @@ public class PlayerKillSelf : MonoBehaviour
 {
     public float cooldownTime = 0.3f;
     public bool canUse = true;
+    public int numberOfSpawns = 2; 
 
     private static GameObject _self;
 
@@ -16,16 +17,25 @@ public class PlayerKillSelf : MonoBehaviour
 
     void Update()
     {
-        if (canUse && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && canUse)
         {
-            StartCoroutine(KillSelfReset());
-            KillSelf();
+            if (numberOfSpawns > 0)
+            {
+                numberOfSpawns--;
+                StartCoroutine(KillSelfReset());
+                KillSelf(gameObject.transform.position);
+            }
+            else
+            {
+                PlayerController.Alive = false;
+            }
         }
+        
     }
 
-    public static void KillSelf()
+    public static void KillSelf(Vector2 position)
     {
-        PlayerController.Alive = false;     
+        GameManager.CreateDeadBody(position);
     }
 
     private IEnumerator KillSelfReset()

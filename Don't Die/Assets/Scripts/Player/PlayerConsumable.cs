@@ -19,7 +19,8 @@ public class PlayerConsumable : MonoBehaviour
         {
             canUse = false;
             AvailableUses--;
-            GameManager.Instance.ConsumableDestruction();
+            GameManager.UsedConsumable(); 
+            GameManager.Instance.DestroyObjects();
             StartCoroutine(Cooldown());
         }
     }
