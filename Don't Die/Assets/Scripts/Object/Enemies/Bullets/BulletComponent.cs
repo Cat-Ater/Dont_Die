@@ -33,7 +33,9 @@ public class BulletScaler
             return;
         }
         _currentTime += Time.deltaTime;
-        _gameObject.transform.localScale = (Vector2)initalScale + (Vector2)(_scaleStep * _currentTime);
+        //if (_currentTime == 0)
+        //    return;
+        //_gameObject.transform.localScale = (Vector2)initalScale + (Vector2)(_scaleStep * _currentTime);
     }
 }
 
