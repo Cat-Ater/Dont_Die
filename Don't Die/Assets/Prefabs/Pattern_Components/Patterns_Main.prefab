@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4970100857815878576
 MonoBehaviour:
@@ -48,7 +48,7 @@ MonoBehaviour:
   - name: Cross Stage
     order: 0
     complete: 0
-    patternEndTime: 0
+    patternEndTime: 10
     patternObjects:
     - name: 
       time: 1.2
@@ -62,7 +62,7 @@ MonoBehaviour:
   - name: Stage 1
     order: 1
     complete: 0
-    patternEndTime: 0
+    patternEndTime: 20
     patternObjects:
     - name: Wall
       time: 0
@@ -89,4 +89,4 @@ MonoBehaviour:
       scrollSpeed: 0.25
       endLineDelay: 0.2
       eventTime: 0
-  currentIndex: 0
+  complete: 0

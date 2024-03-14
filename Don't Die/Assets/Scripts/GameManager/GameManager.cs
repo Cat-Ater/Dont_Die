@@ -53,13 +53,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     #region Respawning. 
     public static PlayerRespawner SetRespawn
     {
-        set
-        {
-            Instance.respawnHandler.respawner = value;
-#if DEBUG
-            Debug.Log("Respawner Set: " + Instance.respawnHandler.respawner.name);
-#endif
-        }
+        set => Instance.respawnHandler.respawner = value;
     }
     #endregion
 
@@ -192,6 +186,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     }
     #endregion
 
+    #region Pattern Timers. 
     public void ActivateTimer()
     {
         StartCoroutine(StartupDelay());
@@ -203,6 +198,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
         GameTimer.Enabled = true;
         patternHandler.ActivatePatterns();
     }
+    #endregion
 
     #region Object Management.
     public static GameObject GameObjectRequest(GameObject prefab, Vector2 position)
@@ -237,6 +233,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     public void MainCompletion()
     {
         Debug.Log("Main Completed");
+        levelLoader.LoadLevel("HoldingCell", TransitionType.TRANSITION);
     }
 
     public void ChangeInState()

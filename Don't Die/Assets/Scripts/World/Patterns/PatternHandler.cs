@@ -5,8 +5,13 @@ using UnityEngine;
 public class PatternHandler : MonoBehaviour
 {
     public List<Pattern> patterns;
-    public int currentIndex = -1; 
-
+    int currentIndex = -1;
+    public bool complete = false;
+    private bool activated = false;
+    private bool CurrentPatternComplete =>
+        patterns[currentIndex].PatternCompletion(GameManager.GameTimer.Time);
+    private bool CanUpdate => currentIndex < patterns.Count;
+    private Pattern GetCurrent => patterns[currentIndex];
 
     public void Start()
     {
@@ -16,28 +21,41 @@ public class PatternHandler : MonoBehaviour
 
     public void ActivatePatterns()
     {
-        SetNext();
-    }
-
-    public void SetNext()
-    {
-        currentIndex++;
-        patterns[currentIndex].OnStart(); 
+        activated = true;
+        PatternCompleted();
     }
 
     public void PatternCompleted()
     {
-        if(currentIndex < patterns.Count)
-            SetNext();
+        Debug.Log("Pattern completed");
+        currentIndex++;
+        Debug.Log("Current Index: " + currentIndex);
+        if (currentIndex < patterns.Count)
+        {
+            Debug.Log("Updating pattern ID");
+            GameManager.Instance.ConsumableDestruction();
+            patterns[currentIndex].OnStart();
+        }
+        else
+        {
+            Debug.Log("Pattern Set Updated: Returning to Holding Cell");
+            activated = false;
+            GameManager.Instance.ConsumableDestruction();
+            GameManager.Instance.MainCompletion();
+        }
     }
 
     public void Update()
     {
-        patterns[currentIndex].Update(GameManager.GameTimer.Time);
-        bool complete = patterns[currentIndex].PatternCompletion(GameManager.GameTimer.Time);
-        if (complete)
+        if (!activated || complete)
+            return;
+
+        GetCurrent.Update(GameManager.GameTimer.Time);
+
+        //Check if pattern completed. 
+        if (CurrentPatternComplete && CanUpdate)
         {
-            Debug.Log("Pattern completed");
+            PatternCompleted();
         }
     }
 

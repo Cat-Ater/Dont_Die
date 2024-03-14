@@ -9,8 +9,5 @@ public class PatternObject : PatternTimedEvent
     {
         fired = true;
         GameObject obj = GameObject.Instantiate(prefab);
-#if DEBUG
-        Debug.Log("Spawn Event Called: " + prefab.name);
-#endif
     }
 }
