@@ -17,9 +17,7 @@ public class BulletSpawner : MonoBehaviour
     public GameObject[] gameObjs;
     public GameObject bulletPrefab;
 
-#if DEBUG
-    public float t = 0;
-#endif
+    public float bulletActivationDelay = 0.1f; 
 
     private void OnValidate()
     {
@@ -50,28 +48,17 @@ public class BulletSpawner : MonoBehaviour
             if (data.usePatternDirection)
                 bComponent._bulletMovement.movementDirection = points[i].normalized;
         }
-
+        StartCoroutine(BulletDelay(gameObjs, bulletActivationDelay));
     }
-#if DEBUG
-    //public void OnDrawGizmos()
-    //{
-    //    Vector3 position = gameObject.transform.position;
 
-    //    if (pattern != null)
-    //    {
-    //        points = pattern.GetPattern();
-    //        if (points.Length > 0)
-    //        {
-    //            foreach (Vector2 v in points)
-    //            {
-    //                Gizmos.DrawSphere((Vector2)position + (v), 0.15f);
-    //                Gizmos.DrawSphere((Vector2)position + (t * v), 0.15f);
-    //                Gizmos.DrawLine((Vector2)position + v, (Vector2)position + (v.normalized * t));
-    //            }
-    //        }
-    //    }
-    //}
-#endif
+    private IEnumerator BulletDelay(GameObject[] objects, float delay)
+    {
+        for (int i = 0; i < objects.Length; i++)
+        {
+            objects[i].SetActive(true);
+            yield return new WaitForSeconds(delay);
+        }
+    }
 }
 
 public abstract class BulletPattern : MonoBehaviour
