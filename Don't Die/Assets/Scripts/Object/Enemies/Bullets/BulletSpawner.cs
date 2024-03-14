@@ -17,6 +17,15 @@ public class BulletSpawner : MonoBehaviour
     public GameObject[] gameObjs;
     public GameObject bulletPrefab;
 
+#if DEBUG
+    public float t = 0;
+#endif
+
+    private void OnValidate()
+    {
+        points = pattern.GetPattern();
+    }
+
     void Start()
     {
         GenerateBullets();
@@ -30,10 +39,12 @@ public class BulletSpawner : MonoBehaviour
     public void GenerateBullets()
     {
         Vector3 position = gameObject.transform.position;
+        Vector2 objectPos;
         gameObjs = new GameObject[points.Length];
         for (int i = 0; i < points.Length; i++)
         {
-            gameObjs[i] = GameManager.GameObjectRequest(bulletPrefab, (Vector2)(position + (Vector3)points[i]));
+            objectPos = (Vector2)(position + (Vector3)points[i]);
+            gameObjs[i] = GameObject.Instantiate(bulletPrefab, objectPos, Quaternion.identity);
             BulletComponent bComponent = gameObjs[i].GetComponent<BulletComponent>();
             bComponent.SetData(data);
             if (data.usePatternDirection)
@@ -41,24 +52,26 @@ public class BulletSpawner : MonoBehaviour
         }
 
     }
+#if DEBUG
+    //public void OnDrawGizmos()
+    //{
+    //    Vector3 position = gameObject.transform.position;
 
-    public void OnDrawGizmos()
-    {
-        Vector3 position = gameObject.transform.position;
-
-        if (pattern != null)
-        {
-            points = pattern.GetPattern();
-            if (points.Length > 0)
-            {
-                foreach (Vector2 v in points)
-                {
-                    Gizmos.DrawSphere((Vector2)position + v, 0.05f);
-                    Gizmos.DrawLine((Vector2)position + v, (Vector2)position + v + (v.normalized * 10));
-                }
-            }
-        }
-    }
+    //    if (pattern != null)
+    //    {
+    //        points = pattern.GetPattern();
+    //        if (points.Length > 0)
+    //        {
+    //            foreach (Vector2 v in points)
+    //            {
+    //                Gizmos.DrawSphere((Vector2)position + (v), 0.15f);
+    //                Gizmos.DrawSphere((Vector2)position + (t * v), 0.15f);
+    //                Gizmos.DrawLine((Vector2)position + v, (Vector2)position + (v.normalized * t));
+    //            }
+    //        }
+    //    }
+    //}
+#endif
 }
 
 public abstract class BulletPattern : MonoBehaviour
