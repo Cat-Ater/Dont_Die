@@ -18,8 +18,13 @@ public class BulletSpawner : MonoBehaviour
     public GameObject bulletPrefab;
 
 #if DEBUG
-    public float t = 0; 
+    public float t = 0;
 #endif
+
+    private void OnValidate()
+    {
+        points = pattern.GetPattern();
+    }
 
     void Start()
     {
@@ -48,24 +53,24 @@ public class BulletSpawner : MonoBehaviour
 
     }
 #if DEBUG
-    public void OnDrawGizmos()
-    {
-        Vector3 position = gameObject.transform.position;
+    //public void OnDrawGizmos()
+    //{
+    //    Vector3 position = gameObject.transform.position;
 
-        if (pattern != null)
-        {
-            points = pattern.GetPattern();
-            if (points.Length > 0)
-            {
-                foreach (Vector2 v in points)
-                {
-                    Gizmos.DrawSphere((Vector2)position + (v), 0.15f);
-                    Gizmos.DrawSphere((Vector2)position + (t * v), 0.15f);
-                    Gizmos.DrawLine((Vector2)position + v, (Vector2)position + (v.normalized * t));
-                }
-            }
-        }
-    }
+    //    if (pattern != null)
+    //    {
+    //        points = pattern.GetPattern();
+    //        if (points.Length > 0)
+    //        {
+    //            foreach (Vector2 v in points)
+    //            {
+    //                Gizmos.DrawSphere((Vector2)position + (v), 0.15f);
+    //                Gizmos.DrawSphere((Vector2)position + (t * v), 0.15f);
+    //                Gizmos.DrawLine((Vector2)position + v, (Vector2)position + (v.normalized * t));
+    //            }
+    //        }
+    //    }
+    //}
 #endif
 }
 
