@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     {
         ShowEffects(position);
         PlayerDeathPostion(position);
-        SetPlayerData();
+        SetPlayerData(true);
 
         //Reset the game timer. 
         _gameTimer.Enabled = false;
@@ -190,10 +190,10 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
         bodyManager.AddPosition(DataHandler.Data.totalNumberOfDeaths, position, SceneManager.GetActiveScene().name);
     }
 
-    private void SetPlayerData()
+    private void SetPlayerData(bool died)
     {
         //Data updating. 
-        DataHandler.UpdateData(GameManager.GameTimer);
+        DataHandler.UpdateData(GameManager.GameTimer, died);
 
     }
 
@@ -274,7 +274,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
         Debug.Log("Main Completed");
         //Evaluate Results. 
 
-        DataHandler.UpdateData(GameManager.GameTimer, (!roundData.usedBody && !roundData.usedBomb));
+        DataHandler.UpdateData(GameManager.GameTimer, (!roundData.usedBody && !roundData.usedBomb), false);
         GameTimer.Enabled = false; 
 
         levelLoader.LoadLevel("HoldingCell", TransitionType.TRANSITION);

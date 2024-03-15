@@ -37,18 +37,20 @@ public class DataHandler : MonoBehaviour
         }
     }
 
-    public static void UpdateData(Timer gameTimer)
+    public static void UpdateData(Timer gameTimer, bool died)
     {
-        instance.data.totalNumberOfDeaths++;
+        if(died)
+            instance.data.totalNumberOfDeaths++;
         instance.data.lastAttemptLength = gameTimer.Time;
         instance.data.longestTimeSurvived = 
             (gameTimer.Time > instance.data.longestTimeSurvived) ? 
             gameTimer.Time : instance.data.longestTimeSurvived; 
     }
 
-    public static void UpdateData(Timer gameTimer, bool extraStageUnlocked)
+    public static void UpdateData(Timer gameTimer, bool extraStageUnlocked, bool died)
     {
-        instance.data.totalNumberOfDeaths++;
+        if (died)
+            instance.data.totalNumberOfDeaths++;
         instance.data.lastAttemptLength = gameTimer.Time;
         instance.data.longestTimeSurvived =
             (gameTimer.Time > instance.data.longestTimeSurvived) ?
