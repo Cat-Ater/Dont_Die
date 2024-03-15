@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2256194767261066047}
   - component: {fileID: 4499024040197764367}
   - component: {fileID: 8825736278845411405}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: V2_BuzzSaw_Stationary
   m_TagString: Enemy
   m_Icon: {fileID: 0}

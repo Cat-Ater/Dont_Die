@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4564303038841902654}
   - component: {fileID: 8395489567549050943}
   - component: {fileID: 2684963845300589471}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: V2_BuzzSaw_Moving
   m_TagString: Enemy
   m_Icon: {fileID: 0}

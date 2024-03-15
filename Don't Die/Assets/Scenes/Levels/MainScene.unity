@@ -191,7 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -256,6 +259,10 @@ PrefabInstance:
     - target: {fileID: 3287516769226041045, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[0].patternEndTime
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -330,7 +337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -408,7 +418,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -486,7 +499,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1441,7 +1457,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 5
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2131,7 +2147,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2221,7 +2237,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3016,20 +3032,20 @@ Tilemap:
   - m_RefCount: 208
     m_Data: {fileID: 11400000, guid: dccdf355f74672f4cb12c25b01cec8b6, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 1703073298, guid: 723be06bce772a948bc3877958486262, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -1001328972, guid: 723be06bce772a948bc3877958486262, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 1703073298, guid: 723be06bce772a948bc3877958486262, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -886658064, guid: 723be06bce772a948bc3877958486262, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 235126409, guid: 723be06bce772a948bc3877958486262, type: 3}
   - m_RefCount: 6
@@ -5412,7 +5428,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5434,7 +5453,7 @@ GameObject:
   - component: {fileID: 1134350905}
   - component: {fileID: 1134350904}
   - component: {fileID: 1134350903}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: DeathPlane
   m_Icon: {fileID: 0}
@@ -5485,7 +5504,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -8979,7 +8998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9057,7 +9079,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9135,7 +9160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10242,7 +10270,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10382,7 +10413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_DeadChar
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5638730505345254156, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 1204096102914898079, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
+    - {fileID: 8198326114986513332, guid: 89391feb30e9c854f8f7899ef6913f9c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10403,10 +10437,6 @@ PrefabInstance:
     - target: {fileID: 5561784769280137224, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_Name
       value: Player_V1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
-      propertyPath: m_Volume
-      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 7329357365423602505, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_RootOrder
@@ -10450,10 +10480,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7329357365423602505, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7329357365423602505, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
