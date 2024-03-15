@@ -18,6 +18,9 @@ public class LevelTransitionExtraStage : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
             return;
+
+        collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        collision.gameObject.GetComponent<PlayerMovement>().enabled = false;
         GameManager.LoadLevel("ExtraStage", TransitionType.EXTRA);
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }

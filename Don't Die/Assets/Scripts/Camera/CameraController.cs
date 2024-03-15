@@ -195,7 +195,7 @@ public partial class CameraController : MonoBehaviour
     {
         targetP = point;
         PlayerController.PlayerEnabled = false;
-        PlayerController.CancelMovement();
+        PlayerController.Immobilize = 9F; 
 
         if (type == FocusLockType.TIMED)
             StartCoroutine(TimerTillRelease());
@@ -208,7 +208,7 @@ public partial class CameraController : MonoBehaviour
         targetP = point;
         targetMoveSpeed = moveSpeed;
         PlayerController.PlayerEnabled = false;
-        PlayerController.CancelMovement();
+        PlayerController.Immobilize = 9F;
     }
 
     public IEnumerator TimerTillRelease()

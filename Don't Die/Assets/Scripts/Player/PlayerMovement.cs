@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
-        if (!PlayerController.PlayerEnabled)
+        if (!PlayerController.PlayerEnabled || PlayerController.Immobilized)
             return;
 
         //Set the current direction to nothing. 

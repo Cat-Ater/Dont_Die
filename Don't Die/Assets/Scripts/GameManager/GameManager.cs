@@ -176,8 +176,10 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
 
         if (!PlayerRespawnable)
         {
+            PlayerController.PlayerEnabled = false;
             pObj.SetActive(false);
             levelLoader.LoadLevel("HoldingCell", TransitionType.DEATH);
+            PlayerController.PlayerEnabled = false;
         }
 
         //Load required level.

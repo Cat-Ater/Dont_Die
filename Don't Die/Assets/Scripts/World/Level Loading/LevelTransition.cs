@@ -16,6 +16,10 @@ public class LevelTransition : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
             return;
+
+        collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        collision.gameObject.GetComponent<PlayerMovement>().enabled = false;
+        PlayerController.PlayerEnabled = false;
         GameManager.LoadLevel(levelName, TransitionType.MAIN);
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
