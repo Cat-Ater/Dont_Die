@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private static GameObject _player; 
-
+    private static GameObject _player;
     [SerializeField]
     static bool _playerAlive = true;
+    private static float _immobilised = 0;
 
     public static GameObject PlayerObject => _player;
 
@@ -22,24 +22,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public static float Immobilize
+    {
+        set
+        {
+            PlayerMovement.CurrentDirection = Vector2.zero;
+            PlayerController.PlayerEnabled = false;
+            _immobilised = value;
+            Rigidbody2D body2D = _player.gameObject.GetComponent<Rigidbody2D>();
+            body2D.velocity = Vector2.zero;
+
+        }
+    }
+
+    public static bool Immobilized => _immobilised > 0;
+
     public static bool PlayerEnabled { get; set; } = true;
 
     public PlayerMovement playerMovement; 
 
-    // Start is called before the first frame update
     void Start()
     {
+        _player = this.gameObject; 
         Alive = true;
-        _player = gameObject;
-        CameraController.SetNewTarget(_player);
+        CameraController.SetNewTarget(gameObject);
         if(PlayerConsumable.AvailableUses < 1)
         {
             PlayerConsumable.AvailableUses = 1; 
         }
     }
 
-    public static void CancelMovement()
+    private void Update()
     {
+        if (Immobilized)
+            _immobilised -= Time.deltaTime;
 
+        if (!Immobilized && !PlayerEnabled)
+            PlayerEnabled = true;
     }
 }

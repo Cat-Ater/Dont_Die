@@ -181,34 +181,34 @@ public partial class CameraController : MonoBehaviour
     public float targetMoveSpeed = 1;
     public bool arrivedAtTarget = false;
 
-    public void Focus(GameObject target, FocusLockType type)
+    public void Focus(GameObject target, FocusLockType type, float focusTime)
     {
-        Focus(target.transform.position, type);
+        Focus(target.transform.position, type, focusTime);
     }
 
-    public void Focus(GameObject target, float moveSpeed, FocusLockType type)
+    public void Focus(GameObject target, float moveSpeed, FocusLockType type, float immobilizeTime)
     {
-        Focus(target.transform.position, moveSpeed, type);
+        Focus(target.transform.position, moveSpeed, type, immobilizeTime);
     }
 
-    public void Focus(Vector3 point, FocusLockType type)
+    public void Focus(Vector3 point, FocusLockType type, float immobilizeTime)
     {
         targetP = point;
         PlayerController.PlayerEnabled = false;
-        PlayerController.CancelMovement();
+        PlayerController.Immobilize = immobilizeTime;
 
         if (type == FocusLockType.TIMED)
             StartCoroutine(TimerTillRelease());
     }
 
-    public void Focus(Vector3 point, float moveSpeed, FocusLockType type)
+    public void Focus(Vector3 point, float moveSpeed, FocusLockType type, float immobilizeTime)
     {
         SetBehaviourType(CameraMovementType.FOCUS_OBJECT);
         this.focusType = type;
         targetP = point;
         targetMoveSpeed = moveSpeed;
         PlayerController.PlayerEnabled = false;
-        PlayerController.CancelMovement();
+        PlayerController.Immobilize = immobilizeTime;
     }
 
     public IEnumerator TimerTillRelease()
