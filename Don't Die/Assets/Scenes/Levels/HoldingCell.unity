@@ -22204,9 +22204,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 985486149}
     m_Modifications:
+    - target: {fileID: 1314038341218762506, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
+      propertyPath: gateClose
+      value: 
+      objectReference: {fileID: 8300000, guid: ddadc3204bd825046b2c9a652ef83621, type: 3}
+    - target: {fileID: 1314038341218762506, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1552129990}
     - target: {fileID: 4517682018555348407, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
       propertyPath: m_Name
       value: Elevator_Main
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517682018555348407, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
+      propertyPath: m_TagString
+      value: SystemTriggers
       objectReference: {fileID: 0}
     - target: {fileID: 5120639041414159066, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
       propertyPath: m_RootOrder
@@ -27241,7 +27253,9 @@ GameObject:
   - component: {fileID: 1392500795}
   - component: {fileID: 1392500794}
   - component: {fileID: 1392500793}
-  m_Layer: 0
+  - component: {fileID: 1392500796}
+  - component: {fileID: 1392500797}
+  m_Layer: 7
   m_Name: Collisions
   m_TagString: DeathPlane
   m_Icon: {fileID: 0}
@@ -34940,6 +34954,45 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1392500796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392500791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccb34dadbc58ee47842d1837079ffcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1392500797
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392500791}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1431899536
 GameObject:
   m_ObjectHideFlags: 0
@@ -36786,6 +36839,11 @@ Tilemap:
 --- !u!4 &1552129989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5120639041414159066, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
+  m_PrefabInstance: {fileID: 658367418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1552129990 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3853355613955088493, guid: 7ae6acbc61d08884aa77c854fd0c3dcd, type: 3}
   m_PrefabInstance: {fileID: 658367418}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1575139338

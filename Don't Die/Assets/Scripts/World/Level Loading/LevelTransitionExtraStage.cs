@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 /// <summary>
 /// Class responsible for handling level transitions. 
 /// </summary>
@@ -19,6 +20,7 @@ public class LevelTransitionExtraStage : MonoBehaviour
         if (collision.gameObject.tag != "Player")
             return;
 
+        GameManager.GameTimer.ResetTimer();
         collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         collision.gameObject.GetComponent<PlayerMovement>().enabled = false;
         GameManager.LoadLevel("ExtraStage", TransitionType.EXTRA);
