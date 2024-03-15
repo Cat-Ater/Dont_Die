@@ -6,18 +6,20 @@ using UnityEngine;
 public struct Arc
 {
     public float initalTheta;
-    public float endTheta; 
+    public float endTheta;
 }
 
 public class BulletSpawner : MonoBehaviour
 {
     public BulletPattern pattern;
-    public BulletData data; 
+    public BulletData data;
     public Vector2[] points;
     public GameObject[] gameObjs;
     public GameObject bulletPrefab;
 
-    public float bulletActivationDelay = 0.1f; 
+    public bool hasDelay = false;
+    public float bulletActivationDelay = 0.1f;
+    public float distanceFromObj = 1;
 
     private void OnValidate()
     {
@@ -29,11 +31,6 @@ public class BulletSpawner : MonoBehaviour
         GenerateBullets();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void GenerateBullets()
     {
         Vector3 position = gameObject.transform.position;
@@ -41,14 +38,24 @@ public class BulletSpawner : MonoBehaviour
         gameObjs = new GameObject[points.Length];
         for (int i = 0; i < points.Length; i++)
         {
-            objectPos = (Vector2)(position + (Vector3)points[i]);
+            objectPos = (Vector2)(position + distanceFromObj * (Vector3)points[i]);
             gameObjs[i] = GameObject.Instantiate(bulletPrefab, objectPos, Quaternion.identity);
             BulletComponent bComponent = gameObjs[i].GetComponent<BulletComponent>();
             bComponent.SetData(data);
             if (data.usePatternDirection)
                 bComponent._bulletMovement.movementDirection = points[i].normalized;
         }
-        StartCoroutine(BulletDelay(gameObjs, bulletActivationDelay));
+        if (hasDelay)
+        {
+            StartCoroutine(BulletDelay(gameObjs, bulletActivationDelay));
+        }
+        else
+        {
+            for (int i = 0; i < gameObjs.Length; i++)
+            {
+                gameObjs[i].SetActive(true);
+            }
+        }
     }
 
     private IEnumerator BulletDelay(GameObject[] objects, float delay)

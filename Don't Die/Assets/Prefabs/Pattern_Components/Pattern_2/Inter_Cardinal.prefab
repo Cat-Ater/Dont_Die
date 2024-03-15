@@ -33,7 +33,7 @@ Transform:
   - {fileID: 7794854926890941583}
   - {fileID: 3060231341265113041}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3}
 --- !u!1001 &3240905934025906182
 PrefabInstance:
@@ -86,6 +86,14 @@ PrefabInstance:
     - target: {fileID: 468975752475187159, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 2047098647687429868, guid: 2823e0d45b77b4246a1a2d3acd9751f0, type: 3}
+    - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
+      propertyPath: data.lifeSpan
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
       propertyPath: points.Array.size
@@ -365,6 +373,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 2047098647687429868, guid: 2823e0d45b77b4246a1a2d3acd9751f0, type: 3}
+    - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
+      propertyPath: data.lifeSpan
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7409060437225821124, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
       propertyPath: m_Name
       value: PatternSpawner_Circle
@@ -431,6 +447,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 2047098647687429868, guid: 2823e0d45b77b4246a1a2d3acd9751f0, type: 3}
+    - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
+      propertyPath: data.lifeSpan
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7409060437225821124, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
       propertyPath: m_Name
       value: PatternSpawner_Circle (1)
@@ -496,6 +520,14 @@ PrefabInstance:
     - target: {fileID: 468975752475187159, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 2047098647687429868, guid: 2823e0d45b77b4246a1a2d3acd9751f0, type: 3}
+    - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
+      propertyPath: data.lifeSpan
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4587441509317093621, guid: 47a5af8e86f5c6141b5e79e9c35a4cb5, type: 3}
       propertyPath: points.Array.size

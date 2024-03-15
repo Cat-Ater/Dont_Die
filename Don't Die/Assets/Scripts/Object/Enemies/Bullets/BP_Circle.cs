@@ -6,6 +6,10 @@ using UnityEngine;
 /// </summary>
 public class BP_Circle : BulletPattern
 {
+    [Range(0, 20)]
+    public float t = 0; 
+
+
     public Arc arc;
     public float numberOfPoints; 
 

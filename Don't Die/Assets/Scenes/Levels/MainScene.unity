@@ -262,19 +262,83 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.size
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].name
+      value: CIrcle Introduction
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].order
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternEndTime
-      value: 10
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternEndTime
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternObjects.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternDialogues.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[0].patternObjects.Array.data[0].name
+      value: Buzzwall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[0].patternObjects.Array.data[0].time
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[0].patternObjects.Array.data[1].name
+      value: Down Cross (BSaws)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[0].patternObjects.Array.data[1].time
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[0].patternObjects.Array.data[2].name
+      value: Up Cross (BSaws)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternObjects.Array.data[2].time
-      value: 1.5
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.data[0].name
+      value: Buzzwall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.data[0].time
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.data[1].name
+      value: Down Cross (BSaws)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.data[1].time
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.data[2].name
+      value: Up Cross (BSaws)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.data[2].time
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternObjects.Array.data[0].prefab
@@ -289,7 +353,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2301147492954719631, guid: 0b7ecdeb757f89e49a8e653d91c5e2a6, type: 3}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 5000536619225831668, guid: 4e1a349fd80233643b8681b84aa71bee, type: 3}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 4599357897942594316, guid: d8d80a25b75179f4796171d2b2a62cb4, type: 3}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternObjects.Array.data[2].eventType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[1].patternObjects.Array.data[0].eventType
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -33,9 +33,13 @@ public class BulletScaler
             return;
         }
         _currentTime += Time.deltaTime;
-        //if (_currentTime == 0)
-        //    return;
-        //_gameObject.transform.localScale = (Vector2)initalScale + (Vector2)(_scaleStep * _currentTime);
+        if (_currentTime == 0)
+            return;
+
+        Vector2 value = (Vector2)initalScale + (Vector2)(_scaleStep * _currentTime);
+
+        if (float.IsNormal(value.x) && float.IsNormal(value.y))
+            _gameObject.transform.localScale = value;
     }
 }
 
