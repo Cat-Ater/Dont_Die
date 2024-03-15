@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 /// <summary>
 /// Class responsible for handling level transitions. 
 /// </summary>
 public class LevelTransition : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip clip;
     public string levelName;
     public float time;
     public float smoothing; 
@@ -16,6 +19,12 @@ public class LevelTransition : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
             return;
+
+        audioSource.PlayOneShot(clip);
+        GameManager.GameTimer.ResetTimer();
+        collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        collision.gameObject.GetComponent<PlayerMovement>().enabled = false;
+        PlayerController.PlayerEnabled = false;
         GameManager.LoadLevel(levelName, TransitionType.MAIN);
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }

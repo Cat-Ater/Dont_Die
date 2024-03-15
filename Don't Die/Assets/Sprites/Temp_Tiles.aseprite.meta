@@ -23,7 +23,7 @@ ScriptedImporter:
     normalMapFilter: 0
     flipGreenChannel: 0
     swizzle: 50462976
-    isReadable: 0
+    isReadable: 1
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638453506779645041
+  platformSettingsDirtyTick: 638461613413447619
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -195,7 +195,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 16
-      spriteId: 3100e5861bc8fc740b3376ae886150b5
+      spriteId: 328c9f9e523dafe4fbf828d7b07a4481
     linkedCells: []
     parentIndex: -1
   platformSettings:

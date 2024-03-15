@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+
+[RequireComponent(typeof(AudioSource))]
 /// <summary>
 /// Class responsible for handling level transitions. 
 /// </summary>
 public class LevelTransitionExtraStage : MonoBehaviour
 {
+
+    public AudioSource audioSource;
+    public AudioClip clip;
 
     public void Start()
     {
@@ -18,6 +23,11 @@ public class LevelTransitionExtraStage : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
             return;
+
+        audioSource.PlayOneShot(clip);
+        GameManager.GameTimer.ResetTimer();
+        collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        collision.gameObject.GetComponent<PlayerMovement>().enabled = false;
         GameManager.LoadLevel("ExtraStage", TransitionType.EXTRA);
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
