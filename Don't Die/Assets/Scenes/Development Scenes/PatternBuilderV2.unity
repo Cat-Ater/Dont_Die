@@ -10673,6 +10673,7 @@ MonoBehaviour:
     name: Test_A
     order: 0
     complete: 0
+    patternStart: 0
     patternEndTime: 10
     patternObjects:
     - name: BuzzWall
@@ -10692,6 +10693,7 @@ MonoBehaviour:
     name: 
     order: 0
     complete: 0
+    patternStart: 0
     patternEndTime: 0
     patternObjects: []
     patternDialogues: []
@@ -12239,6 +12241,7 @@ MonoBehaviour:
     name: Test_B
     order: 0
     complete: 0
+    patternStart: 0
     patternEndTime: 10
     patternObjects:
     - name: 
@@ -12258,6 +12261,7 @@ MonoBehaviour:
     name: 
     order: 0
     complete: 0
+    patternStart: 0
     patternEndTime: 0
     patternObjects: []
     patternDialogues: []
@@ -13359,6 +13363,7 @@ MonoBehaviour:
     name: Test_B
     order: 0
     complete: 0
+    patternStart: 0
     patternEndTime: 10
     patternObjects:
     - name: 
@@ -13374,6 +13379,7 @@ MonoBehaviour:
     name: 
     order: 0
     complete: 0
+    patternStart: 0
     patternEndTime: 0
     patternObjects: []
     patternDialogues: []
