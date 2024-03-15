@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private static GameObject _player;
-    private static float immobilised = 0;
+    private static GameObject _player; 
+
     [SerializeField]
     static bool _playerAlive = true;
 
@@ -17,32 +17,16 @@ public class PlayerController : MonoBehaviour
         set
         {
             _playerAlive = value;
-            if (_playerAlive != false)
-                return;
-
-            //Else respond to death.
-            PlayerMovement.CurrentDirection = Vector2.zero;
-            GameManager.Instance.SetDeathPosition = _player.transform.position;
+            if (_playerAlive == false)
+                GameManager.Instance.SetDeathPosition = _player.transform.position;
         }
     }
-
-    public static float Immobilize
-    {
-        set
-        {
-            PlayerMovement.CurrentDirection = Vector2.zero;
-            PlayerController.PlayerEnabled = false;
-            immobilised = value;
-
-        }
-    }
-
-    public static bool Immobilized => immobilised > 0;
 
     public static bool PlayerEnabled { get; set; } = true;
 
-    public PlayerMovement playerMovement;
+    public PlayerMovement playerMovement; 
 
+    // Start is called before the first frame update
     void Start()
     {
         Alive = true;
@@ -54,13 +38,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Update()
+    public static void CancelMovement()
     {
-        if (Immobilized)
-            immobilised -= Time.deltaTime;
-
-        if (!Immobilized && !PlayerEnabled)
-            PlayerEnabled = true; 
 
     }
 }
