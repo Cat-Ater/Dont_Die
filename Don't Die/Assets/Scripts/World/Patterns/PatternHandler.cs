@@ -34,7 +34,7 @@ public class PatternHandler : MonoBehaviour
         {
             Debug.Log("Updating pattern ID");
             GameManager.Instance.DestroyObjects();
-            patterns[currentIndex].OnStart();
+            patterns[currentIndex].OnStart(GameManager.GameTimer.Time);
         }
         else
         {

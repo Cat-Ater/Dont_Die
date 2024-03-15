@@ -8,16 +8,21 @@ public class Pattern
     public string name;
     public int order;
     public bool complete = false;
+    public float patternStart; 
     public float patternEndTime;
 
     public List<PatternObject> patternObjects;
     public List<PatternDialogue> patternDialogues;
 
-    public void OnStart() => FireType(ITimedEvent.TimedEventType.START);
+    public void OnStart(float startTime)
+    {
+        patternStart = startTime; 
+        FireType(ITimedEvent.TimedEventType.START);
+    }
 
     public bool PatternCompletion(float time)
     {
-        if (time >= patternEndTime)
+        if (time >= patternStart + patternEndTime)
         {
             FireType(ITimedEvent.TimedEventType.END);
             return true;
