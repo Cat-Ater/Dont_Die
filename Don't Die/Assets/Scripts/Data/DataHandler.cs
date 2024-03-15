@@ -21,10 +21,10 @@ public class DataHandler : MonoBehaviour
 
             //If handling data loading do so here. 
             dHandler.data = new PlayerData();
-            dHandler.data.totalNumberOfDeaths = 0; 
-            dHandler.data.longestTimeSurvived = 0; 
+            dHandler.data.totalNumberOfDeaths = 0;
+            dHandler.data.longestTimeSurvived = 0;
             dHandler.data.lastAttemptLength = 0;
-            dHandler.data.extraStageUnlocked = false; 
+            dHandler.data.extraStageUnlocked = false;
 
 
             instance = dHandler;
@@ -33,18 +33,23 @@ public class DataHandler : MonoBehaviour
         }
         else
         {
-            return instance; 
+            return instance;
         }
+    }
+
+    public static void SetDeath()
+    {
+        instance.data.totalNumberOfDeaths++;
     }
 
     public static void UpdateData(Timer gameTimer, bool died)
     {
-        if(died)
+        if (died)
             instance.data.totalNumberOfDeaths++;
         instance.data.lastAttemptLength = gameTimer.Time;
-        instance.data.longestTimeSurvived = 
-            (gameTimer.Time > instance.data.longestTimeSurvived) ? 
-            gameTimer.Time : instance.data.longestTimeSurvived; 
+        instance.data.longestTimeSurvived =
+            (gameTimer.Time > instance.data.longestTimeSurvived) ?
+            gameTimer.Time : instance.data.longestTimeSurvived;
     }
 
     public static void UpdateData(Timer gameTimer, bool extraStageUnlocked, bool died)

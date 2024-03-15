@@ -158,16 +158,15 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     {
         ShowEffects(position);
         PlayerDeathPostion(position);
-        SetPlayerData(true);
 
         //Reset the game timer. 
         _gameTimer.Enabled = false;
-        _gameTimer.ResetTimer();
 
         GameObject pObj = PlayerController.PlayerObject;
 
         if (PlayerRespawnable)
         {
+            DataHandler.SetDeath();
             pObj.SetActive(false);
             pObj.transform.position = RespawnPosition;
             PlayerController.Alive = true;
@@ -176,13 +175,13 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
 
         if (!PlayerRespawnable)
         {
+            DataHandler.UpdateData(GameTimer, true);
             PlayerController.PlayerEnabled = false;
             pObj.SetActive(false);
             levelLoader.LoadLevel("HoldingCell", TransitionType.DEATH);
             PlayerController.PlayerEnabled = true;
+            _gameTimer.ResetTimer();
         }
-
-        //Load required level.
     }
 
     private void PlayerDeathPostion(Vector2 position)
@@ -275,7 +274,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
         //Evaluate Results. 
 
         DataHandler.UpdateData(GameManager.GameTimer, (!roundData.usedBody && !roundData.usedBomb), false);
-        GameTimer.Enabled = false; 
+        GameTimer.Enabled = false;
 
         levelLoader.LoadLevel("HoldingCell", TransitionType.TRANSITION);
     }
