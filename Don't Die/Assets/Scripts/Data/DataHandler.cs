@@ -25,7 +25,6 @@ public class DataHandler : MonoBehaviour
             dHandler.data.longestTimeSurvived = 0;
             dHandler.data.lastAttemptLength = 0;
             dHandler.data.extraStageUnlocked = false;
-            dHandler.data.extraStageComplete = false;
 
 
             instance = dHandler;
@@ -41,11 +40,6 @@ public class DataHandler : MonoBehaviour
     public static void SetDeath()
     {
         instance.data.totalNumberOfDeaths++;
-    }
-
-    public static void SetExtraStageComplete()
-    {
-        instance.data.extraStageComplete = true; 
     }
 
     public static void UpdateData(Timer gameTimer, bool died)
