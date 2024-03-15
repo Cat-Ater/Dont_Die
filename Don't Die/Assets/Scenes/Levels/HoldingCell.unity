@@ -10350,6 +10350,7 @@ GameObject:
   - component: {fileID: 374592359}
   - component: {fileID: 374592361}
   - component: {fileID: 374592360}
+  - component: {fileID: 374592362}
   m_Layer: 0
   m_Name: Underlay
   m_TagString: Untagged
@@ -22163,6 +22164,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &374592362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374592358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da721e0ef5ce1664d80fc36b8700c45f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainNotCompleted: {r: 0.41568628, g: 0.41568628, b: 0.41568628, a: 1}
+  extraNotCompleted: {r: 1, g: 0, b: 0, a: 1}
+  extraCompleted: {r: 0.688499, g: 0, b: 1, a: 1}
+  tilemap: {fileID: 374592361}
 --- !u!1 &645741710
 GameObject:
   m_ObjectHideFlags: 0
