@@ -65807,6 +65807,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2061404825563957814, guid: 575f0de54aabe5a4cabda340aae1923f, type: 3}
+      propertyPath: m_AssetsPPU
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061404825563957814, guid: 575f0de54aabe5a4cabda340aae1923f, type: 3}
+      propertyPath: m_RefResolutionX
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061404825563957814, guid: 575f0de54aabe5a4cabda340aae1923f, type: 3}
+      propertyPath: m_RefResolutionY
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 2468927273518846148, guid: 575f0de54aabe5a4cabda340aae1923f, type: 3}
       propertyPath: m_RootOrder
       value: 1

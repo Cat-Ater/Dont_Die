@@ -48,6 +48,10 @@ public class PlayerController : MonoBehaviour
         Alive = true;
         _player = gameObject;
         CameraController.SetNewTarget(_player);
+        if(PlayerConsumable.AvailableUses < 1)
+        {
+            PlayerConsumable.AvailableUses = 1; 
+        }
     }
 
     private void Update()
