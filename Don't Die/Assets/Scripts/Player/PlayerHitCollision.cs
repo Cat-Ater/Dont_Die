@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 /// <summary>
 /// Class handling player hit collisions. 
 /// </summary>
@@ -14,6 +15,9 @@ public class PlayerHitCollision : MonoBehaviour
 
     public void Start() => hurtBox = this;
 
+    public AudioClip buzzsawSlashAudioClip;
+    public AudioSource source;
+
     public static void SetColliderState(bool state) =>
         hurtBox.hurtboxCollider.enabled = state;
 
@@ -22,6 +26,14 @@ public class PlayerHitCollision : MonoBehaviour
         if (collision.tag == "Button" || collision.tag == "SystemTriggers" ||
             collision.gameObject.tag == "DeadBody")
             return;
+
+        if (collision.gameObject.GetComponent<Buzzsaw>() != null)
+        {
+            GameObject obj = new GameObject();
+            AudioSource source = obj.AddComponent<AudioSource>();
+            source.PlayOneShot(buzzsawSlashAudioClip);
+        }
+
         PlayerController.Alive = false;
     }
 
