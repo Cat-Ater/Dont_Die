@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D body2D;
 
     public static Vector2 CurrentDirection { get; set; }
+    public static Vector2 LastDirection { get; set; } = Vector2.right;
 
     private static float X { 
         get => CurrentDirection.x; 
@@ -52,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!PlayerController.PlayerEnabled || PlayerController.Immobilized)
             return;
+
+        if (CurrentDirection != Vector2.zero)
+            LastDirection = CurrentDirection;
 
         //Set the current direction to nothing. 
         CurrentDirection = new Vector2(0, 0);

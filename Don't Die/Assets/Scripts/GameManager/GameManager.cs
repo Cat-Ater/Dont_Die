@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
 
     void Awake()
     {
+        Application.targetFrameRate = 60;
 
         //Create the singleton. 
         if (_instance == null)

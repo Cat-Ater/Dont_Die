@@ -53,7 +53,11 @@ public class PlayerDash : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector2 dashVec = PlayerMovement.CurrentDirection.normalized * (dashDistance * 1000);
+        Vector2 dashVec;
+        if (PlayerMovement.CurrentDirection != Vector2.zero)
+            dashVec = PlayerMovement.CurrentDirection.normalized * (dashDistance * 1000);
+        else
+            dashVec = PlayerMovement.LastDirection.normalized * (dashDistance * 1000);
 
         //If dashing apply the dash; Skip normal movement. 
         if (dashing)
