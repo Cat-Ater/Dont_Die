@@ -274,7 +274,7 @@ Transform:
   m_Children:
   - {fileID: 6506497591831192423}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2441255037093800437
 SpriteRenderer:
@@ -411,10 +411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body2D: {fileID: 5567822672097419679}
-  dashDistance: 4.5
-  dashCooldown: 0.35
-  dashInvulnPeriod: 0.25
-  hitCollision: {fileID: 5088543197987507549}
+  dashDistance: 6
+  dashCooldown: 0.5
   dashAudioClip: {fileID: 8300000, guid: b52d237f70d40544f976036413d0cd5b, type: 3}
   source: {fileID: 6885148849762505027}
 --- !u!114 &1583471298693215399
