@@ -262,11 +262,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].name
       value: CIrcle Introduction
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].name
+      value: Multi-Rings
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].order
@@ -281,12 +285,20 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternEndTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternObjects.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternDialogues.Array.size
@@ -318,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.data[0].name
-      value: Buzzwall
+      value: Cardinal
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.data[0].time
@@ -326,7 +338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.data[1].name
-      value: Down Cross (BSaws)
+      value: Inter-cardinal
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.data[1].time
@@ -339,6 +351,38 @@ PrefabInstance:
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.data[2].time
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[0].name
+      value: Ring_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[0].time
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[1].name
+      value: Ring_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[1].time
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[2].name
+      value: Ring_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[2].time
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[3].name
+      value: Ring_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[3].time
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternObjects.Array.data[0].prefab
@@ -361,11 +405,43 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4599357897942594316, guid: d8d80a25b75179f4796171d2b2a62cb4, type: 3}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 1716995758178473985, guid: 204e344e1162cd643a3b0ef59cbeece1, type: 3}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 5605014474686948209, guid: b9b7a0b728b0a984c8e1e6481eeff4de, type: 3}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 7928543452605888504, guid: 18faae0abb874064fa29283a23cdeff4, type: 3}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[3].prefab
+      value: 
+      objectReference: {fileID: 653154072373090249, guid: 3eb2d406ca748a546b0c974e3c37e88c, type: 3}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternObjects.Array.data[2].eventType
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.data[0].eventType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[0].eventType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[1].eventType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[2].eventType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
+      propertyPath: patterns.Array.data[2].patternObjects.Array.data[3].eventType
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
