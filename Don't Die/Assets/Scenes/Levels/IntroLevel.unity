@@ -27745,6 +27745,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1543223713455581710, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: maxScale
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543223713455581710, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: currentScale
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2023970255968289380, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: m_Name
       value: Laser (1)
@@ -27779,7 +27787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6258015627731807699, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.54
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 6258015627731807699, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: m_LocalPosition.y
@@ -64740,6 +64748,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1543223713455581710, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: maxScale
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543223713455581710, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: currentScale
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2023970255968289380, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: m_Name
       value: Laser
@@ -64770,7 +64786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6258015627731807699, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.54
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 6258015627731807699, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: m_LocalPosition.y
@@ -65587,6 +65603,10 @@ PrefabInstance:
     - target: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_Volume
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7067630322959687117, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: dashInvulnPeriod
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7329357365423602505, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_RootOrder
