@@ -131,18 +131,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5088543197987507549, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 1954381773}
+    - target: {fileID: 5088543197987507549, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: buzzsawSlashAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f62a8459bcdaee24d81d11242428dc9c, type: 3}
     - target: {fileID: 5561784769280137224, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_Name
       value: Player_V1
       objectReference: {fileID: 0}
     - target: {fileID: 7067630322959687117, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
-      propertyPath: source
+      propertyPath: hitCollision
       value: 
-      objectReference: {fileID: 1954381773}
-    - target: {fileID: 7067630322959687117, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
-      propertyPath: dashAudioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b52d237f70d40544f976036413d0cd5b, type: 3}
+      objectReference: {fileID: 1596068557}
     - target: {fileID: 7329357365423602505, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -65793,6 +65797,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1596068557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5088543197987507549, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+  m_PrefabInstance: {fileID: 24249270}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299137082d4fae04e872e8eb6b921a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1639583155
 GameObject:
   m_ObjectHideFlags: 0
