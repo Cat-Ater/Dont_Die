@@ -30,7 +30,7 @@ public class Buzzsaw : DestructableObject
         _currentDelay = 0;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (arrived)
             return;

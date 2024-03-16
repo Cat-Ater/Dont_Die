@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// The data collected in the current round. 
+/// </summary>
 public struct RoundData
 {
     public bool usedBomb;
@@ -106,7 +109,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     #endregion
 
     #region Player Completion.
-    public static bool ExtraStageUnlocked => DataHandler.Data.extraStageUnlocked;
+    public static bool ExtraStageUnlocked => DataHandler.Data.mainStageComplete;
     #endregion
 
     #region Player Data. 
@@ -176,7 +179,8 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
 
         if (!PlayerRespawnable)
         {
-            DataHandler.UpdateData(GameTimer, true);
+            DataHandler.SetDeath();
+            DataHandler.SetLastAttemptTime(GameTimer.Time);
             PlayerController.PlayerEnabled = false;
             pObj.SetActive(false);
             levelLoader.LoadLevel("HoldingCell", TransitionType.DEATH);
@@ -188,13 +192,6 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     private void PlayerDeathPostion(Vector2 position)
     {
         bodyManager.AddPosition(DataHandler.Data.totalNumberOfDeaths, position, SceneManager.GetActiveScene().name);
-    }
-
-    private void SetPlayerData(bool died)
-    {
-        //Data updating. 
-        DataHandler.UpdateData(GameManager.GameTimer, died);
-
     }
 
     private void ShowEffects(Vector2 position)
@@ -272,11 +269,17 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     public void MainCompletion()
     {
         Debug.Log("Main Completed");
-        //Evaluate Results. 
 
-        DataHandler.UpdateData(GameManager.GameTimer, (!roundData.usedBody && !roundData.usedBomb), false);
+        //Evaluate Results. 
+        if ((!roundData.usedBody && !roundData.usedBomb))
+            DataHandler.SetExtraStageUnlocked();
+
+        DataHandler.SetLastAttemptTime(GameTimer.Time);
+        
+        //Disable timer. 
         GameTimer.Enabled = false;
 
+        //Reset to main. 
         levelLoader.LoadLevel("HoldingCell", TransitionType.TRANSITION);
     }
 

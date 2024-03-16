@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class used for handling player data. 
+/// </summary>
 public class DataHandler : MonoBehaviour
 {
     private static DataHandler instance;
@@ -24,7 +27,8 @@ public class DataHandler : MonoBehaviour
             dHandler.data.totalNumberOfDeaths = 0;
             dHandler.data.longestTimeSurvived = 0;
             dHandler.data.lastAttemptLength = 0;
-            dHandler.data.extraStageUnlocked = false;
+            dHandler.data.mainStageComplete = false;
+            dHandler.data.extrastageComplete = false;
 
 
             instance = dHandler;
@@ -42,24 +46,27 @@ public class DataHandler : MonoBehaviour
         instance.data.totalNumberOfDeaths++;
     }
 
-    public static void UpdateData(Timer gameTimer, bool died)
+    public static void SetMainStageComplete()
     {
-        if (died)
-            instance.data.totalNumberOfDeaths++;
-        instance.data.lastAttemptLength = gameTimer.Time;
-        instance.data.longestTimeSurvived =
-            (gameTimer.Time > instance.data.longestTimeSurvived) ?
-            gameTimer.Time : instance.data.longestTimeSurvived;
+        instance.data.mainStageComplete = true;
     }
 
-    public static void UpdateData(Timer gameTimer, bool extraStageUnlocked, bool died)
+    public static void SetExtraStageComplete()
     {
-        if (died)
-            instance.data.totalNumberOfDeaths++;
-        instance.data.lastAttemptLength = gameTimer.Time;
-        instance.data.longestTimeSurvived =
-            (gameTimer.Time > instance.data.longestTimeSurvived) ?
-            gameTimer.Time : instance.data.longestTimeSurvived;
-        instance.data.extraStageUnlocked = extraStageUnlocked;
+        instance.data.extrastageComplete = true;
+    }
+
+    public static void SetLastAttemptTime(float time)
+    {
+        if (instance.data.lastAttemptLength < time)
+        {
+            instance.data.longestTimeSurvived = time;
+        }
+        instance.data.lastAttemptLength = time;
+    }
+
+    public static void SetExtraStageUnlocked()
+    {
+        instance.data.mainStageComplete = true; 
     }
 }

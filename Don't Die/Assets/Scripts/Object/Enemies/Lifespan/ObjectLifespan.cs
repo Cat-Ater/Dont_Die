@@ -10,7 +10,7 @@ public class ObjectLifespan : MonoBehaviour
     public float time = 0F;
     public float timeLimit = 1F; 
 
-    void Update()
+    void LateUpdate()
     {
         time += Time.deltaTime; 
         if(time >= timeLimit)
