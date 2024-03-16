@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body2D: {fileID: 5567822672097419679}
-  dashDistance: 5
+  dashDistance: 4.5
   dashCooldown: 0.35
   dashInvulnPeriod: 0.25
   hitCollision: {fileID: 5088543197987507549}

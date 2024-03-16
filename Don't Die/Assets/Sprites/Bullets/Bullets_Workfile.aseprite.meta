@@ -188,14 +188,38 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Bullets_Workfile
+    - name: Bullets_Workfile_Frame_0
       frameIndex: 0
       cellRect:
-        x: 2
-        y: 18
-        width: 28
-        height: 12
+        x: 1
+        y: 17
+        width: 30
+        height: 14
       spriteId: cc87a755a13bebe49a611f73cf246f17
+    - name: Bullets_Workfile_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 1
+        y: 17
+        width: 30
+        height: 14
+      spriteId: c887b4835b53eec4898d39f3521f7f51
+    - name: Bullets_Workfile_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 1
+        y: 17
+        width: 30
+        height: 14
+      spriteId: 8c0cb0f1a005818479a82716aa76abdd
+    - name: Bullets_Workfile_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 1
+        y: 17
+        width: 30
+        height: 14
+      spriteId: a32474190b85157409edc7ea4d9f2a6f
     linkedCells: []
     parentIndex: -1
   platformSettings:
