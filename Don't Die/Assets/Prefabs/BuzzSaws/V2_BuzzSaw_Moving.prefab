@@ -187,3 +187,4 @@ MonoBehaviour:
   delay: 0.1
   speed: 400
   arrivalThreshold: 0.15
+  onHitClip: {fileID: 8300000, guid: a94908dc2e1914e42acaeb2e64f2bb5b, type: 3}

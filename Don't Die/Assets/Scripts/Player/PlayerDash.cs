@@ -6,6 +6,7 @@ using UnityEngine;
 /// Class responsible for implementing the dash behaviour. 
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerDash : MonoBehaviour
 {
     /// <summary>
@@ -28,6 +29,10 @@ public class PlayerDash : MonoBehaviour
     /// Time between the players dashes. 
     /// </summary>
     public float dashCooldown = 0.5F;
+    public float dashInvulnPeriod = 0.3F;
+    public PlayerHitCollision hitCollision;
+    public AudioClip dashAudioClip;
+    public AudioSource source; 
 
     void Start()
     {
@@ -55,7 +60,9 @@ public class PlayerDash : MonoBehaviour
         {
             canDash = false;
             PlayerHitCollision.SetColliderState(false);
+            hitCollision.enabled = false; 
             body2D.AddForce(dashVec);
+            source.PlayOneShot(dashAudioClip);
             StartCoroutine(DashCooldown());
             return;
         }
@@ -66,8 +73,9 @@ public class PlayerDash : MonoBehaviour
     /// </summary>
     private IEnumerator DashCooldown()
     {
+        yield return new WaitForSeconds(dashInvulnPeriod);
         PlayerHitCollision.SetColliderState(true);
-        yield return new WaitForSeconds(dashCooldown);
+        yield return new WaitForSeconds(dashCooldown - dashInvulnPeriod);
         canDash = true;
     }
 

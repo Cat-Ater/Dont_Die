@@ -15,6 +15,7 @@ public class Buzzsaw : DestructableObject
     public float delay;
     public float speed;
     public float arrivalThreshold = 0.15F;
+    public AudioClip onHitClip;
 
     void Start()
     {
@@ -33,12 +34,8 @@ public class Buzzsaw : DestructableObject
     {
         if (arrived)
             return;
-        else
-            UpdateMovement();
-    }
-
-    void UpdateMovement()
-    {
+        
+        //Update the movement.
         if (_currentDelay < delay)
         {
             _currentDelay += Time.deltaTime;
@@ -63,11 +60,5 @@ public class Buzzsaw : DestructableObject
     {
         //Add animation logic, destruction logic here.
         Destroy(gameObject);
-    }
-
-    public void Set(Vector2 a)
-    {
-        initalPosition = gameObject.transform.position;
-        endPosition = a;
     }
 }
