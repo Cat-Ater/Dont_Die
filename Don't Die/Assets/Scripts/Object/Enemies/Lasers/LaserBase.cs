@@ -73,14 +73,30 @@ public class LaserBody
     }
 }
 
+public class LaserEnd
+{
+    public GameObject end; 
+    public Vector2 point; 
+
+    public LaserEnd(GameObject prefab, Vector2 endPoint)
+    {
+        end = GameObject.Instantiate(prefab);
+        end.transform.position = endPoint; 
+    }
+}
+
 public abstract class LaserBase : DestructableObject
 {
     public LaserRotation lRotation;
     public LaserHead head;
     public LaserBody body;
+    public LaserEnd end;
     public GameObject startPrefab;
     public GameObject middlePrefab;
+    public GameObject endPrefab; 
 
+    public bool hasEnd = false;
+    public Vector2 endPoint; 
     public float currentScale;
     public float maxScale = 100F;
     public float scaleIncrement;
@@ -96,10 +112,10 @@ public abstract class LaserBase : DestructableObject
         currentTime = 0;
         head = new LaserHead(this.gameObject, startPrefab);
         body = new LaserBody(this.gameObject, middlePrefab);
+        end = new LaserEnd(endPrefab, endPoint);
         lRotation = new LaserRotation(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentTime += Time.deltaTime;
@@ -118,5 +134,10 @@ public abstract class LaserBase : DestructableObject
     {
         //Add Anim/Destruction Logic here.
         Destroy(gameObject);
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(endPoint, 0.25f);
     }
 }

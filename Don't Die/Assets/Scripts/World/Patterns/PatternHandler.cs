@@ -47,6 +47,11 @@ public class PatternHandler : MonoBehaviour
 
     public void Update()
     {
+
+    }
+
+    public void FixedUpdate()
+    {
         if (!activated || complete)
             return;
 
