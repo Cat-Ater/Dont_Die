@@ -27573,6 +27573,11 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!82 &670623847 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+  m_PrefabInstance: {fileID: 886862491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &739430446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27783,26 +27788,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a39b82adbbfc9e4795e453811b423d5, type: 3}
+    - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: maxVol
-      value: 8.18
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: maxDist
-      value: 3.71
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: minDist
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: offset.x
-      value: 3.39
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: offset.y
-      value: -0.23
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1461837101}
+      objectReference: {fileID: 670623847}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: listenerTransform
       value: 
@@ -65729,11 +65762,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!82 &1461837101 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
-  m_PrefabInstance: {fileID: 1889285813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1489991624
 GameObject:
   m_ObjectHideFlags: 0
@@ -71082,21 +71110,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a39b82adbbfc9e4795e453811b423d5, type: 3}
+    - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: maxVol
-      value: 8.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: maxDist
-      value: 4.61
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
+      propertyPath: minDist
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: offset.x
-      value: 3.3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: offset.y
-      value: -0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: listenerTransform
