@@ -6,59 +6,51 @@ using UnityEngine;
 public class Buzzsaw : DestructableObject
 {
     private Rigidbody2D body2D;
-    private Vector2 initalPosition;
-    private Vector2 normDir;
-    private float _currentDelay;
-    private float traveledDist;
-    private bool arrived = false;
-    public Vector2 endPosition;
     public float delay;
     public float speed;
-    public float arrivalThreshold = 0.15F;
     public AudioClip onHitClip;
+    public Vector2 initalPosition;
+    public Vector2 endPosition;
+    public float startTime;
+    public float delayTime;
+    public float distance;
 
     void Start()
     {
         GameManager.AddConsumableDestruction = this;
-
-        //Get the component reference. 
         body2D = gameObject.GetComponent<Rigidbody2D>();
-        //Place object at the inital transform. 
-        initalPosition = gameObject.transform.position; 
-        normDir = endPosition - initalPosition;
-        normDir.Normalize();
-        _currentDelay = 0;
+
+        initalPosition = gameObject.transform.position;
+        startTime = Time.time;
+        delayTime = delay;
+        distance = Vector2.Distance(initalPosition, endPosition);
+        gameObject.transform.position = initalPosition;
     }
+
 
     void LateUpdate()
     {
-        if (arrived)
-            return;
-        
-        //Update the movement.
-        if (_currentDelay < delay)
-        {
-            _currentDelay += Time.deltaTime;
-            return;
-        }
-        traveledDist = (endPosition - (Vector2)gameObject.transform.position).magnitude;
-        if (traveledDist <= arrivalThreshold)
-        {
-            arrived = true;
-            gameObject.transform.position = endPosition;
-            body2D.velocity = Vector2.zero;
-            return;
-        }
+        if (delayTime > 0)
+            delayTime -= Time.deltaTime;
+        float distCovered = (Time.time - startTime) * speed;
+        float frac = distCovered / distance;
+
+        Vector3 end = Vector2.Lerp(initalPosition, endPosition, frac);
+        body2D.MovePosition(end);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+            Gizmos.DrawLine(gameObject.transform.position, (Vector2)endPosition);
         else
-        {
-            //Update until object moves to the end point.
-            body2D.velocity = normDir * speed * Time.deltaTime;
-        }
+            Gizmos.DrawLine(initalPosition, endPosition);
+
     }
 
     internal override void OnDestruction()
     {
         //Add animation logic, destruction logic here.
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -39,7 +39,8 @@ public class BulletData
     public float targetUpdateRate;
     [Header("The direction the bullet should move in.")]
     public Vector2 movementDirection;
-    public bool usePatternDirection; 
+    public bool usePatternDirection;
+    public bool invertDirection; 
     [Header("The point the bullet should to.")]
     public Vector2 movementPoint;
 

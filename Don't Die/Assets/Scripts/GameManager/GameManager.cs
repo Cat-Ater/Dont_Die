@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
 
         //Set up object scheduling. 
         _objectScheduler = new ObjectScheduler(_gameTimer);
+        objectManager = new ObjectManager();
 
         //Load the UI into the scene if not present.
         if (UIManager.Instance == null)
@@ -257,6 +258,8 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
 
     public static void LoadLevel(string name, TransitionType type)
     {
+        Instance.objectManager.ClearPools();
+
         if (type == TransitionType.MAIN)
         {
             Instance.roundData = new RoundData() { usedBody = false, usedBomb = false };

@@ -50,3 +50,20 @@ public class BP_CircleEditor : Editor
 
     }
 }
+
+[CustomEditor(typeof(BP_ArchSpiral)), CanEditMultipleObjects]
+public class BP_BP_ArchSpiralEditor : Editor
+{
+    protected virtual void OnSceneGUI()
+    {
+        BP_ArchSpiral spiral = (BP_ArchSpiral)target;
+
+        Vector2[] points = spiral.GetPattern();
+
+        foreach (Vector2 p in points)
+        {
+            Handles.DrawSolidDisc(spiral.gameObject.transform.position + (Vector3)(spiral.t * p), new Vector3(0, 0, 1), 0.25F);
+        }
+
+    }
+}

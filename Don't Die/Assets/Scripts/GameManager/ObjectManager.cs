@@ -80,7 +80,6 @@ public class ObjectManager
 
     public GameObject GetGameObjectType(GameObject prefab, GameObject parent, Vector2 position)
     {
-
         GameObject obj = GetGameObjectType(prefab, position);
         obj.transform.parent = parent.transform;
         return obj;

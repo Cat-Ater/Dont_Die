@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4464072267303521414
 SpriteRenderer:
@@ -170,7 +170,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.76
+  m_Radius: 0.9
 --- !u!114 &2684963845300589471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,8 +183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8680c37f2e0352b4d8def863c827fc73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {x: 7.413807, y: 7.025091}
   delay: 0.1
-  speed: 400
-  arrivalThreshold: 0.15
+  speed: 0.2
   onHitClip: {fileID: 8300000, guid: a94908dc2e1914e42acaeb2e64f2bb5b, type: 3}
+  initalPosition: {x: 0, y: 0}
+  endPosition: {x: 0, y: 0}
+  startTime: 0
+  delayTime: 0
+  distance: 0

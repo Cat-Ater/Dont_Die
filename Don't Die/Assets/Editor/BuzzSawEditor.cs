@@ -12,7 +12,7 @@ public class BuzzSawEditor : Editor
 
         Handles.color = Color.red;
         Vector2 newEnd = buzzSaw.endPosition;
-        newEnd = Handles.PositionHandle(buzzSaw.endPosition, Quaternion.identity);
+        newEnd = Handles.PositionHandle(newEnd, Quaternion.identity);
         if (newEnd != buzzSaw.endPosition)
         {
             buzzSaw.endPosition = newEnd;
