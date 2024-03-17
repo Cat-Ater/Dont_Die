@@ -51,6 +51,9 @@ MonoBehaviour:
     scaleVec: {x: 5.7, y: 0, z: 0}
   startPrefab: {fileID: 6713385021939532271, guid: 0cbdd5c3207ff904c9b432612929354e, type: 3}
   middlePrefab: {fileID: 3621264794019407168, guid: c9efeaeb52ef3da448a4eaab8ef818f4, type: 3}
+  endPrefab: {fileID: 0}
+  hasEnd: 0
+  endPoint: {x: 0, y: 0}
   currentScale: 5.7
   maxScale: 5.7
   scaleIncrement: 0

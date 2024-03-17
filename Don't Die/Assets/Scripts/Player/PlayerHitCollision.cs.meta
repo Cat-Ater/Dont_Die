@@ -3,7 +3,12 @@ guid: 299137082d4fae04e872e8eb6b921a73
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - hurtboxCollider: {instanceID: 0}
+  - buzzsawSlashAudioClip: {instanceID: 0}
+  - laserZapAudioClip: {instanceID: 0}
+  - bulletHitAudioClip: {instanceID: 0}
+  - source: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

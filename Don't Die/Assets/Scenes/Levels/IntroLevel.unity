@@ -72335,6 +72335,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 335503037200432848, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 4182116658061274001}
+    - target: {fileID: 335503037200432848, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: movementAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9707648c296706b42b959a7d3495c4fb, type: 3}
     - target: {fileID: 1583471298693215399, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: source
       value: 
@@ -72343,6 +72351,18 @@ PrefabInstance:
       propertyPath: consumeAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: c2dcf566ac68fdb45bac91b5cbb4825b, type: 3}
+    - target: {fileID: 4294518984946230788, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 4182116658061274001}
+    - target: {fileID: 4294518984946230788, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: diedAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5e09a51115006864f9a07f14bedf03b1, type: 3}
+    - target: {fileID: 4294518984946230788, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: spawnAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 31126f8a5ed4c7a409acdfcf1199d8cf, type: 3}
     - target: {fileID: 5088543197987507549, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: source
       value: 
@@ -72354,7 +72374,11 @@ PrefabInstance:
     - target: {fileID: 5088543197987507549, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: laserZapAudioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 5a39b82adbbfc9e4795e453811b423d5, type: 3}
+      objectReference: {fileID: 8300000, guid: fc4fc79a96d0e194682136b122a6a4cf, type: 3}
+    - target: {fileID: 5088543197987507549, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: bulletHitAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 38600744a6a96a64eb8f857cdb8acf53, type: 3}
     - target: {fileID: 5561784769280137224, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_Name
       value: PlayerChar

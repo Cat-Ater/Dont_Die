@@ -7,7 +7,9 @@ public class PlayerKillSelf : MonoBehaviour
     public float cooldownTime = 0.3f;
     public bool canUse = true;
     public int numberOfSpawns = 2; 
-
+    public AudioClip spawnAudioClip;
+    public AudioClip diedAudioClip;
+    public AudioSource source; 
     
     private void OnEnable()
     {
@@ -23,10 +25,12 @@ public class PlayerKillSelf : MonoBehaviour
                 numberOfSpawns--;
                 StartCoroutine(KillSelfReset());
                 KillSelf(gameObject.transform.position);
+                source.PlayOneShot(spawnAudioClip);
             }
             else
             {
                 PlayerController.Alive = false;
+                source.PlayOneShot(diedAudioClip);
             }
         }
         

@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
             _immobilised = value;
             Rigidbody2D body2D = _player.gameObject.GetComponent<Rigidbody2D>();
             body2D.velocity = Vector2.zero;
-
         }
     }
 
