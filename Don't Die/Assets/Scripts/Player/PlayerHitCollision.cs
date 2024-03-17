@@ -16,6 +16,7 @@ public class PlayerHitCollision : MonoBehaviour
     public void Start() => hurtBox = this;
 
     public AudioClip buzzsawSlashAudioClip;
+    public AudioClip laserAudioClip;
     public AudioSource source;
 
     public static void SetColliderState(bool state) =>
@@ -32,6 +33,13 @@ public class PlayerHitCollision : MonoBehaviour
             GameObject obj = new GameObject();
             AudioSource source = obj.AddComponent<AudioSource>();
             source.PlayOneShot(buzzsawSlashAudioClip);
+        }
+
+        if (collision.gameObject.GetComponent<Laser>() != null)
+        {
+            GameObject obj = new GameObject();
+            AudioSource source = obj.AddComponent<AudioSource>();
+            source.PlayOneShot(laserAudioClip);
         }
 
         PlayerController.Alive = false;

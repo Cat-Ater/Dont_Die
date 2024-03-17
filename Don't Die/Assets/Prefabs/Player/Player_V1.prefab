@@ -415,7 +415,7 @@ MonoBehaviour:
   dashCooldown: 0.35
   dashInvulnPeriod: 0.25
   hitCollision: {fileID: 5088543197987507549}
-  dashAudioClip: {fileID: 8300000, guid: b52d237f70d40544f976036413d0cd5b, type: 3}
+  dashAudioClip: {fileID: 8300000, guid: d1fd6baf047377d4ab51d1c9c14481c4, type: 3}
   source: {fileID: 6885148849762505027}
 --- !u!114 &1583471298693215399
 MonoBehaviour:
@@ -432,6 +432,8 @@ MonoBehaviour:
   inputKey: 113
   consumableCount: 1
   cooldownPeriod: 0.05
+  consumeAudioClip: {fileID: 8300000, guid: c2dcf566ac68fdb45bac91b5cbb4825b, type: 3}
+  source: {fileID: 6885148849762505027}
 --- !u!58 &1808805171555054434
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -512,9 +514,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fa1c42e103cd92f4380f8e414296d3e3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0b1c8b9891a649847bdb324ac4f6ddef, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
