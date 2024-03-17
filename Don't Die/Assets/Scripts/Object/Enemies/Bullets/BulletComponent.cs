@@ -102,6 +102,7 @@ public class BulletMovement
     public float lifeTime;
     public GameObject movementTarget;
     public Vector2 movementDirection;
+    public bool invertDirection = false;
     public Vector2 movementPoint;
     public float targetUpdateRate;
 
@@ -145,7 +146,7 @@ public class BulletMovement
 
     private void Movement_Direction()
     {
-        _body2D.AddForce(movementDirection * movementSpeed);
+        _body2D.AddForce(((invertDirection) ? -movementDirection : movementDirection) * movementSpeed);
     }
 
     private void Movement_ToPoint()
@@ -241,6 +242,7 @@ public class BulletComponent : DestructableObject
         _bulletMovement.targetUpdateRate = data.targetUpdateRate;
         _bulletMovement.movementDirection = data.movementDirection;
         _bulletMovement.movementPoint = data.movementPoint;
+        _bulletMovement.invertDirection = data.invertDirection;
     }
 
     internal override void OnDestruction()
