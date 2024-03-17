@@ -12717,6 +12717,10 @@ PrefabInstance:
       propertyPath: consumeAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: c2dcf566ac68fdb45bac91b5cbb4825b, type: 3}
+    - target: {fileID: 5088543197987507549, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: laserZapAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a39b82adbbfc9e4795e453811b423d5, type: 3}
     - target: {fileID: 5561784769280137224, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_Name
       value: Player_V1
