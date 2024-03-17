@@ -411,9 +411,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body2D: {fileID: 5567822672097419679}
+<<<<<<< HEAD
   dashDistance: 4.5
   dashCooldown: 0.35
   dashInvulnPeriod: 0.25
+=======
+  dashDistance: 6
+  dashCooldown: 0.5
+  dashInvulnPeriod: 0.3
+>>>>>>> origin/main
   hitCollision: {fileID: 5088543197987507549}
   dashAudioClip: {fileID: 8300000, guid: b52d237f70d40544f976036413d0cd5b, type: 3}
   source: {fileID: 6885148849762505027}

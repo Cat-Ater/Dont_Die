@@ -50031,6 +50031,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_V1
       objectReference: {fileID: 0}
+    - target: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: m_Volume
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b1c8b9891a649847bdb324ac4f6ddef, type: 3}
     - target: {fileID: 7329357365423602505, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -50602,6 +50610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator_Main
       objectReference: {fileID: 0}
+    - target: {fileID: 6563286554489042111, guid: 839184d44c0f07e4d91aafe8e834113f, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ddd308d4aed18e2459c82fe7e8fbc849, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50619,6 +50631,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator_Extra
       objectReference: {fileID: 0}
+    - target: {fileID: 1666856515749478082, guid: 96b36c7baf9f20140bd4af3ffa8c550a, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ddd308d4aed18e2459c82fe7e8fbc849, type: 3}
     - target: {fileID: 6640743804146882698, guid: 96b36c7baf9f20140bd4af3ffa8c550a, type: 3}
       propertyPath: m_RootOrder
       value: -1
