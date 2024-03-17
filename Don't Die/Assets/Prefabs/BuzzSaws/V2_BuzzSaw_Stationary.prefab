@@ -183,8 +183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8680c37f2e0352b4d8def863c827fc73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {x: 0, y: 0}
   delay: 0
   speed: 0
-  arrivalThreshold: 0.15
-  onHitClip: {fileID: 0}
+  onHitClip: {fileID: 8300000, guid: b6ce89a5b070c7c45a38ddaac56fa373, type: 3}
+  initalPosition: {x: 0, y: 0}
+  endPosition: {x: 0, y: 0}
+  startTime: 0
+  delayTime: 0
+  distance: 0

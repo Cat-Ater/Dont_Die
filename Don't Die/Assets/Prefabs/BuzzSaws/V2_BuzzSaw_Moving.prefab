@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0.1
   speed: 0.2
-  onHitClip: {fileID: 8300000, guid: a94908dc2e1914e42acaeb2e64f2bb5b, type: 3}
+  onHitClip: {fileID: 8300000, guid: b6ce89a5b070c7c45a38ddaac56fa373, type: 3}
   initalPosition: {x: 0, y: 0}
   endPosition: {x: 0, y: 0}
   startTime: 0

@@ -12743,7 +12743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6284725138400909037, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_Radius
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6506497591831192423, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_LocalScale.x
@@ -13043,7 +13043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4069482159203226595, guid: 5e521fc87cb6f6d41a253569f3499225, type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4069482159203226595, guid: 5e521fc87cb6f6d41a253569f3499225, type: 3}
       propertyPath: MinDistance
