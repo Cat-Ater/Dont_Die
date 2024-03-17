@@ -51,6 +51,6 @@ public class Buzzsaw : DestructableObject
     internal override void OnDestruction()
     {
         //Add animation logic, destruction logic here.
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

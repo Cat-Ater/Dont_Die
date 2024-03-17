@@ -176,7 +176,7 @@ public class BulletLifespan
             return;
         lifeSpan -= Time.deltaTime;
         if (lifeSpan <= 0)
-            GameObject.Destroy(gameobject);
+            gameobject.SetActive(false);
     }
 }
 

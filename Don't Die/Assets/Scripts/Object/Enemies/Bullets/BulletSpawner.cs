@@ -39,7 +39,9 @@ public class BulletSpawner : MonoBehaviour
         for (int i = 0; i < points.Length; i++)
         {
             objectPos = (Vector2)(position + distanceFromObj * (Vector3)points[i]);
-            gameObjs[i] = GameObject.Instantiate(bulletPrefab, objectPos, Quaternion.identity);
+            gameObjs[i] = GameManager.GameObjectRequest(bulletPrefab, objectPos);
+            gameObjs[i].SetActive(true);
+            //gameObjs[i] = GameObject.Instantiate(bulletPrefab, objectPos, Quaternion.identity);
             BulletComponent bComponent = gameObjs[i].GetComponent<BulletComponent>();
             bComponent.SetData(data);
             if (data.usePatternDirection)
