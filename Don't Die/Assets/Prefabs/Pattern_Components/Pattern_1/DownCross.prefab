@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2837004823548460100}
   - component: {fileID: 1134305035265839277}
   - component: {fileID: 4939340662470340570}
+  - component: {fileID: 4307022911554020478}
   m_Layer: 0
   m_Name: DownCross
   m_TagString: Untagged
@@ -145,6 +146,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   timeLimit: 5.5
+--- !u!114 &4307022911554020478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383135346329341316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28510a1617bc0ac43bd7ab234c396b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6273569406583161878
 GameObject:
   m_ObjectHideFlags: 0

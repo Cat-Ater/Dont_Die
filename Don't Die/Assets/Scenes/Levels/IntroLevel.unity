@@ -72234,6 +72234,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1583471298693215399, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 4182116658061274001}
+    - target: {fileID: 1583471298693215399, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: consumeAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c2dcf566ac68fdb45bac91b5cbb4825b, type: 3}
     - target: {fileID: 5088543197987507549, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: source
       value: 
@@ -72243,9 +72251,17 @@ PrefabInstance:
       value: PlayerChar
       objectReference: {fileID: 0}
     - target: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 0b1c8b9891a649847bdb324ac4f6ddef, type: 3}
+    - target: {fileID: 7067630322959687117, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: dashAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d1fd6baf047377d4ab51d1c9c14481c4, type: 3}
     - target: {fileID: 7329357365423602505, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -72295,6 +72311,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+--- !u!82 &4182116658061274001 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+  m_PrefabInstance: {fileID: 4182116658061274000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4190745133148218998
 PrefabInstance:
   m_ObjectHideFlags: 0

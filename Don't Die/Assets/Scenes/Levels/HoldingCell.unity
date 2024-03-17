@@ -50321,14 +50321,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1583471298693215399, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 1481390977}
+    - target: {fileID: 1583471298693215399, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: consumeAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c2dcf566ac68fdb45bac91b5cbb4825b, type: 3}
     - target: {fileID: 5561784769280137224, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_Name
       value: Player_V1
       objectReference: {fileID: 0}
     - target: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 0b1c8b9891a649847bdb324ac4f6ddef, type: 3}
+    - target: {fileID: 7067630322959687117, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+      propertyPath: dashAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d1fd6baf047377d4ab51d1c9c14481c4, type: 3}
     - target: {fileID: 7329357365423602505, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -50566,6 +50582,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!82 &1481390977 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6885148849762505027, guid: 4618ddfb5f82a2b43b61d4b6e52d5e07, type: 3}
+  m_PrefabInstance: {fileID: 1458647824}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1575139338
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,10 @@ public class PlayerConsumable : MonoBehaviour
     public KeyCode inputKey = KeyCode.Tab;
     private bool canUse = true;
     public int consumableCount = 1;
-    public float cooldownPeriod = 0.5F; 
+    public float cooldownPeriod = 0.5F;
+    public AudioClip consumeAudioClip;
+    public AudioSource source; 
+
 
     public static int AvailableUses { get; set; } = 1;
 
@@ -21,6 +24,7 @@ public class PlayerConsumable : MonoBehaviour
             AvailableUses--;
             GameManager.UsedConsumable(); 
             GameManager.Instance.DestroyObjects();
+            source.PlayOneShot(consumeAudioClip);
             StartCoroutine(Cooldown());
         }
     }
