@@ -620,7 +620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[2].patternEndTime
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternObjects.Array.size
@@ -660,7 +660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[0].patternObjects.Array.data[2].time
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.data[0].name
@@ -676,7 +676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.data[1].time
-      value: 10.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[1].patternObjects.Array.data[2].name
@@ -700,7 +700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[2].patternObjects.Array.data[1].time
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 4970100857815878576, guid: 3d821c3b357cb414eb5684a989e4c281, type: 3}
       propertyPath: patterns.Array.data[2].patternObjects.Array.data[2].name
