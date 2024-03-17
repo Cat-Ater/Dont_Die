@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5305659960637627803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4770920743876610208}
+  - component: {fileID: 1892583190040974900}
+  m_Layer: 0
+  m_Name: 'Pattern_4_Runner '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4770920743876610208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305659960637627803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7017512, y: 1.6138663, z: 0.26635328}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1892583190040974900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305659960637627803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa6a34c3d9a9034698483bdf190eace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pattern:
+    name: Test_B
+    order: 0
+    complete: 0
+    patternStart: 0
+    patternEndTime: 30
+    patternObjects:
+    - name: 
+      time: 0.2
+      eventType: 2
+      prefab: {fileID: 3727562908863688217, guid: d9bdfca2d0414da4b87b4201888caba5, type: 3}
+    - name: 
+      time: 0.4
+      eventType: 2
+      prefab: {fileID: 2228291163511226231, guid: 3d8af4d34994d2f4495a716e1ccfb22a, type: 3}
+    - name: 
+      time: 0.6
+      eventType: 2
+      prefab: {fileID: 8012953460456467297, guid: a722c01c106a7b142945cbb06b1f8b1d, type: 3}
+    - name: 
+      time: 0.8
+      eventType: 2
+      prefab: {fileID: 5312747644366999569, guid: 36d0b0f6793b9834bb95aaea1d10c329, type: 3}
+    - name: 
+      time: 3
+      eventType: 2
+      prefab: {fileID: 8012953460456467297, guid: a722c01c106a7b142945cbb06b1f8b1d, type: 3}
+    - name: 
+      time: 6
+      eventType: 2
+      prefab: {fileID: 5312747644366999569, guid: 36d0b0f6793b9834bb95aaea1d10c329, type: 3}
+    - name: 
+      time: 8
+      eventType: 2
+      prefab: {fileID: 8012953460456467297, guid: a722c01c106a7b142945cbb06b1f8b1d, type: 3}
+    - name: 
+      time: 12
+      eventType: 2
+      prefab: {fileID: 5312747644366999569, guid: 36d0b0f6793b9834bb95aaea1d10c329, type: 3}
+    - name: 
+      time: 14
+      eventType: 2
+      prefab: {fileID: 0}
+    patternDialogues: []
+  currentRun:
+    name: 
+    order: 0
+    complete: 0
+    patternStart: 0
+    patternEndTime: 0
+    patternObjects: []
+    patternDialogues: []
+  repeat: 1
