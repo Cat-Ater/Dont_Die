@@ -13022,9 +13022,17 @@ PrefabInstance:
       value: LevelMusic
       objectReference: {fileID: 0}
     - target: {fileID: 4069482159203226595, guid: 5e521fc87cb6f6d41a253569f3499225, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069482159203226595, guid: 5e521fc87cb6f6d41a253569f3499225, type: 3}
+      propertyPath: MinDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069482159203226595, guid: 5e521fc87cb6f6d41a253569f3499225, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ed88247e323d4c242a67c58169392ce8, type: 3}
+      objectReference: {fileID: 8300000, guid: f50ac64c642cf554fb33a01d005ab80f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
