@@ -311,6 +311,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6563286554489042111, guid: 839184d44c0f07e4d91aafe8e834113f, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ddd308d4aed18e2459c82fe7e8fbc849, type: 3}
+    - target: {fileID: 6563286554489042111, guid: 839184d44c0f07e4d91aafe8e834113f, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7519448864519291754, guid: 839184d44c0f07e4d91aafe8e834113f, type: 3}
       propertyPath: m_Color.b
       value: 0.01742506
@@ -27794,7 +27802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2499849763810461430, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: m_audioClip
@@ -27810,15 +27818,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: maxVol
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: maxDist
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: minDist
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: offset.x
@@ -71128,15 +71136,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: maxVol
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: maxDist
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: minDist
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2853013556542505565, guid: 073604317dcb5fc41a717f7fee357670, type: 3}
       propertyPath: offset.x
