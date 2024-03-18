@@ -30,6 +30,10 @@ public class PatternHandler : MonoBehaviour
         Debug.Log("Pattern completed");
         currentIndex++;
         Debug.Log("Current Index: " + currentIndex);
+
+        if (GameManager.GameTimer.Time >= 60.0F)
+            SceneCompleted();
+
         if (currentIndex < patterns.Count)
         {
             Debug.Log("Updating pattern ID");
@@ -37,17 +41,15 @@ public class PatternHandler : MonoBehaviour
             patterns[currentIndex].OnStart(GameManager.GameTimer.Time);
         }
         else
-        {
-            Debug.Log("Pattern Set Updated: Returning to Holding Cell");
-            activated = false;
-            GameManager.Instance.DestroyObjects();
-            GameManager.Instance.MainCompletion();
-        }
+            SceneCompleted();
     }
 
-    public void Update()
+    public void SceneCompleted()
     {
-
+        activated = false;
+        GameManager.GameTimer.Enabled = false;
+        GameManager.Instance.DestroyObjects();
+        GameManager.Instance.MainCompletion();
     }
 
     public void FixedUpdate()
