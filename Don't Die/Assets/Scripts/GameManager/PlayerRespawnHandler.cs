@@ -20,4 +20,18 @@ public class PlayerRespawnHandler
     /// Returns the point at which the player should be spawned. 
     /// </summary>
     public Vector3 Point => respawner.respawnPoint;
+
+    public void RespawnPlayer(ref GameObject player, Vector3 respawnPosition)
+    {
+        player.SetActive(false);
+        player.transform.position = respawnPosition;
+        PlayerController.PlayerEnabled = true;
+    }
+
+    public void RespawnPlayer(ref GameObject player)
+    {
+        player.SetActive(false);
+        player.transform.position = Point;
+        PlayerController.PlayerEnabled = true;
+    }
 }

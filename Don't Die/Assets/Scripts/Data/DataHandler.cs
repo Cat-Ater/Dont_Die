@@ -25,9 +25,7 @@ public class DataHandler : MonoBehaviour
             DataHandler dHandler = dataObj.AddComponent<DataHandler>();
 
             //If handling data loading do so here. 
-            dHandler.data = new PlayerData();
-            dHandler.data.numberOfDeaths = 0;
-            dHandler.data.extraStageUnlocked = false;
+            LoadData(ref dHandler.data);
 
             instance = dHandler;
             DontDestroyOnLoad(dHandler);
@@ -55,7 +53,7 @@ public class DataHandler : MonoBehaviour
         dataSerializer.Save(data, "V1", OperationType.EXTERNAL);
     }
 
-    public static void LoadData(PlayerData data, bool succeeded)
+    public static void LoadData(ref PlayerData data)
     {
         SerializationSchema schema =
             new SerializationSchema()
@@ -70,10 +68,31 @@ public class DataHandler : MonoBehaviour
         
         if(_data == null)
         {
-
             data = new PlayerData();
             data.numberOfDeaths = 0;
             data.extraStageUnlocked = false;
         } else data = _data;
+    }
+
+    public static BossData FindReference(int bossID)
+    {
+        for (int i = 0; i < Data.bossDataRecords.Count; i++)
+        {
+            if (bossID == Data.bossDataRecords[i].bossID)
+                return Data.bossDataRecords[i];
+        }
+
+        return null;
+    }
+
+    public static void SetNewBossTime(int bossID, float newTime)
+    {
+        for (int i = 0; i < Data.bossDataRecords.Count; i++)
+        {
+            if (bossID == Data.bossDataRecords[i].bossID)
+            {
+                Data.bossDataRecords[i].timeTakenToComplete = newTime; 
+            }
+        }
     }
 }

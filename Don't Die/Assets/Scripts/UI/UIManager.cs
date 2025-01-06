@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance => instance;
 
     /// <summary>
-    /// Returns the current game time as a formated string. 
+    /// Returns the current game time as a formatted string. 
     /// </summary>
     public string GetTimeSTR => GameManager.GameTimer.TimeToString();
 
