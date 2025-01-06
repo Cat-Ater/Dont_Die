@@ -7,7 +7,8 @@ public enum TransitionType
     DEATH,
     TRANSITION,
     EXTRA,
-    MAIN
+    MAIN, 
+    CREDITS
 }
 
 [System.Serializable]

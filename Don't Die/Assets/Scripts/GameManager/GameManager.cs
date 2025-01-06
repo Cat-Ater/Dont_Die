@@ -5,14 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// The data collected in the current round. 
-/// </summary>
-public struct RoundData
-{
-    public bool usedBomb;
-    public bool usedBody;
-}
+
 
 /// <summary>
 /// Class responsible for handling updating the game and acting as a system inbetween. 
@@ -35,10 +28,6 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
 
     private LevelLoading levelLoader;
 
-    public BodyManager bodyManager;
-
-    public PatternHandler patternHandler;
-
     /// <summary>
     /// Reference to the ObjectScheduler. 
     /// </summary>
@@ -51,7 +40,6 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
 
     public RoundData roundData;
 
-    #region Properties. 
     /// <summary>
     /// Returns the current GameManager. 
     /// </summary>
@@ -61,56 +49,6 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
     /// Returns the current GameTimer instance. 
     /// </summary>
     public static Timer GameTimer => _instance._gameTimer;
-
-    public static bool ExtraStageUnlocked => DataHandler.Data.extraStageUnlocked;
-
-    #region Respawning. 
-    public static PlayerRespawner SetRespawn
-    {
-        set => Instance.respawnHandler.respawner = value;
-    }
-    #endregion
-
-    #region Consumable Destruction. 
-    /// <summary>
-    /// Add a IConsumableDestruction interface to the system. 
-    /// </summary>
-    public static IConsumableDestruction AddConsumableDestruction
-    {
-        set => ConsumableHandler.AddConsumableDestruction = value;
-    }
-
-    /// <summary>
-    /// Remove an IConsumableDestruction interface from the system. 
-    /// </summary>
-    public static IConsumableDestruction RemoveConsumableDestruction
-    {
-        set => ConsumableHandler.RemoveConsumableDestruction = value;
-    }
-    #endregion
-
-    #region Player Death.
-
-    /// <summary>
-    /// Add a position at which the player died. 
-    /// </summary>
-    /// <param name="position"> The position to add. </param>
-    public Vector3 SetDeathPosition
-    {
-        set => PlayerDeath(value);
-    }
-    #endregion
-
-    #region Player Spawning.
-    /// <summary>
-    /// Is the player able to respawn here. 
-    /// </summary>
-    public static bool PlayerRespawnable => Instance.respawnHandler.PlayerRespawnable;
-
-    public Vector3 RespawnPosition => Instance.respawnHandler.Point;
-    #endregion
-
-    #endregion
 
     void Awake()
     {
@@ -149,71 +87,6 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
         _objectScheduler.UpdateObjects();
     }
 
-    #region Player Death. 
-    private void PlayerDeath(Vector2 position)
-    {
-        ShowEffects(position);
-
-        //Reset the game timer. 
-        _gameTimer.Enabled = false;
-
-        GameObject pObj = PlayerController.PlayerObject;
-
-        DataHandler.SetDeath();
-        PlayerController.PlayerEnabled = false;
-        pObj.SetActive(false);
-
-        if (PlayerRespawnable) PlayerSpawner.RespawnPlayer(ref pObj, position);
-        else
-        {
-            levelLoader.LoadLevel("HoldingCell", TransitionType.DEATH);
-            PlayerController.PlayerEnabled = true;
-            _gameTimer.ResetTimer();
-        }
-    }
-
-    private void ShowEffects(Vector2 position)
-    {
-        //Instantiate death visuals. 
-        Instantiate(effects.RandomSplatter, effects.PositionOffset(position), Quaternion.identity);
-        Instantiate(effects.RandomBody, position, Quaternion.Euler(effects.RotationOffset()));
-    }
-    #endregion
-
-    #region Pattern Timers. 
-    public void ActivateTimer()
-    {
-        StartCoroutine(StartupDelay());
-    }
-
-    public IEnumerator StartupDelay()
-    {
-        yield return new WaitForSeconds(5.5F);
-        GameTimer.Enabled = true;
-        patternHandler.ActivatePatterns();
-    }
-    #endregion
-
-    #region Object Management.
-    public static GameObject GameObjectRequest(GameObject prefab, Vector2 position)
-    {
-        return Instance.objectManager.GetGameObjectType(prefab, position);
-    }
-
-    public static void CreateDeadBody(Vector2 position)
-    {
-        GameObject.Instantiate(GameManager.Instance.effects.ghostMouseHistoryPrefabs[0], position, Quaternion.identity);
-        Instance.roundData.usedBody = true;
-    }
-
-    public static void UsedConsumable()
-    {
-        Instance.roundData.usedBomb = true;
-        Instance.DestroyObjects();
-    }
-
-    #endregion
-
     #region Object Scheduling. 
     /// <summary>
     /// Call to add an object to scheduling. 
@@ -230,34 +103,6 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
     public void DestroyObjects() => ConsumableHandler.ConsumableDestruction();
     #endregion
 
-    #region Level Loading.
-
-    public static void LoadLevel(string name, TransitionType type)
-    {
-        if (type == TransitionType.MAIN)
-        {
-            Instance.roundData = new RoundData() { usedBody = false, usedBomb = false };
-        }
-
-        GameManager.Instance.levelLoader.LoadLevel(name, type);
-    }
-    #endregion
-
-    public void MainCompletion()
-    {
-        Debug.Log("Main Completed");
-
-        //Evaluate Results. 
-        if ((!roundData.usedBody && !roundData.usedBomb))
-            DataHandler.SetExtraStageUnlocked();
-
-        //Disable timer. 
-        GameTimer.Enabled = false;
-
-        //Reset to main. 
-        levelLoader.LoadLevel("HoldingCell", TransitionType.TRANSITION);
-    }
-
     public void ChangeInState()
     {
         throw new NotImplementedException();
@@ -268,6 +113,8 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
 #region Data Management.
 public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
 {
+    public static bool ExtraStageUnlocked => DataHandler.Data.extraStageUnlocked;
+
     public void LoadData()
     {
         //Set up player data. 
@@ -275,5 +122,188 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
     }
 
     public void SaveData() => DataHandler.SaveData();
+
+    public void AddBossCompletion(string bossName, int bossID, float timeTaken)
+    {
+        BossData data = DataHandler.FindReference(bossID);
+
+        //If is null construct a new record to add. 
+        if (data == null)
+        {
+            data = new BossData();
+            data.bossID = bossID;
+            data.bossName = bossName;
+            data.timeTakenToComplete = timeTaken;
+            //Insert the new record. 
+            DataHandler.Data.bossDataRecords.Add(data);
+        }
+        else
+        {
+            //Else check if the new completion time is less than previous completion time. 
+            if (data.timeTakenToComplete > timeTaken)
+            {
+                DataHandler.SetNewBossTime(bossID, timeTaken);
+            }
+        }
+
+        DataHandler.SaveData();
+    }
 }
 #endregion
+
+#region Player Management. 
+public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
+{
+
+    /// <summary>
+    /// Add a position at which the player died. 
+    /// </summary>
+    /// <param name="position"> The position to add. </param>
+    public Vector3 SetDeathPosition
+    {
+        set => PlayerDeath(value);
+    }
+
+    public static PlayerRespawner SetRespawn
+    {
+        set => Instance.respawnHandler.respawner = value;
+    }
+
+    /// <summary>
+    /// Is the player able to respawn here. 
+    /// </summary>
+    public static bool PlayerRespawnable => Instance.respawnHandler.PlayerRespawnable;
+
+    public Vector3 RespawnPosition => Instance.respawnHandler.Point;
+
+    public void PlayerDeath(Vector2 position)
+    {
+        ShowEffects(position);
+
+        //Reset the game timer. 
+        _gameTimer.Enabled = false;
+
+        GameObject pObj = PlayerController.PlayerObject;
+
+        DataHandler.SetDeath();
+        PlayerController.PlayerEnabled = false;
+        pObj.SetActive(false);
+
+        if (PlayerRespawnable) respawnHandler.RespawnPlayer(ref pObj);
+        else
+        {
+            levelLoader.LoadLevel("HoldingCell", TransitionType.DEATH);
+            PlayerController.PlayerEnabled = true;
+            _gameTimer.ResetTimer();
+        }
+    }
+
+    private void ShowEffects(Vector2 position)
+    {
+        //Instantiate death visuals. 
+        Instantiate(effects.RandomSplatter, effects.PositionOffset(position), Quaternion.identity);
+        Instantiate(effects.RandomBody, position, Quaternion.Euler(effects.RotationOffset()));
+    }
+
+    public void DisablePlayer()
+    {
+        PlayerController.PlayerObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        PlayerController.PlayerObject.GetComponent<PlayerMovement>().enabled = false;
+        PlayerController.PlayerEnabled = false;
+    }
+
+    public static void UsedConsumable()
+    {
+        Instance.roundData.usedBomb = true;
+        Instance.DestroyObjects();
+    }
+}
+#endregion
+
+#region World State.
+public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
+{
+    #region Level Loading.
+    public static void LoadLevel(StageID stageID)
+    {
+        TransitionType transitionType = TransitionType.TRANSITION;
+
+        //Discern what load proceedure to use. 
+        switch (stageID)
+        {
+            case StageID.START:
+                Debug.Log("Game Start loading");
+                transitionType = TransitionType.MAIN;
+                break;
+            case StageID.BOSS_A:
+                Debug.Log("Boss A loading.");
+                break;
+            case StageID.BOSS_B:
+                Debug.Log("Boss B loading.");
+                break;
+            case StageID.BOSS_C:
+                Debug.Log("Boss C loading.");
+                break;
+            case StageID.BOSS_D:
+                Debug.Log("Boss D loading.");
+                break;
+            case StageID.BOSS_E:
+                Debug.Log("Boss E loading.");
+                break;
+            case StageID.BOSS_F:
+                Debug.Log("Boss F loading.");
+                break;
+            case StageID.EXTRAS_BOSS_A:
+                Debug.Log("Ex Boss A loading.");
+                transitionType = TransitionType.EXTRA;
+                break;
+            case StageID.EXTRAS_BOSS_B:
+                Debug.Log("Ex Boss B loading.");
+                transitionType = TransitionType.EXTRA;
+                break;
+            case StageID.CREDITS:
+                Debug.Log("Game credits loading.");
+                transitionType = TransitionType.CREDITS;
+                break;
+            case StageID.GAME_HUB:
+                Debug.Log("Game hub loading.");
+                break;
+        }
+
+        Instance.levelLoader.LoadLevel(stageID, transitionType);
+    }
+    #endregion
+}
+#endregion
+
+#region Object Management.
+public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
+{
+    public static GameObject GameObjectRequest(GameObject prefab, Vector2 position)
+    {
+        return Instance.objectManager.GetGameObjectType(prefab, position);
+    }
+
+    /// <summary>
+    /// Add a IConsumableDestruction interface to the system. 
+    /// </summary>
+    public static IConsumableDestruction AddConsumableDestruction
+    {
+        set => ConsumableHandler.AddConsumableDestruction = value;
+    }
+
+    /// <summary>
+    /// Remove an IConsumableDestruction interface from the system. 
+    /// </summary>
+    public static IConsumableDestruction RemoveConsumableDestruction
+    {
+        set => ConsumableHandler.RemoveConsumableDestruction = value;
+    }
+}
+#endregion
+
+//#region Empty.
+//public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
+//{
+//}
+//#endregion

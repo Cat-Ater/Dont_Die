@@ -34,7 +34,7 @@ public class PlayerKillSelf : MonoBehaviour
 
     public static void KillSelf(Vector2 position)
     {
-        GameManager.CreateDeadBody(position);
+        GameManager.Instance.PlayerDeath(position);
     }
 
     private IEnumerator KillSelfReset()

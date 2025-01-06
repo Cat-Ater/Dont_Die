@@ -9,6 +9,7 @@ public class LevelLoading : IBroadcastTransitionState
         LOAD_LEVEL, 
         RELEASE
     }
+
     private LevelTransitionStage stage = LevelTransitionStage.NONE;
     private string levelToLoad;
 
@@ -16,6 +17,12 @@ public class LevelLoading : IBroadcastTransitionState
     {
         stage = LevelTransitionStage.INIT_FADE;
         levelToLoad = levelName;
+        UIManager.Instance.TransitionStateChange(this, type, 0.18F);
+    }
+
+    public void LoadLevel(StageID stageID, TransitionType type)
+    {
+        stage = LevelTransitionStage.INIT_FADE;
         UIManager.Instance.TransitionStateChange(this, type, 0.18F);
     }
 
