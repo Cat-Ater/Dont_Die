@@ -16,13 +16,10 @@ public class GravestoneDisplay : MonoBehaviour, ITextCaller
         if (!isDisplaying)
         {
             isDisplaying = true;
-            string a = "Best time: " + DataHandler.Data.longestTimeSurvived.ToString() + "\n";
-            string b = "Last time: " + DataHandler.Data.lastAttemptLength.ToString() + "\n";
-            string c = "Number of deaths: " + DataHandler.Data.totalNumberOfDeaths.ToString() + "\n";
-            string[] output = new string[3] { a, b, c};
 
+            //Display writable data here. 
 
-            UIManager.Instance.DisplayText(this, output, 0.02F, displayTimeOnExit);
+            UIManager.Instance.DisplayText(this, new string[] { " " }, 0.02F, displayTimeOnExit);
         }
     }
 

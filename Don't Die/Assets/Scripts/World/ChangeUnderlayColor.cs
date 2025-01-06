@@ -12,19 +12,21 @@ public class ChangeBackgroundColor : MonoBehaviour
 
     private void Start()
     {
-        if (DataHandler.Data.mainStageComplete == false)
-        {
-            tilemap.color = mainNotCompleted;
-        }
+        //Set world changes here. 
 
-        if (DataHandler.Data.mainStageComplete == true)
-        {
-            tilemap.color = extraNotCompleted;
-        }
+        //if (DataHandler.Data.mainStageComplete == false)
+        //{
+        //    tilemap.color = mainNotCompleted;
+        //}
 
-        if (DataHandler.Data.extrastageComplete == true)
-        {
-            tilemap.color = extraCompleted;
-        }
+        //if (DataHandler.Data.mainStageComplete == true)
+        //{
+        //    tilemap.color = extraNotCompleted;
+        //}
+
+        //if (DataHandler.Data.extrastageComplete == true)
+        //{
+        //    tilemap.color = extraCompleted;
+        //}
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GenericSaveRuntime;
+using Unity.VisualScripting;
 
 /// <summary>
 /// Class used for handling player data. 
@@ -24,49 +26,54 @@ public class DataHandler : MonoBehaviour
 
             //If handling data loading do so here. 
             dHandler.data = new PlayerData();
-            dHandler.data.totalNumberOfDeaths = 0;
-            dHandler.data.longestTimeSurvived = 0;
-            dHandler.data.lastAttemptLength = 0;
-            dHandler.data.mainStageComplete = false;
-            dHandler.data.extrastageComplete = false;
-
+            dHandler.data.numberOfDeaths = 0;
+            dHandler.data.extraStageUnlocked = false;
 
             instance = dHandler;
             DontDestroyOnLoad(dHandler);
             return dHandler;
         }
-        else
+        else return instance;
+    }
+
+    public static void SetDeath() => instance.data.numberOfDeaths++;
+
+    public static void SetExtraStageUnlocked() => instance.data.extraStageUnlocked = true; 
+
+    public static void SaveData()
+    {
+        PlayerData data = instance.data;
+
+        SerializationSchema schema = 
+            new SerializationSchema() { 
+                defaultFilename = "PD", 
+                folderName = "PlayerData", 
+                serializationType = SerializationFormat.XML 
+            };
+
+        GenericSaveHandler<PlayerData> dataSerializer = new GenericSaveHandler<PlayerData>(schema);
+        dataSerializer.Save(data, "V1", OperationType.EXTERNAL);
+    }
+
+    public static void LoadData(PlayerData data, bool succeeded)
+    {
+        SerializationSchema schema =
+            new SerializationSchema()
+            {
+                defaultFilename = "PD",
+                folderName = "PlayerData",
+                serializationType = SerializationFormat.XML
+            };
+
+        GenericSaveHandler<PlayerData> dataSerializer = new GenericSaveHandler<PlayerData>(schema);
+        PlayerData _data = dataSerializer.Load("V1", OperationType.EXTERNAL);
+        
+        if(_data == null)
         {
-            return instance;
-        }
-    }
 
-    public static void SetDeath()
-    {
-        instance.data.totalNumberOfDeaths++;
-    }
-
-    public static void SetMainStageComplete()
-    {
-        instance.data.mainStageComplete = true;
-    }
-
-    public static void SetExtraStageComplete()
-    {
-        instance.data.extrastageComplete = true;
-    }
-
-    public static void SetLastAttemptTime(float time)
-    {
-        if (instance.data.lastAttemptLength < time)
-        {
-            instance.data.longestTimeSurvived = time;
-        }
-        instance.data.lastAttemptLength = time;
-    }
-
-    public static void SetExtraStageUnlocked()
-    {
-        instance.data.mainStageComplete = true; 
+            data = new PlayerData();
+            data.numberOfDeaths = 0;
+            data.extraStageUnlocked = false;
+        } else data = _data;
     }
 }
