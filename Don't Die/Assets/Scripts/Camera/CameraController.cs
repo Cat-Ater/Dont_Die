@@ -64,7 +64,7 @@ public partial class CameraController : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         FocusUpdate();
 
@@ -107,7 +107,7 @@ public partial class CameraController : MonoBehaviour
 public partial class CameraController : MonoBehaviour
 {
     public BoxDataComponent boxData;
-    public float movementSpeed = 2f;
+    public float boxTrackingSpeed = 2f;
 
     public bool OutsideBounds
     {
@@ -132,7 +132,7 @@ public partial class CameraController : MonoBehaviour
             Vector3 targetPos = TargetPosition;
             targetPos.z = cameraPos.z;
 
-            Vector3 follow = Vector3.Lerp(cameraPos, targetPos, movementSpeed * Time.deltaTime);
+            Vector3 follow = Vector3.Lerp(cameraPos, targetPos, boxTrackingSpeed * Time.deltaTime);
 
             SetCameraPos(follow);
         }
@@ -145,7 +145,7 @@ public partial class CameraController : MonoBehaviour
 public partial class CameraController : MonoBehaviour
 {
     public SphereDataComponent sphereData;
-    public float sphereFollowSpeed = 2f;
+    public float sphereTrackingSpeed = 2f;
 
     public bool InsideBoundsSphere
     {
@@ -174,7 +174,7 @@ public partial class CameraController : MonoBehaviour
             Vector3 targetPos = TargetPosition;
             targetPos.z = cameraPos.z;
 
-            Vector3 follow = Vector3.Lerp(cameraPos, targetPos, movementSpeed * Time.deltaTime);
+            Vector3 follow = Vector3.Lerp(cameraPos, targetPos, sphereTrackingSpeed * Time.deltaTime);
 
             SetCameraPos(follow);
         }

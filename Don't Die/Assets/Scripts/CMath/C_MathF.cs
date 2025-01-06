@@ -117,9 +117,9 @@ namespace C_Math
             public static bool RadialCheckInsideSphere(Sphere sphere, Vector3 position)
             {
                 //Get the two positions. 
-                Vector3 spherePos = sphere.center;
-                Vector3 objectPos = position;
-
+                Vector2 spherePos = sphere.center;
+                Vector2 objectPos = position;
+                                
                 //Get the range of the sphere. 
                 float range = sphere.radius;
 

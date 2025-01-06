@@ -234,9 +234,9 @@ MonoBehaviour:
   boxData:
     width: 5
     height: 5
-  boxFollowSpeed: 2
+  movementSpeed: 2
   sphereData:
-    radius: 1.98
+    radius: 2
   sphereFollowSpeed: 2
   focusType: 0
   targetP: {x: 0, y: 0, z: 0}
