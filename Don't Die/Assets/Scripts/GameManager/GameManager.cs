@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
 /// <summary>
 /// Class responsible for handling updating the game and acting as a system inbetween. 
 /// </summary>
@@ -108,7 +106,6 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
         throw new NotImplementedException();
     }
 }
-
 
 #region Data Management.
 public partial class GameManager : MonoBehaviour, IBroadcastTransitionState

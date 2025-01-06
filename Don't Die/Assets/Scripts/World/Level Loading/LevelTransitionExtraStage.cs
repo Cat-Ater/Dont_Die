@@ -25,9 +25,8 @@ public class LevelTransitionExtraStage : MonoBehaviour
             return;
 
         audioSource.PlayOneShot(clip);
+        GameManager.Instance.DisablePlayer();
         GameManager.GameTimer.ResetTimer();
-        collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        collision.gameObject.GetComponent<PlayerMovement>().enabled = false;
         GameManager.LoadLevel(StageID.EXTRAS_BOSS_A);
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }

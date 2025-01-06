@@ -15,9 +15,6 @@ public class PlayerHitCollision : MonoBehaviour
 
     public void Start() => hurtBox = this;
 
-    public AudioClip buzzsawSlashAudioClip;
-    public AudioSource source;
-
     public static void SetColliderState(bool state) =>
         hurtBox.hurtboxCollider.enabled = state;
 
@@ -31,7 +28,6 @@ public class PlayerHitCollision : MonoBehaviour
         {
             GameObject obj = new GameObject();
             AudioSource source = obj.AddComponent<AudioSource>();
-            source.PlayOneShot(buzzsawSlashAudioClip);
         }
 
         PlayerController.Alive = false;
