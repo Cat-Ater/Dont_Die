@@ -168,8 +168,6 @@ public partial class CameraController : MonoBehaviour
 
         if (!InsideBoundsSphere)
         {
-            Debug.Log("Outside Spheroid.");
-
             //TODO: Implement movement updating. 
             Vector3 cameraPos = transform.position;
             Vector3 targetPos = TargetPosition;

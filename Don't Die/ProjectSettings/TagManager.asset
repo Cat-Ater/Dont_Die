@@ -10,6 +10,7 @@ TagManager:
   - SystemTriggers
   - DeathPlane
   - Enemy
+  - Platforms
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Laser
   - DeathCollisions
   - Player
-  - 
+  - Platforms
   - 
   - 
   - 
