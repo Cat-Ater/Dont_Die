@@ -1,5 +1,9 @@
-﻿using System.Runtime.CompilerServices;
+﻿using C_Math.Collision;
+using C_Math.ShapeRandomisation;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 namespace C_Math
 {
@@ -71,6 +75,55 @@ namespace C_Math
         public static float Clamp(float value, Vector2 range) =>
             Clamp(value, range.x, range.y);
 
+        public static Vector3 AngleToUnitCirclePoint(float angle)
+        {
+            float angleR = Mathf.Deg2Rad * angle;
+            return new Vector3(Mathf.Cos(angleR), Mathf.Sin(angleR));
+        }
+
+        public static Vector3 ToUnitCirclePoint(this float angle)
+        {
+            float angleR = Mathf.Deg2Rad * angle;
+            return new Vector3(Mathf.Cos(angleR), Mathf.Sin(angleR));
+        }
+
+        public static Vector3[] GetPointsOnCircle(this Circle2D circle, int count, Vector3 center)
+        {
+            Vector3[] positions = new Vector3[count];
+            float initialOffset = circle.initial;
+            float stepRate = 360 / count;
+            float currentStep = initialOffset;
+
+            for (int i = 0; i < count; ++i)
+            {
+                currentStep += stepRate;
+                Vector3 point = currentStep.ToUnitCirclePoint();
+                positions[i] = center + (currentStep.ToUnitCirclePoint() * circle.radius);
+            }
+            return positions;
+        }
+
+        public static Vector3[] RandomiseOnCircle(this Circle2D circle, int count, Vector3 center)
+        {
+            Vector3[] positions = new Vector3[count];
+            float initialOffset = UnityEngine.Random.Range(0, 90);
+            float stepRate = 360 / count;
+            float currentStep;
+
+            for (int i = 0; i < count; ++i)
+            {
+                currentStep = (i * stepRate) + initialOffset + UnityEngine.Random.Range(30, 270);
+                positions[i] = center + (currentStep.ToUnitCirclePoint() * circle.radius);
+            }
+
+            return positions;
+        }
+
+        public static void UpdateIncrement(this Circle2D circle)
+        {
+            circle.initial += (circle.antiClockwise) ? circle.increment : -circle.increment;
+            circle.initial %= 360;
+        }
 
         public static float GetLineMidpoint(Vector2 vec)
         {
@@ -126,11 +179,85 @@ namespace C_Math
                 //Get the distance between the two objects. 
                 float magnitude = Mathf.Abs((spherePos - objectPos).magnitude);
 
-                //Debug the results. 
-                Debug.Log("Detection Radius: " +  range);
-                Debug.Log("Current Distance: " +  magnitude);
-                Debug.Log("Collision Result: " + (magnitude >= range));
+                ////Debug the results. 
+                //Debug.Log("Detection Radius: " +  range);
+                //Debug.Log("Current Distance: " +  magnitude);
+                //Debug.Log("Collision Result: " + (magnitude >= range));
                 return (magnitude < range);
+            }
+        }
+    }
+
+    namespace ShapeRandomisation
+    {
+        public class Arc2D
+        {
+            public float minArc; 
+            public float maxArc;
+            public float radius;
+        }
+
+        [System.Serializable]
+        public class Circle2D
+        {
+            public float radius;
+            public float initial = 0;
+            [Range(0, 360)]
+            public float increment;
+            public bool antiClockwise = false; 
+        }
+
+        public static class SphericalRandomisation
+        {
+            private static Vector3 GenerateRandomUnitArcPoint(Arc2D arc)
+            {
+                float angleR = UnityEngine.Random.Range(arc.minArc, arc.maxArc) * Mathf.Deg2Rad;
+                return new Vector3(Mathf.Cos(angleR), Mathf.Sin(angleR), 0) * arc.radius;
+            }
+
+            public static Vector3[] RandomiseSequentialOnSphere(float radius, int count, Vector3 center)
+            {
+                Vector3[] positions = new Vector3[count];
+                float initialOffset = UnityEngine.Random.Range(0, 360);
+                float stepRate = 360 / count;
+                float currentStep = initialOffset; 
+
+                for (int i = 0; i < count; ++i)
+                {
+                    currentStep += stepRate;
+                    Vector3 point = currentStep.ToUnitCirclePoint();
+                    positions[i] = center + ( new Vector3(point.x * radius, point.y * radius));
+                }
+
+                return positions;
+            }
+
+            public static Vector3[] RandomiseOnSphere(float radius, int count, Vector3 center)
+            {
+                Vector3[] positions = new Vector3[count];
+                float initialOffset = UnityEngine.Random.Range(0, 180);
+                float stepRate = 360 / count;
+                float currentStep;
+
+                for (int i = 0; i < count; ++i)
+                {
+                    currentStep = (i * stepRate) + initialOffset + UnityEngine.Random.Range(30, 270);
+                    positions[i] = currentStep.ToUnitCirclePoint() * radius;
+                }
+
+                return positions;
+            }
+
+            public static Vector3[] RandomiseOnArc(Arc2D arc, int count)
+            {
+                Vector3[] points = new Vector3[count];
+
+                for (int i = 0; i < count; ++i)
+                {
+                    points[i] = GenerateRandomUnitArcPoint(arc);
+                }
+
+                return points;
             }
         }
     }
