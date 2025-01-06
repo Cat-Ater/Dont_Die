@@ -67,8 +67,6 @@ public partial class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        FocusUpdate();
-
         switch (Type)
         {
             case CameraMovementType.FOLLOW_BOX:
@@ -81,6 +79,7 @@ public partial class CameraController : MonoBehaviour
                 FocusUpdate();
                 break;
         }
+        UpdateZoom();
     }
 
     private void OnDrawGizmos()
@@ -99,6 +98,25 @@ public partial class CameraController : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(target.transform.position, 0.55F);
         }
+    }
+}
+
+/////////////////////////////
+/// Zoom handling.
+/////////////////////////////
+public partial class CameraController : MonoBehaviour
+{
+    [Range(2, 10)]
+    [SerializeField] private float zoomLevel; 
+    
+    public void SetZoomLevel(float zoom)
+    {
+        zoomLevel = zoom; 
+    }
+
+    private void UpdateZoom()
+    {
+        Camera.main.orthographicSize = zoomLevel;
     }
 }
 
