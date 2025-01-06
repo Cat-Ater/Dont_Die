@@ -17,7 +17,7 @@ public struct RoundData
 /// <summary>
 /// Class responsible for handling updating the game and acting as a system inbetween. 
 /// </summary>
-public class GameManager : MonoBehaviour, IBroadcastTransitionState
+public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
 {
     /// <summary>
     /// The current static instance of the GameManager. 
@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     /// Returns the current GameTimer instance. 
     /// </summary>
     public static Timer GameTimer => _instance._gameTimer;
+
+    public static bool ExtraStageUnlocked => DataHandler.Data.extraStageUnlocked;
 
     #region Respawning. 
     public static PlayerRespawner SetRespawn
@@ -108,13 +110,6 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     public Vector3 RespawnPosition => Instance.respawnHandler.Point;
     #endregion
 
-    #region Player Completion.
-    public static bool ExtraStageUnlocked => DataHandler.Data.mainStageComplete;
-    #endregion
-
-    #region Player Data. 
-
-    #endregion
     #endregion
 
     void Awake()
@@ -127,10 +122,7 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
             _instance = this;
             DontDestroyOnLoad(this);
         }
-        else
-        {
-            DestroyImmediate(this);
-        }
+        else DestroyImmediate(this);
 
         //Set up timer
         _gameTimer = new Timer();
@@ -162,37 +154,23 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
     private void PlayerDeath(Vector2 position)
     {
         ShowEffects(position);
-        PlayerDeathPostion(position);
 
         //Reset the game timer. 
         _gameTimer.Enabled = false;
 
         GameObject pObj = PlayerController.PlayerObject;
 
-        if (PlayerRespawnable)
-        {
-            DataHandler.SetDeath();
-            pObj.SetActive(false);
-            pObj.transform.position = RespawnPosition;
-            PlayerController.Alive = true;
-            pObj.SetActive(true);
-        }
+        DataHandler.SetDeath();
+        PlayerController.PlayerEnabled = false;
+        pObj.SetActive(false);
 
-        if (!PlayerRespawnable)
+        if (PlayerRespawnable) PlayerSpawner.RespawnPlayer(ref pObj, position);
+        else
         {
-            DataHandler.SetDeath();
-            DataHandler.SetLastAttemptTime(GameTimer.Time);
-            PlayerController.PlayerEnabled = false;
-            pObj.SetActive(false);
             levelLoader.LoadLevel("HoldingCell", TransitionType.DEATH);
             PlayerController.PlayerEnabled = true;
             _gameTimer.ResetTimer();
         }
-    }
-
-    private void PlayerDeathPostion(Vector2 position)
-    {
-        bodyManager.AddPosition(DataHandler.Data.totalNumberOfDeaths, position, SceneManager.GetActiveScene().name);
     }
 
     private void ShowEffects(Vector2 position)
@@ -200,7 +178,6 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
         //Instantiate death visuals. 
         Instantiate(effects.RandomSplatter, effects.PositionOffset(position), Quaternion.identity);
         Instantiate(effects.RandomBody, position, Quaternion.Euler(effects.RotationOffset()));
-
     }
     #endregion
 
@@ -277,8 +254,6 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
         if ((!roundData.usedBody && !roundData.usedBomb))
             DataHandler.SetExtraStageUnlocked();
 
-        DataHandler.SetLastAttemptTime(GameTimer.Time);
-        
         //Disable timer. 
         GameTimer.Enabled = false;
 
@@ -291,3 +266,17 @@ public class GameManager : MonoBehaviour, IBroadcastTransitionState
         throw new NotImplementedException();
     }
 }
+
+
+#region Data Management.
+public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
+{
+    public void LoadData()
+    {
+        //Set up player data. 
+        DataHandler.CreateDataHandler();
+    }
+
+    public void SaveData() => DataHandler.SaveData();
+}
+#endregion
