@@ -2,61 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CMath.Collision
-{
-    public static class AABB
-    {
-
-        public static bool AABBCollisionCheck(Box box, Vector2 position)
-        {
-            Vector2 min = box.GetMin;
-            Vector2 max = box.GetMax;
-
-            if ((min.x < position.x && max.x > position.x) &&
-                (min.y < position.y && max.y > position.y))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        //TODO: TEST THIS FUNCTION. 
-        public static bool AABBCollisionCheck(Box a, Box b)
-        {
-            Vector2 minA = a.GetMin;
-            Vector2 maxA = a.GetMax;
-            Vector2 minB = b.GetMin;
-            Vector2 maxB = b.GetMax;
-
-            if ((minA.x < minB.x && maxA.x > maxB.x) &&
-                (minA.y < minB.y && maxA.y > minB.y))
-            {
-                return true;
-            }
-            return false;
-        }
-    }
-}
-
-[System.Serializable]
-public class BoxDataComponent
-{
-    public float width;
-    public float height;
-    public GameObject obj;
-
-    public Box GetBox => new Box()
-    {
-        center = obj.transform.position,
-        height = height,
-        width = width
-    };
-}
-
 public enum CameraMovementType
 {
     FOLLOW_BOX,
-    DUNGEON_RAIL,
+    FOLLOW_SPHERE,
     FOCUS_OBJECT
 }
 
@@ -118,7 +67,37 @@ public partial class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         FocusUpdate();
-        BoxFollowUpdate();
+
+        switch (Type)
+        {
+            case CameraMovementType.FOLLOW_BOX:
+                BoxFollowUpdate();
+                break;
+            case CameraMovementType.FOLLOW_SPHERE:
+                SphereFollowUpdate();
+                break;
+            case CameraMovementType.FOCUS_OBJECT:
+                FocusUpdate();
+                break;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (Application.isPlaying)
+        {
+            if (Type == CameraMovementType.FOLLOW_BOX)
+                boxData.GetBox(transform.position).OnDraw();
+            if (Type == CameraMovementType.FOLLOW_SPHERE)
+                sphereData.GetSphere(transform.position).OnDraw();
+        }
+
+        if(target != null)
+        {
+            //Draw the current focused object. 
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(target.transform.position, 0.55F);
+        }
     }
 }
 
@@ -128,14 +107,14 @@ public partial class CameraController : MonoBehaviour
 public partial class CameraController : MonoBehaviour
 {
     public BoxDataComponent boxData;
-    public float boxFollowSpeed = 2f;
+    public float movementSpeed = 2f;
 
     public bool OutsideBounds
     {
         get
         {
-            return !CMath.Collision.AABB.AABBCollisionCheck(
-                boxData.GetBox,
+            return !C_Math.Collision.AABB.AABBCollisionCheck(
+                boxData.GetBox(transform.position),
                 TargetPosition
                 );
         }
@@ -153,15 +132,52 @@ public partial class CameraController : MonoBehaviour
             Vector3 targetPos = TargetPosition;
             targetPos.z = cameraPos.z;
 
-            Vector3 follow = Vector3.Lerp(cameraPos, targetPos, boxFollowSpeed * Time.deltaTime);
+            Vector3 follow = Vector3.Lerp(cameraPos, targetPos, movementSpeed * Time.deltaTime);
 
             SetCameraPos(follow);
         }
     }
+}
 
-    private void OnDrawGizmos()
+/////////////////////////////
+/// SPHERE FOLLOW.
+/////////////////////////////
+public partial class CameraController : MonoBehaviour
+{
+    public SphereDataComponent sphereData;
+    public float sphereFollowSpeed = 2f;
+
+    public bool InsideBoundsSphere
     {
-        boxData.GetBox.OnDraw();
+        get
+        {
+            return C_Math.Collision.Radial.RadialCheckInsideSphere(
+                sphereData.GetSphere(transform.position),
+                TargetPosition
+                );
+        }
+    }
+
+    private void SphereFollowUpdate()
+    {
+        if (Type != CameraMovementType.FOLLOW_SPHERE)
+        {
+            return;
+        }
+
+        if (!InsideBoundsSphere)
+        {
+            Debug.Log("Outside Spheroid.");
+
+            //TODO: Implement movement updating. 
+            Vector3 cameraPos = transform.position;
+            Vector3 targetPos = TargetPosition;
+            targetPos.z = cameraPos.z;
+
+            Vector3 follow = Vector3.Lerp(cameraPos, targetPos, movementSpeed * Time.deltaTime);
+
+            SetCameraPos(follow);
+        }
     }
 }
 

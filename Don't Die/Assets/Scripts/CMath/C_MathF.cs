@@ -77,4 +77,61 @@ namespace C_Math
             return vec.magnitude / 2;
         }
     }
+
+    namespace Collision
+    {
+        public static class AABB
+        {
+            public static bool AABBCollisionCheck(Box box, Vector2 position)
+            {
+                Vector2 min = box.GetMin;
+                Vector2 max = box.GetMax;
+
+                if ((min.x < position.x && max.x > position.x) &&
+                    (min.y < position.y && max.y > position.y))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            //TODO: TEST THIS FUNCTION. 
+            public static bool AABBCollisionCheck(Box a, Box b)
+            {
+                Vector2 minA = a.GetMin;
+                Vector2 maxA = a.GetMax;
+                Vector2 minB = b.GetMin;
+                Vector2 maxB = b.GetMax;
+
+                if ((minA.x < minB.x && maxA.x > maxB.x) &&
+                    (minA.y < minB.y && maxA.y > minB.y))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public static class Radial
+        {
+            public static bool RadialCheckInsideSphere(Sphere sphere, Vector3 position)
+            {
+                //Get the two positions. 
+                Vector3 spherePos = sphere.center;
+                Vector3 objectPos = position;
+
+                //Get the range of the sphere. 
+                float range = sphere.radius;
+
+                //Get the distance between the two objects. 
+                float magnitude = Mathf.Abs((spherePos - objectPos).magnitude);
+
+                //Debug the results. 
+                Debug.Log("Detection Radius: " +  range);
+                Debug.Log("Current Distance: " +  magnitude);
+                Debug.Log("Collision Result: " + (magnitude >= range));
+                return (magnitude < range);
+            }
+        }
+    }
 }

@@ -1,5 +1,37 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
+public class BoxDataComponent
+{
+    public float width;
+    public float height;
+
+    public Box GetBox(Vector3 position)
+    {
+        return new Box()
+        {
+            center = position,
+            height = height,
+            width = width
+        };
+    }
+}
+
+[System.Serializable]
+public class SphereDataComponent
+{
+    public float radius;
+
+    public Sphere GetSphere(Vector3 position)
+    {
+        return new Sphere()
+        {
+            center = position,
+            radius = radius,
+        };
+    }
+}
+
 public class Box
 {
     public Box()
@@ -14,6 +46,20 @@ public class Box
 
     public void OnDraw()
     {
-        Gizmos.DrawCube(center, new Vector3(width, height));
+        Gizmos.DrawWireCube(center, new Vector3(width, height));
+    }
+}
+
+public class Sphere
+{
+    public Sphere() { }
+
+    public Vector3 center { get; set; }
+
+    public float radius { get; set; }   
+
+    public void OnDraw()
+    {
+        Gizmos.DrawWireSphere(center, radius);
     }
 }
