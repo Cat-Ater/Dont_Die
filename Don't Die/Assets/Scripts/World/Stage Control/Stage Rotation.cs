@@ -39,6 +39,8 @@ public class StageRotation : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if(!Application.isPlaying) return;
+
         Gizmos.DrawIcon(rotationCenter.transform.position, "Rotation Center");
         //Gizmos.DrawWireSphere(rotationCenter.transform.position, rotationRadius);
 

@@ -20,27 +20,27 @@ public class PlayerHitCollision : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Button" || collision.tag == "SystemTriggers" ||
-            collision.gameObject.tag == "DeadBody")
-            return;
+        //if (collision.tag == "Button" || collision.tag == "SystemTriggers" ||
+        //    collision.gameObject.tag == "DeadBody")
+        //    return;
 
-        if (collision.gameObject.GetComponent<Buzzsaw>() != null)
-        {
-            GameObject obj = new GameObject();
-            AudioSource source = obj.AddComponent<AudioSource>();
-        }
+        //if (collision.gameObject.GetComponent<Buzzsaw>() != null)
+        //{
+        //    GameObject obj = new GameObject();
+        //    AudioSource source = obj.AddComponent<AudioSource>();
+        //}
 
-        PlayerController.Alive = false;
+        //PlayerController.Alive = false;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "DeadBody")
-            return;
+        //if (collision.gameObject.tag == "DeadBody")
+        //    return;
 
-        if(collision.gameObject.layer == 7)
-        {
-            PlayerController.Alive = false; 
-        }
+        //if(collision.gameObject.layer == 7)
+        //{
+        //    PlayerController.Alive = false; 
+        //}
     }
 }

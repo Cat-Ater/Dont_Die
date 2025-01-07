@@ -9,11 +9,11 @@ public enum PlatformState
     ENABLED,
     ENABLING,
     DISABLED,
-    DISABLING, 
+    DISABLING,
     FADING
 }
 
-public class PlatformController : MonoBehaviour
+public class PlatformController : MantleableObject
 {
     public PlatformState state;
     public GameObject platform;
@@ -23,10 +23,12 @@ public class PlatformController : MonoBehaviour
     public void EnablePlatform(float delayTime) => StartCoroutine(PlatformTimer(delayTime, Action_EnablePlatform));
 
     public void RotatePlatformTo(float delayTime) => StartCoroutine(PlatformTimer(delayTime, Action_RotatePlatform));
-    
+
     public void MovePlatformTo(Vector3 position)
     {
+        float lastz = transform.position.z;
         gameObject.transform.position = position;
+        gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, lastz);
     }
 
     public IEnumerator PlatformTimer(float timeTilComplete, Action completionAction)
