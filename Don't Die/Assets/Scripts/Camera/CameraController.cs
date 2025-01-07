@@ -65,8 +65,17 @@ public partial class CameraController : MonoBehaviour
             Destroy(this.gameObject);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha5))
+            InterpolateZoom(4, 8.5f);
+        if (Input.GetKeyUp(KeyCode.Alpha4))
+            InterpolateZoom(-4, 8.5f);
+    }
+
     private void LateUpdate()
     {
+
         switch (Type)
         {
             case CameraMovementType.FOLLOW_BOX:
@@ -106,9 +115,56 @@ public partial class CameraController : MonoBehaviour
 /////////////////////////////
 public partial class CameraController : MonoBehaviour
 {
-    [Range(2, 10)]
-    [SerializeField] private float zoomLevel; 
+    private const float EPSILON = 0.00025f;
+    private const float MIN_CAMERA = 1;
+    private const float MAX_CAMERA = 100;
+
+    [Range(1, 100)]
+    [SerializeField] private float zoomLevel;
+    [SerializeField] private bool zoomInterpolationActive = false;
     
+    public void InterpolateZoom(float zoom, float period)
+    {
+        if (!zoomInterpolationActive)
+        {
+            zoomInterpolationActive = true;
+            StartCoroutine(InterpolateZoomHandler(zoom, period));
+        }
+    }
+
+    private IEnumerator InterpolateZoomHandler(float zoomDT, float period)
+    {
+        float inital = zoomLevel;
+        float endValue = inital + zoomDT;
+        float step = zoomDT / period;
+        float current = inital;
+
+        if(endValue < MIN_CAMERA) endValue = 1;
+
+        if(Mathf.Sign(zoomDT) == -1)
+        {
+            while (current > endValue + EPSILON && current > MIN_CAMERA)
+            {
+                current = Mathf.Clamp(current + step, MIN_CAMERA, MAX_CAMERA);
+                zoomLevel = current;
+                yield return new WaitForSeconds(0.02F);
+            }
+        }
+
+        if (Mathf.Sign(zoomDT) == 1)
+        {
+            while (current < endValue - EPSILON && current < MAX_CAMERA)
+            {
+                current = Mathf.Clamp(current + step, MIN_CAMERA, MAX_CAMERA);
+                zoomLevel = current;
+                yield return new WaitForSeconds(0.02F);
+            }
+        }
+
+        zoomLevel = endValue;
+        zoomInterpolationActive = false;
+    }
+
     public void SetZoomLevel(float zoom)
     {
         zoomLevel = zoom; 
