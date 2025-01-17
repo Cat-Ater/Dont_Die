@@ -13,18 +13,22 @@ public class PlayerDash : MonoBehaviour
     /// Reference to the players rigidbody2D. 
     /// </summary>
     public Rigidbody2D body2D;
+    
     /// <summary>
     /// Can the player dash. 
     /// </summary>
-    private bool canDash = true;
+    private bool _canDash = true;
+    
     /// <summary>
     /// Is the player currently dashing. 
     /// </summary>
-    private bool dashing = false;
+    private bool _dashing = false;
+    
     /// <summary>
     /// The players dash distance. 
     /// </summary>
     public float dashDistance = 10F;
+
     /// <summary>
     /// Time between the players dashes. 
     /// </summary>
@@ -32,7 +36,9 @@ public class PlayerDash : MonoBehaviour
     public float dashInvulnPeriod = 0.3F;
     public PlayerHitCollision hitCollision;
     public AudioClip dashAudioClip;
-    public AudioSource source; 
+    public AudioSource source;
+
+    public bool Dashing => _dashing;
 
     void Start()
     {
@@ -48,7 +54,7 @@ public class PlayerDash : MonoBehaviour
     void Update()
     {
         //Check for dash input. 
-        dashing = (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && canDash;
+        _dashing = (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && _canDash;
     }
 
     private void LateUpdate()
@@ -60,9 +66,9 @@ public class PlayerDash : MonoBehaviour
             dashVec = PlayerMovement.LastDirection.normalized * (dashDistance * 1000);
 
         //If dashing apply the dash; Skip normal movement. 
-        if (dashing)
+        if (_dashing)
         {
-            canDash = false;
+            _canDash = false;
             PlayerHitCollision.SetColliderState(false);
             hitCollision.enabled = false; 
             body2D.AddForce(dashVec);
@@ -80,13 +86,13 @@ public class PlayerDash : MonoBehaviour
         yield return new WaitForSeconds(dashInvulnPeriod);
         PlayerHitCollision.SetColliderState(true);
         yield return new WaitForSeconds(dashCooldown - dashInvulnPeriod);
-        canDash = true;
+        _canDash = true;
     }
 
     private void OnDisable()
     {
         StopAllCoroutines(); 
-        canDash = true;
-        dashing = false; 
+        _canDash = true;
+        _dashing = false; 
     }
 }

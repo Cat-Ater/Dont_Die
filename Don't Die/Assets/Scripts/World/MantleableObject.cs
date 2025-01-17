@@ -30,11 +30,9 @@ public class MantleableObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Exited trigger");
         if (mantleState == ObjectMantleState.ACTIVE &&
             collision.gameObject.layer == 8 && collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Exited trigger: Was player, de-parenting.");
             collision.transform.parent = null;
             mantleState = ObjectMantleState.INACTIVE;
             collision.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, 0);

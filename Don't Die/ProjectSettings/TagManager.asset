@@ -11,6 +11,8 @@ TagManager:
   - DeathPlane
   - Enemy
   - Platforms
+  - Player_Hurtbox
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - DeathCollisions
   - Player
   - Platforms
-  - 
+  - Ground
   - 
   - 
   - 

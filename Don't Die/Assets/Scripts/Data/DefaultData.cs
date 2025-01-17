@@ -5,11 +5,11 @@ public enum StageID
     BOSS_A = 1, 
     BOSS_B = 2, 
     BOSS_C = 3, 
-    BOSS_D = 4,
-    BOSS_E = 5, 
-    BOSS_F = 6, 
-    EXTRAS_BOSS_A = 7, 
-    EXTRAS_BOSS_B = 8,
+    EXTRAS_BOSS_A = 4, 
+    EXTRAS_BOSS_B = 5,
+    ENDING_A = 6, 
+    ENDING_B = 7,
+    ENDING_C = 8,
     CREDITS = 9, 
     GAME_HUB = 10
 }

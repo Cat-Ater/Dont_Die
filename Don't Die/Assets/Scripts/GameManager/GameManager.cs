@@ -152,7 +152,6 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
 #region Player Management. 
 public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
 {
-
     /// <summary>
     /// Add a position at which the player died. 
     /// </summary>
@@ -176,31 +175,49 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
 
     public void PlayerDeath(Vector2 position)
     {
-        ShowEffects(position);
+        Debug.Log("Player died");
 
-        //Reset the game timer. 
-        _gameTimer.Enabled = false;
+        Vector2 respawnPosition = RespawnPosition;
 
+        //Set data changes and remove player control. 
         GameObject pObj = PlayerController.PlayerObject;
-
-        DataHandler.SetDeath();
         PlayerController.PlayerEnabled = false;
         pObj.SetActive(false);
+        DataHandler.SetDeath();
 
-        if (PlayerRespawnable) respawnHandler.RespawnPlayer(ref pObj);
+        //Display gore. 
+        ShowBloodEffects(position);
+
+        //Check if there are lives left.
+        if (!PlayerRespawnable)
+        {
+            //If no lives left skip the battle. 
+            levelLoader.FailedLevel();
+            //Add failure. 
+        }
         else
         {
-            levelLoader.LoadLevel("HoldingCell", TransitionType.DEATH);
-            PlayerController.PlayerEnabled = true;
-            _gameTimer.ResetTimer();
+            //Add failure. 
+            levelLoader.FailedLevel();
+            //Else respawn at the center of the playing field. 
+            respawnHandler.RespawnPlayer(ref pObj, respawnPosition);
         }
+
+
+
+        //if (PlayerRespawnable) respawnHandler.RespawnPlayer(ref pObj);
+        //else
+        //{
+        //    levelLoader.LoadLevel("HoldingCell", TransitionType.DEATH);
+        //    PlayerController.PlayerEnabled = true;
+        //    _gameTimer.ResetTimer();
+        //}
     }
 
-    private void ShowEffects(Vector2 position)
+    private void ShowBloodEffects(Vector2 position)
     {
         //Instantiate death visuals. 
         Instantiate(effects.RandomSplatter, effects.PositionOffset(position), Quaternion.identity);
-        Instantiate(effects.RandomBody, position, Quaternion.Euler(effects.RotationOffset()));
     }
 
     public void DisablePlayer()
@@ -226,7 +243,7 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
     {
         TransitionType transitionType = TransitionType.TRANSITION;
 
-        //Discern what load proceedure to use. 
+        //Discern what load procedure to use. 
         switch (stageID)
         {
             case StageID.START:
@@ -241,15 +258,6 @@ public partial class GameManager : MonoBehaviour, IBroadcastTransitionState
                 break;
             case StageID.BOSS_C:
                 Debug.Log("Boss C loading.");
-                break;
-            case StageID.BOSS_D:
-                Debug.Log("Boss D loading.");
-                break;
-            case StageID.BOSS_E:
-                Debug.Log("Boss E loading.");
-                break;
-            case StageID.BOSS_F:
-                Debug.Log("Boss F loading.");
                 break;
             case StageID.EXTRAS_BOSS_A:
                 Debug.Log("Ex Boss A loading.");
